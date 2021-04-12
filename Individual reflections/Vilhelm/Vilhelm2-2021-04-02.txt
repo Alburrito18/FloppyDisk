@@ -1,0 +1,9 @@
+Individual Reflection - Vilhelm - Week 2
+
+I would like to better understand user stories. I feel like I've grasped the general idea of using vertical slices and so on, but we struggled a lot during the exercise when we were supposed to come up with user stories from a given problem.
+
+I feel like I'm pretty open to helping others learn something new, it's just that at the moment there isn't anything obvious that I can help them with except be with them as we go through the course and discuss the material.
+
+So far I haven't really contributed to our use of Scrum I think, of course I've done my best with our activites but nothing out of the ordinary.
+
+I was a big help partly finding and communicating with our external part (since he is my father that is natural) and I've also come up with the basic design idea for our program.

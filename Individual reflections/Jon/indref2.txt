@@ -1,0 +1,20 @@
+- what do I want to learn or understand better?
+
+I nuläget är det personligen lite förvirring kring hur vi ska börja och vilka utvecklingsmiljöer som ska användas.
+Jag hoppas kunna lära mig mer om detta genom att få reda på mer förutsättningar från vår PO och 
+om behövligt lära mig mer om dessa utvecklingsmiljöer. 
+
+-how can I help someone else, or the entire team, to learn something new?'
+
+Eftersom vi är i ett tidigt stadie hoppas jag kan hjälpa laget att komma med flertal kreativa idéer om 
+hur vår lösning kan tänkas se ut.
+
+-what is my contribution towards the team’s use of Scrum?
+
+Det är fortsatt rätt tidigt stadie och vi har inte förberett så mycket kring SCRUM än. Har dock bland annat 
+sen tidigare haft lite koll på user-stories och har därför kunnat förklara för vissa vad detta innebär.
+
+-what is my contribution towards the team’s deliveries?
+
+Tog ett visst tag i att erbjuda vårt projekt en mock-up genom att ta fart i användingen av Figma. Där jag
+även kopplade ihop så det går att presentera en tidig presentation av hur vi visualiserar slutprodukten.

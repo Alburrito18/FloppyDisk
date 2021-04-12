@@ -1,0 +1,3 @@
+Hear Nordic AB is a reseller of personalized hearing protection. Their current process when receiving orders from customers and forwarding to suppliers contains a lot of redundant work, with the same information manually entered at several points into different forms, programs, and documents.
+
+The goal of our project is to develop a desktop program or a mobile application in order to get rid of as much redundancy as possible, by having the customers enter their info into the program and then using that data to automatically generate the desired documentation.

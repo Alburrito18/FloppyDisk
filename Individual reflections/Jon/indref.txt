@@ -1,0 +1,19 @@
+-what do I want to learn or understand better?
+ Jag vill lära mig mer om både programmering och jobba i ett mer reellt projekt
+kopplat till en extern kund för att få en inblick hur det sedan kan fungera i 
+arbetslivet. Sedan tycker jag också att jobba i en projektgrupp är bra, speciellt 
+när det blir kopplat till teori som Scrum.
+
+- how can I help someone else, or the entire team, to learn something new?
+ Jag hoppas jag hjälpa genom att vara öppen för frågor, personligen hoppas jag kan 
+uppmuntra brainstorming och hoppas man kan erbjuda en miljö där frågor uppmuntras 
+och idéer får höras.
+
+-what is my contribution towards the team’s use of Scrum?
+ Än så länge är det ej bestämt roller och har inte full koll på scrum, men hoppas 
+kunna få en roll där man får lite kreativt inflytande men också mer kodande.
+
+-what is my contribution towards the team’s deliveries?
+ Än så länge inte så mycket rent deliveries så har inte erbjudit så mycket, har
+väl erbjudit minimal hjälp när det gäller att få några i gruppen klokare på github 
+vilket kanske är någon indirekt hjälp för ett slutändamål.
