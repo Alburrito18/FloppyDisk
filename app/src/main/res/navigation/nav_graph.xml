@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_blankFragment"
+            app:destination="@id/blankFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -24,5 +27,13 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_blankFragment"
+            app:destination="@id/blankFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.example.intehora.BlankFragment"
+        android:label="blank_fragment"
+        tools:layout="@layout/blank_fragment" />
 </navigation>
