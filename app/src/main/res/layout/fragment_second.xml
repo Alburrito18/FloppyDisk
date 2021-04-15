@@ -12,15 +12,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
         android:layout_marginTop="500dp"
-        android:text="@string/previous"
+        android:text="@string/n_sta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.71"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="232dp"
-        android:layout_height="65dp"
+        android:layout_width="229dp"
+        android:layout_height="61dp"
         android:layout_marginBottom="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,8 +31,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="233dp"
-            android:layout_height="47dp"
-            android:hint="@string/kund_namn" />
+            android:layout_height="match_parent"
+            android:hint="@string/f_retag" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -42,11 +43,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47000003">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="@string/kund_id" />
     </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

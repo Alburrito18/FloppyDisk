@@ -13,4 +13,13 @@
     <string name="l_gg_till_ny_best_llning">Lägg till ny beställning</string>
     <string name="kund_namn">Kund Namn</string>
     <string name="kund_id">Kund ID</string>
+    <string name="n_sta">Nästa</string>
+    <string name="f_retag">Företag</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="f_delsenummer">Födelsenummer</string>
+    <string name="avdelning">Avdelning</string>
+    <string name="efternamn">Efternamn</string>
+    <string name="f_rnamn">Förnamn</string>
+    <string name="h_rmed_godk_nner_jag_att_mina_ronavtryck_och_personuppgifter_sparas_f_r_ny_och_efterbest_llning_av_formgjutna_produkter_fr_n_hear_nordic">Härmed godkänner jag att mina öronavtryck och personuppgifter sparas för ny och efterbeställning av formgjutna produkter från HEAR Nordic.</string>
 </resources>
