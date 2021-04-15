@@ -24,5 +24,17 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_personalInfo"
+            app:destination="@id/personalInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/personalInfo"
+        android:name="com.example.intehora.PersonalInfo"
+        android:label="fragment_personal_info"
+        tools:layout="@layout/fragment_personal_info" >
+        <action
+            android:id="@+id/action_personalInfo_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
     </fragment>
 </navigation>
