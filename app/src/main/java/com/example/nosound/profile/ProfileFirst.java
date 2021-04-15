@@ -1,4 +1,4 @@
-package com.example.intehora;
+package com.example.nosound.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.nosound.R;
 
 public class ProfileFirst extends Fragment {
     private TextView DagensDatumProfil;
