@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ConchaChoices">
+        <item>Ingen</item>
+        <item>Höger</item>
+        <item>Vänster</item>
+    </string-array>
+</resources>
