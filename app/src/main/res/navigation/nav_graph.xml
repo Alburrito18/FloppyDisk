@@ -36,5 +36,13 @@
         <action
             android:id="@+id/action_personalInfo_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_personalInfo_to_vy3"
+            app:destination="@id/vy3" />
     </fragment>
+    <fragment
+        android:id="@+id/vy3"
+        android:name="com.example.intehora.Vy3"
+        android:label="fragment_vy3"
+        tools:layout="@layout/fragment_vy3" />
 </navigation>
