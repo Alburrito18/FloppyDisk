@@ -1,11 +1,33 @@
 • what do I want to learn or understand better?
-
+Jag vill förstå User stories och android studio bättre. När det gäller Android studio så är det
+många funktioner som jag inte känner att jag har hittat än som potentiellt hade kunnat hjälpa mig.
+Dessa handlöar framförallt om olika design möjligheter. Det känns som det finns flera sätt att
+göra samma sak. Det är svårt att veta om det sättet jag använder mig av just nu är det mest
+effektiva.
 
 • how can I help someone else, or the entire team, to learn something new?
-
+Jag tror att jag kan hjälpa teamet genom att lära mig mer om Android Studio. Genom kunskap om
+verktygen kan vi alla hjälpa varandra.
 
 • what is my contribution towards the team’s use of Scrum?
-
+Denna veckan har jag försökt vara tydlig med att jag tycker att teamet har missuppfattat Scrum.
+Det blir väldigt lätt så att man bara fortsätter att koda och jobba på samma sätt som tidigare
+och även om det är enkelt att falla tillbaka i gamla mönster så är målet med kursen att vi ska
+förstå och kunna använda scrum. Det tar lite längre tid när man ska lära sig och förstå något nytt
+men eftersom det är målet så är det inget vi kan fly ifrån. För att vi ska förstå scrum bättre
+så har jag gjort mitt bästa för att vi ska ha en öppen diskussion om scrum, och alltid tänka
+och ifrågasätta om det vi gör verkligen är inom modellen eller inte
 
 
 • what is my contribution towards the team’s deliveries?
+Mitt bidrag denna vecka har för mig själv känts undermåligt. Jag och Felix har försökt lösa
+"adressboksmenyn" på första-sidan. Men att koppla ihop XML-filer med ListViews var en dålig strategi
+därför har jag nu börjat följa en tutorial som jag hoppas ska hjälpa så vi kan lyckas koppla ihop
+olika delar i appen nästa vecka.
+
+Jag vill även lägga till att jag har haft vissa störningar med individer i projektet. Det är en
+"jag-vet-bäst"-attityd som sinkar resten av teamet. Sedan valde vi i teamet User stories på ett
+undermåligt sätt vilket innebar att ingen av storiesarna var independent, därför har särskilt jag
+och Felix varit fast i en situation där vi behövde vänta på att de andra skulle vara klara. Slår
+vi sedan ihop det med dålig kommunikation så är det inte särskilt konstigt att vi inte lyckades
+särskilt bra med vår user story denna vecka. 
