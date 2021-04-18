@@ -1,0 +1,9 @@
+Ind-reflection 16/4
+
+At the moment we are still having difficulties with user stories, as we didn't really properly estimate how heavy the user stories we came up with were. I would also like to get more familiar with android studio so working with it becomes easier.
+
+Since we are working in pairs, I want to talk with the other group members about what I learn each week. In hat way, everyone can at least hear about what everyone else is working on.
+
+This week my contribution didn't stand ot much compared to the others.
+
+I've worked on trying to implement saving data to an android device, which is a basis for our program.
