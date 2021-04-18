@@ -5,10 +5,20 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.example.nosound.profile.Profile;
+import com.example.nosound.profile.ProfileListAdapter;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +26,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Log.d(TAG, "onCreate: Started.");
+        ListView mListView = (ListView) findViewById(R.id.ListViewProfile);
 
+        //Lite namn för test (tas bort senare)
+        Profile MacDonalds = new Profile("112", "MacDonalds", "infoga dagens datum");
+        Profile LegoLand = new Profile("113", "LegoLand", "infoga dagens datum");
+
+        //En arrayList för dessa profiler, används inte efter ihopkoppling med Drill och Snows del?
+        ArrayList<Profile> profileList = new ArrayList<>();
+        profileList.add(MacDonalds);
+        profileList.add(LegoLand);
+
+        ProfileListAdapter adapter = new ProfileListAdapter(this, R.layout.profile_first, profileList);
+        mListView.setAdapter(adapter);
     }
 
     @Override
