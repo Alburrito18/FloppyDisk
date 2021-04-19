@@ -1,0 +1,17 @@
+-what do I want to learn or understand better?
+	I want to learn about storage more, this week we started working with storing data on android
+	and I feel like I need to learn more about it to make it work in our project. I also want to
+	learn more about the structure of how things are implemented in Android studio, specifically
+	regarding fragments and activities.
+-how can I help someone else, or the entire team, to learn something new?
+	I hope I will be able to learn them a bit about what I have already learned regarding storage
+	I hope I can do this in the coming meeting, by just explaning what me and Vilhelm have tried
+	doing.
+-what is my contribution towards the team’s use of Scrum?
+	I have hopefully made some people more understanding of what the difference between user
+	stories and epics are. I think in general I have people more understanding of the terms in
+	general.
+-what is my contribution towards the team’s deliveries?
+	Currently we are still working on what might be one of the bigger things in the program
+	so that we can store things. However it's quite hard but if it's done by monday it will
+	probably make future deliveries easier.
