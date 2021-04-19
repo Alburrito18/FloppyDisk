@@ -29,4 +29,7 @@
     <string name="val_nedan_inneb_r_extrakostnader">Val nedan innebär extrakostnader</string>
     <string name="concha_telefonsn_cka">Concha / Telefonsnäcka</string>
     <string name="med_f_ste_f_r_sn_re">Med fäste för snöre</string>
+    <string name="f_retagsnamn">Företagsnamn</string>
+    <string name="kundnummer">Kundnummer</string>
+    <string name="ort">Ort</string>
 </resources>
