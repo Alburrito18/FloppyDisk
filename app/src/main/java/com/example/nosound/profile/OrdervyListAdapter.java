@@ -13,9 +13,8 @@ import androidx.annotation.Nullable;
 import com.example.nosound.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ProfileListAdapter extends ArrayAdapter<Profile> {
+public class OrdervyListAdapter extends ArrayAdapter<Ordervy> {
     private static final String TAG = "ProfileListAdapter";
 
     private Context mContext;
@@ -23,7 +22,7 @@ public class ProfileListAdapter extends ArrayAdapter<Profile> {
 
 
 
-    public ProfileListAdapter(Context context, int resource, ArrayList<Profile> objects) {
+    public OrdervyListAdapter(Context context, int resource, ArrayList<Ordervy> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -38,7 +37,7 @@ public class ProfileListAdapter extends ArrayAdapter<Profile> {
        String DagensDatumProfil = getItem(position).getDagensDatumProfil();
 
        //skapa objekt med informationen
-        Profile profile = new Profile(KundIDProfil, NamnProfil, DagensDatumProfil);
+        Ordervy ordervy = new Ordervy(KundIDProfil, NamnProfil, DagensDatumProfil);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);

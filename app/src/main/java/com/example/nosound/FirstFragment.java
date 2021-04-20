@@ -1,15 +1,24 @@
 package com.example.nosound;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.nosound.profile.Ordervy;
+import com.example.nosound.profile.OrdervyListAdapter;
+
+import java.util.ArrayList;
+
 public class FirstFragment extends Fragment {
+
+    private static final String TAG = "FirstFragment";
 
     @Override
     public View onCreateView(
@@ -22,6 +31,21 @@ public class FirstFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Log.d(TAG, "onCreate: Started.");
+        ListView mListView = (ListView) view.findViewById(R.id.ListViewProfile);
+
+        //Lite namn för test (tas bort senare)
+        Ordervy MacDonalds = new Ordervy("112", "MacDonalds", "infoga dagens datum");
+        Ordervy LegoLand = new Ordervy("113", "LegoLand", "infoga dagens datum");
+
+        //En arrayList för dessa profiler, används inte efter ihopkoppling med Drill och Snows del?
+        ArrayList<Ordervy> ordervyList = new ArrayList<>();
+        ordervyList.add(MacDonalds);
+        ordervyList.add(LegoLand);
+
+        OrdervyListAdapter adapter = new OrdervyListAdapter(getContext(), R.layout.profile_first, ordervyList);
+        mListView.setAdapter(adapter);
 
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override

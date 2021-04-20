@@ -1,6 +1,6 @@
 package com.example.nosound.profile;
 
-public class Profile {
+public class Ordervy {
     private String KundIDProfil;
     private String NamnProfil;
     private String DagensDatumProfil;
@@ -29,7 +29,13 @@ public class Profile {
         DagensDatumProfil = dagensDatumProfil;
     }
 
-    public Profile(String KundIDProfil, String NamnProfil, String DagensDatumProfil) {
+    /**
+     * Contructor for the class Ordervy
+     * @param KundIDProfil String representing customers order number
+     * @param NamnProfil String representing customers name
+     * @param DagensDatumProfil String representing the date
+     */
+    public Ordervy(String KundIDProfil, String NamnProfil, String DagensDatumProfil) {
       this.KundIDProfil = KundIDProfil;
       this.NamnProfil = NamnProfil;
       this.DagensDatumProfil = DagensDatumProfil;
