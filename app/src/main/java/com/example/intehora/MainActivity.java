@@ -22,8 +22,8 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements OnDataPass {
 
-    String customerName;
-    String customerID;
+    private String customerName;
+    private String customerID;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
     private HashMap<String,String> customerInfo = new HashMap<>();
@@ -58,7 +58,11 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         return super.onOptionsItemSelected(item);
     }
 
-
+    /**
+     * This method creates a file and requests permission to store files in the external storage, which in this case is Documents.
+     * It then calls upon the method that will store the file in the storage.
+     * @param v
+     */
     public void savePublicly(View v) {
         // Requesting Permission to access External Storage
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
@@ -74,6 +78,13 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         writeTextData(file, customerName,customerID);
     }
 
+    /**
+     * The method puts ID coupled with Name into a map then makes sure that it is saved on the file
+     * that it takes as an argument.
+     * @param file  a File that the map will be stored in.
+     * @param name a String representing the businesses name .
+     * @param id a String representing the business ID .
+     */
     private void writeTextData(File file, String name ,String id) {
         if (!(name == null || id == null)){
             customerInfo.put(id,name);
@@ -100,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     }
 
     @Override
-    public void onDataPass(String customerNamex, String customerIDx) {
-        customerName = customerNamex;
-        customerID = customerIDx;
+    public void onDataPass(String customerName, String customerID) {
+        this.customerName = customerName;
+        this.customerID = customerID;
     }
 }
