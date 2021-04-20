@@ -18,8 +18,6 @@ import java.util.Objects;
  * A fragment representing the screen where the customer puts in the information about the company ordering
  */
 public class SecondFragment extends Fragment {
-    private String customerName;
-    private String customerID;
     private OnDataPass dataPasser;
     private TextInputEditText customerIDText;
     private TextInputEditText customerNameText;
@@ -39,8 +37,8 @@ public class SecondFragment extends Fragment {
         view.findViewById(R.id.button_second).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                customerName = customerIDText.getText().toString();
-                customerID = customerNameText.getText().toString();
+                String customerName = customerIDText.getText().toString();
+                String customerID = customerNameText.getText().toString();
                 passCustomerData(customerName,customerID);
                 saveInfo(view);
                 NavHostFragment.findNavController(SecondFragment.this)
