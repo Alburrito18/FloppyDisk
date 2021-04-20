@@ -35,7 +35,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ort" />
+            android:hint="@string/ort" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -52,9 +52,10 @@
         app:layout_constraintVertical_bias="0.39">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/customerIDText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Kundnummer" />
+            android:hint="@string/kundnummer" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,10 +72,10 @@
         app:layout_constraintVertical_bias="0.24000001">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText2"
+            android:id="@+id/customerNameText"
             android:layout_width="233dp"
             android:layout_height="77dp"
-            android:hint="Företagsnamn" />
+            android:hint="@string/f_retagsnamn" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
