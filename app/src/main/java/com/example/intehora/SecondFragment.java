@@ -12,10 +12,14 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Objects;
+
 public class SecondFragment extends Fragment {
     String customerName;
     String customerID;
     OnDataPass dataPasser;
+    TextInputEditText customerIDText;
+    TextInputEditText customerNameText;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -31,9 +35,7 @@ public class SecondFragment extends Fragment {
         view.findViewById(R.id.button_second).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextInputEditText customerIDText = view.findViewById(R.id.customerIDText) ;
                 customerName = customerIDText.getText().toString();
-                TextInputEditText customerNameText = view.findViewById(R.id.customerNameText) ;
                 customerID = customerNameText.getText().toString();
                 passCustomerData(customerName,customerID);
                 saveInfo(view);
@@ -44,8 +46,14 @@ public class SecondFragment extends Fragment {
         });
 
     }
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+        customerIDText = requireView().findViewById(R.id.customerIDText);
+        customerNameText = requireView().findViewById(R.id.customerNameText);
+    }
     public void saveInfo(View v){
-        ((MainActivity)getActivity()).savePublicly(v);
+        ((MainActivity) requireActivity()).savePublicly(v);
     }
     public void passCustomerData(String customerName,String customerID) {
         dataPasser.onDataPass(customerName,customerID);
