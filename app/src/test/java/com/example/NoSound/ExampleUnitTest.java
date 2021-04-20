@@ -1,4 +1,4 @@
-package com.example.intehora;
+package com.example.NoSound;
 
 import org.junit.Test;
 

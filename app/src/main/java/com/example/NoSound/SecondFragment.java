@@ -1,4 +1,4 @@
-package com.example.intehora;
+package com.example.NoSound;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.Objects;
 
 /**
  * A fragment representing the screen where the customer puts in the information about the company ordering

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.intehora.FirstFragment"
+        android:name="com.example.NoSound.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.intehora.SecondFragment"
+        android:name="com.example.NoSound.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/personalInfo"
-        android:name="com.example.intehora.PersonalInfo"
+        android:name="com.example.NoSound.PersonalInfo"
         android:label="fragment_personal_info"
         tools:layout="@layout/fragment_personal_info" >
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/vy3"
-        android:name="com.example.intehora.Vy3"
+        android:name="com.example.NoSound.Vy3"
         android:label="fragment_vy3"
         tools:layout="@layout/fragment_vy3" />
 </navigation>

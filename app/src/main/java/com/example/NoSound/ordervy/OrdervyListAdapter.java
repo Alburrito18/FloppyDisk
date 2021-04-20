@@ -1,4 +1,4 @@
-package com.example.intehora.ordervy;
+package com.example.NoSound.ordervy;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.intehora.R;
+import com.example.NoSound.R;
 
 import java.util.ArrayList;
 
