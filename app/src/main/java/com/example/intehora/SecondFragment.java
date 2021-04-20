@@ -14,12 +14,16 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
 
+/**
+ * A fragment representing the screen where the customer puts in the information about the company ordering
+ */
 public class SecondFragment extends Fragment {
-    String customerName;
-    String customerID;
-    OnDataPass dataPasser;
-    TextInputEditText customerIDText;
-    TextInputEditText customerNameText;
+    private String customerName;
+    private String customerID;
+    private OnDataPass dataPasser;
+    private TextInputEditText customerIDText;
+    private TextInputEditText customerNameText;
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -52,10 +56,21 @@ public class SecondFragment extends Fragment {
         customerIDText = requireView().findViewById(R.id.customerIDText);
         customerNameText = requireView().findViewById(R.id.customerNameText);
     }
-    public void saveInfo(View v){
+
+    /**
+     * The method called when information needs to be stored
+     * @param v The view which needs to be saved
+     */
+    private void saveInfo(View v){
         ((MainActivity) requireActivity()).savePublicly(v);
     }
-    public void passCustomerData(String customerName,String customerID) {
+
+    /**
+     * The method that passes the data that needs to be stored
+     * @param customerName a String representing the customers company name
+     * @param customerID a String representing the customers unique ID
+     */
+    private void passCustomerData(String customerName,String customerID) {
         dataPasser.onDataPass(customerName,customerID);
     }
     @Override
