@@ -45,4 +45,9 @@
         android:name="com.example.NoSound.Vy3"
         android:label="fragment_vy3"
         tools:layout="@layout/fragment_vy3" />
+    <fragment
+        android:id="@+id/businessView"
+        android:name="com.example.NoSound.BusinessView"
+        android:label="fragment_business_view"
+        tools:layout="@layout/fragment_business_view" />
 </navigation>

@@ -32,4 +32,11 @@
     <string name="f_retagsnamn">Företagsnamn</string>
     <string name="kundnummer">Kundnummer</string>
     <string name="ort">Ort</string>
+    <string name="kund_orderinformation">Kund-/orderinformation</string>
+    <string name="g_till_personal">Gå till personal</string>
+    <string name="avbryt">avbryt</string>
+    <string name="datum">Datum</string>
+    <string name="kund">Kund</string>
+    <string name="ordernummer">Ordernummer</string>
+    <string name="hear_nordic_nr">Hear Nordic Nr:</string>
 </resources>
