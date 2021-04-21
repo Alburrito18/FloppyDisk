@@ -32,4 +32,5 @@
     <string name="f_retagsnamn">Företagsnamn</string>
     <string name="kundnummer">Kundnummer</string>
     <string name="ort">Ort</string>
+    <string name="addera" />
 </resources>

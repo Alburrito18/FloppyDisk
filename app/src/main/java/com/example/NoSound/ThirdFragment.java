@@ -16,16 +16,17 @@ import com.example.NoSound.ordervy.OrdervyListAdapter;
 
 import java.util.ArrayList;
 
-public class FirstFragment extends Fragment {
+public class ThirdFragment extends Fragment {
 
-    private static final String TAG = "FirstFragment";
+    private static final String TAG = "ThirdFragment";
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false);
+        return inflater.inflate(R.layout.fragment_third, container, false);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -47,14 +48,6 @@ public class FirstFragment extends Fragment {
         OrdervyListAdapter adapter = new OrdervyListAdapter(getContext(), R.layout.ordervy_segment, ordervyList);
         mListView.setAdapter(adapter);
 
-        view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-             //   startActivity(new Intent(Intent.EXTRA_PROCESS_TEXT));
-            }
-
-        });
+        }
     }
-}
+

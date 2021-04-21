@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:weightSum="100">
 
@@ -44,6 +44,8 @@
             android:layout_marginStart="270dp"
             android:text="info" />
 
+        //för att passa plattan krävs 700dp men för telefon 270dp - finns det något sätt för att
+        knappens placering alltid ska match storleken på skärmen?
     </LinearLayout>
 
 </LinearLayout>
