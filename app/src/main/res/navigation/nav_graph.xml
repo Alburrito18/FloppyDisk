@@ -45,4 +45,8 @@
         android:name="com.example.NoSound.Vy3"
         android:label="fragment_vy3"
         tools:layout="@layout/fragment_vy3" />
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.example.NoSound.ThirdFragment"
+        android:label="ThirdFragment" />
 </navigation>
