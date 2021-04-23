@@ -1,0 +1,9 @@
+Individual reflection 4 - Vilhelm
+
+This week is quite similar to last week, I still would like to get more used to working in android studio and how saving and loading data from memory works, which i will get better at by doing it and looking at tutorials etc.
+
+I will continue to be attentive to any problems the team runs into and help if I seem to know a good sulotion the others have overlooked or not known.
+
+My contributions to SCRUM has not been anything remarkable compared to the other team members.
+
+I feel like I've contributed about as much as is expected from me on the tasks I've done this week, the generation of identification codes has a nice skeleton code set up and I helped with saving and loading data.
