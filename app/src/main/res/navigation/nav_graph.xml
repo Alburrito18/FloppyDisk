@@ -46,15 +46,8 @@
         android:label="fragment_vy3"
         tools:layout="@layout/fragment_vy3" />
     <fragment
-<<<<<<< Updated upstream
         android:id="@+id/businessView"
         android:name="com.example.NoSound.BusinessView"
         android:label="fragment_business_view"
         tools:layout="@layout/fragment_business_view" />
-=======
-        android:id="@+id/installningar"
-        android:name="com.example.NoSound.installningar"
-        android:label="fragment_installningar"
-        tools:layout="@layout/fragment_installningar" />
->>>>>>> Stashed changes
 </navigation>
