@@ -46,10 +46,6 @@ public class BusinessView extends Fragment {
         return fragment;
     }
 
-    /** HOW TO Write
-     *
-     * @param savedInstanceState
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
