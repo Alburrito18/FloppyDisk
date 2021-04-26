@@ -47,7 +47,7 @@ public class FirstFragment extends Fragment {
         OrdervyListAdapter adapter = new OrdervyListAdapter(getContext(), R.layout.profile_first, ordervyList);
         mListView.setAdapter(adapter);
 
-        view.findViewById(R.id.Knapp_läggtillnybeställning).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(FirstFragment.this)
