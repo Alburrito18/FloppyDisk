@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#BEFFFFFF"
-    tools:context=".SecondFragment">
+    tools:context=".BusinessView">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout6"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText3"
+            android:id="@+id/customerIDText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -84,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout1">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText2"
+            android:id="@+id/customerNameText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/kund" />
@@ -110,7 +110,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="700dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="200dp"
         android:layout_marginBottom="277dp"
         android:background="#F44336"
@@ -118,14 +118,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_second"
+        android:id="@+id/button_personel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="700dp"
+        android:layout_marginTop="200dp"
         android:layout_marginBottom="277dp"
         android:background="@android:color/holo_green_dark"
         android:backgroundTint="#4CAF50"
@@ -134,7 +134,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
         app:rippleColor="#4CAF50"
         app:strokeColor="#4CAF50" />
 
@@ -142,7 +142,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         android:text="@string/kund_orderinformation"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

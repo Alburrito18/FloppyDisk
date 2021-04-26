@@ -10,23 +10,9 @@
         android:name="com.example.NoSound.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
-
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.NoSound.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-        <action
-            android:id="@+id/action_SecondFragment_to_personalInfo"
-            app:destination="@id/personalInfo" />
+            android:id="@+id/action_FirstFragment_to_businessView"
+            app:destination="@id/businessView" />
     </fragment>
     <fragment
         android:id="@+id/personalInfo"
@@ -34,11 +20,11 @@
         android:label="fragment_personal_info"
         tools:layout="@layout/fragment_personal_info" >
         <action
-            android:id="@+id/action_personalInfo_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-        <action
             android:id="@+id/action_personalInfo_to_vy3"
             app:destination="@id/vy3" />
+        <action
+            android:id="@+id/action_personalInfo_to_businessView"
+            app:destination="@id/businessView" />
     </fragment>
     <fragment
         android:id="@+id/vy3"
@@ -49,7 +35,14 @@
         android:id="@+id/businessView"
         android:name="com.example.NoSound.BusinessView"
         android:label="fragment_business_view"
-        tools:layout="@layout/fragment_business_view" />
+        tools:layout="@layout/fragment_business_view" >
+        <action
+            android:id="@+id/action_businessView_to_personalInfo"
+            app:destination="@id/personalInfo" />
+        <action
+            android:id="@+id/action_businessView_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
     <fragment
         android:id="@+id/installningar2"
         android:name="com.example.NoSound.Installningar"
