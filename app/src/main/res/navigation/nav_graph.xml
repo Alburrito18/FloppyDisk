@@ -15,11 +15,6 @@
             app:destination="@id/businessView" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.NoSound.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second"/>
-    <fragment
         android:id="@+id/personalInfo"
         android:name="com.example.NoSound.PersonalInfo"
         android:label="fragment_personal_info"
@@ -27,6 +22,9 @@
         <action
             android:id="@+id/action_personalInfo_to_vy3"
             app:destination="@id/vy3" />
+        <action
+            android:id="@+id/action_personalInfo_to_businessView"
+            app:destination="@id/businessView" />
     </fragment>
     <fragment
         android:id="@+id/vy3"
