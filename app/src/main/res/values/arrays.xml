@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Kontorsval">
+        <item>Jönköping</item>
+        <item>Stockholm</item>
+        <item>More to come...</item>
+    </string-array>
+</resources>
