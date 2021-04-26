@@ -50,4 +50,9 @@
         android:name="com.example.NoSound.BusinessView"
         android:label="fragment_business_view"
         tools:layout="@layout/fragment_business_view" />
+    <fragment
+        android:id="@+id/installningar2"
+        android:name="com.example.NoSound.Installningar"
+        android:label="fragment_installningar"
+        tools:layout="@layout/fragment_installningar" />
 </navigation>
