@@ -6,32 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
-    <RelativeLayout
-        android:id="@+id/RelativeProfile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ListView
-            android:id="@+id/ListViewProfile"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/button_first"
+    <TextView
+        android:id="@+id/Text_titel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="648dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginStart="400dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="400dp"
+        android:text="@string/v_llkommen_till_generiskt_appnamn"
+        android:textSize="45sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Knapp_läggtillnybeställning"
+        android:layout_width="302dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="400dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginEnd="400dp"
         android:text="@string/l_gg_till_ny_best_llning"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Knapp_inställningar"
+        android:layout_width="184dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="400dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="400dp"
+        android:text="@string/inst_llningar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
