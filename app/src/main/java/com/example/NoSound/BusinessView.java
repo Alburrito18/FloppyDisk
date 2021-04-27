@@ -13,6 +13,10 @@ import android.view.ViewGroup;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link BusinessView#newInstance} factory method to
@@ -50,6 +54,7 @@ public class BusinessView extends Fragment {
     }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getDate();
 
         view.findViewById(R.id.button_personel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,5 +96,12 @@ public class BusinessView extends Fragment {
     public void onAttach(Context context){
         super.onAttach(context);
         dataPasser = (OnDataPass) context;
+    }
+
+    private String getDate() {
+        Date date = Calendar.getInstance().getTime();
+        String formattedDate = DateFormat.getDateInstance(DateFormat.FULL).format(date);
+        System.out.println(formattedDate);
+        return null;
     }
 }
