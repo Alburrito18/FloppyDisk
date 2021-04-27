@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,8 +101,11 @@ public class BusinessView extends Fragment {
 
     private String getDate() {
         Date date = Calendar.getInstance().getTime();
-        String formattedDate = DateFormat.getDateInstance(DateFormat.FULL).format(date);
-        System.out.println(formattedDate);
+        String year = DateFormat.getDateInstance(DateFormat.YEAR_FIELD).format(date);
+        String month = DateFormat.getDateInstance(DateFormat.MONTH_FIELD).format(date);
+        String day = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(date);
+        String formattedDate = year + "-" + month + "-" + day;
+        Log.d("testTag", formattedDate);
         return null;
     }
 }
