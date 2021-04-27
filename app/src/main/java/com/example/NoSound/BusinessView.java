@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -101,11 +102,8 @@ public class BusinessView extends Fragment {
 
     private String getDate() {
         Date date = Calendar.getInstance().getTime();
-        String year = DateFormat.getDateInstance(DateFormat.YEAR_FIELD).format(date);
-        String month = DateFormat.getDateInstance(DateFormat.MONTH_FIELD).format(date);
-        String day = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(date);
-        String formattedDate = year + "-" + month + "-" + day;
-        Log.d("testTag", formattedDate);
-        return null;
+        String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+        //Log.d("testTag", formattedDate);
+        return formattedDate;
     }
 }
