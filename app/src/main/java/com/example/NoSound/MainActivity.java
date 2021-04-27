@@ -109,6 +109,11 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
             }
         }
     }
+    /**
+     * This method creates a file and requests permission to store files in the external storage, which in this case is Documents.
+     * It then calls upon the method that will store the file in the storage. This method stores Employee info however.
+     * @param v
+     */
     public void saveEmployeePublicly(View v) {
         // Requesting Permission to access External Storage
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
@@ -122,7 +127,11 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         // Storing the data in file with name as geeksData.txt
         File file = new File(folder, "employeeinfo.txt");
         writeEmployeeData(file, employee);
-    }
+    } /**
+     * This method takes an employee an stores the employee in a file. Similarly to the previous method WriteTextData.
+     * @param file  a File that the map will be stored in.
+     * @param employee a String representing the businesses name .
+     */
     private void writeEmployeeData(File file, Employee employee){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream;
