@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
 
     private String customerName;
     private String customerID;
+    private Employee employee;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
     private HashMap<String,String> customerInfo = new HashMap<>();
@@ -108,11 +109,52 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
             }
         }
     }
+    public void saveEmployeePublicly(View v) {
+        // Requesting Permission to access External Storage
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                EXTERNAL_STORAGE_PERMISSION_CODE);
+
+
+        // getExternalStoragePublicDirectory() represents root of external storage, we are using DOWNLOADS
+        // We can use following directories: MUSIC, PODCASTS, ALARMS, RINGTONES, NOTIFICATIONS, PICTURES, MOVIES
+        File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+
+        // Storing the data in file with name as geeksData.txt
+        File file = new File(folder, "employeeinfo.txt");
+        writeEmployeeData(file, employee);
+    }
+    private void writeEmployeeData(File file, Employee employee){
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream objectOutputStream;
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(employee);
+            objectOutputStream.close();
+            Toast.makeText(this, "Done" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fileOutputStream != null) {
+                try {
+                    fileOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
 
     @Override
     public void onDataPass(String customerName, String customerID) {
         this.customerName = customerName;
         this.customerID = customerID;
+    }
+
+    @Override
+    public void onEmployeePass(Employee employee) {
+        this.employee = employee;
     }
     //Hej hallå
 }
