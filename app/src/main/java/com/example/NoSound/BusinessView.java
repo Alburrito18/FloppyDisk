@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -46,17 +47,21 @@ public class BusinessView extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
+    // PrintDate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        TextInputEditText PrintDate = requireView().findViewById(R.id.dateEditText1);
+        PrintDate.setText(getDate());
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_business_view, container, false);
     }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getDate();
+
 
         view.findViewById(R.id.button_personel).setOnClickListener(new View.OnClickListener() {
             @Override
