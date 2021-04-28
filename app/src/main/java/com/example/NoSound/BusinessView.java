@@ -29,6 +29,7 @@ public class BusinessView extends Fragment {
     private OnDataPass dataPasser;
     private TextInputEditText customerIDText;
     private TextInputEditText customerNameText;
+    private TextInputEditText dateEditText1;
 
     public BusinessView() {
         // Required empty public constructor
@@ -47,21 +48,16 @@ public class BusinessView extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    // PrintDate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        TextInputEditText PrintDate = requireView().findViewById(R.id.dateEditText1);
-        PrintDate.setText(getDate());
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_business_view, container, false);
     }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         view.findViewById(R.id.button_personel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +77,8 @@ public class BusinessView extends Fragment {
         super.onActivityCreated(savedInstanceState);
         customerIDText = requireView().findViewById(R.id.customerIDText);
         customerNameText = requireView().findViewById(R.id.customerNameText);
+        dateEditText1 = requireView().findViewById(R.id.dateEditText1);
+        dateEditText1.setText(getDate());
     }
 
     /**
