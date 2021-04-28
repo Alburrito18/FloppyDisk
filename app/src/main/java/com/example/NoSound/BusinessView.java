@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,13 +84,18 @@ public class BusinessView extends Fragment {
         dateEditText1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus && dateEditText1.getText().toString().equals(getDate())) {
+                if(hasFocus && Objects.requireNonNull(dateEditText1.getText()).toString().equals(getDate())) {
                     String fullDate = getDate();
                     String onlyYear = fullDate.substring(0, 5);
                     dateEditText1.setText(onlyYear);
                 } else if(!hasFocus) {
                     if(dateEditText1.getText().toString().length() < 6) {
                         dateEditText1.setText(getDate());
+                    }
+                    if(!checkDateFormat(dateEditText1.getText().toString())) {
+                        dateEditText1.setBackgroundColor(0xBECC0000);
+                    } else {
+                        dateEditText1.setBackgroundColor(0xBECECECE);
                     }
                 }
             }
@@ -125,20 +131,18 @@ public class BusinessView extends Fragment {
         return formattedDate;
     }
 
+    //Checks if the date is entered in the correct format and is valid
     private boolean checkDateFormat(String date) {
-        if(date.length() == 10) {
-            String[] dateArray = date.split("-");
+        String[] dateArray = date.split("-");
+        if(date.length() == 10 && dateArray.length == 3) {
+            for(String sub : dateArray) {
+                if (sub == null) return false;
+            }
             String[] controlArray = getDate().split("-");
-
-            boolean correctYear = Integer.getInteger(dateArray[0]) <= Integer.getInteger(controlArray[0]);
-            correctYear = Integer.getInteger(dateArray[0]) >= 1990;
-
-            boolean correctMonth = Integer.getInteger(dateArray[1]) <= 12;
-            correctMonth = Integer.getInteger(dateArray[1]) >= 01;
-
+            boolean correctYear = Integer.parseInt(dateArray[0]) <= Integer.parseInt(controlArray[0]) && Integer.parseInt(dateArray[0]) >= 1990;
+            boolean correctMonth = Integer.parseInt(dateArray[1]) <= 12 && Integer.parseInt(dateArray[1]) >= 1;
             //room for improvement here depending on month
-            boolean correctDay = Integer.getInteger(dateArray[2]) <= 31;
-            correctDay = Integer.getInteger(dateArray[2]) <= 01;
+            boolean correctDay = Integer.parseInt(dateArray[2]) <= 31 && Integer.parseInt(dateArray[2]) >= 1;
 
             return correctYear && correctMonth && correctDay;
         }
