@@ -117,11 +117,31 @@ public class BusinessView extends Fragment {
         super.onAttach(context);
         dataPasser = (OnDataPass) context;
     }
-    
+
     private String getDate() {
         Date date = Calendar.getInstance().getTime();
         String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
         //Log.d("testTag", formattedDate);
         return formattedDate;
+    }
+
+    private boolean checkDateFormat(String date) {
+        if(date.length() == 10) {
+            String[] dateArray = date.split("-");
+            String[] controlArray = getDate().split("-");
+
+            boolean correctYear = Integer.getInteger(dateArray[0]) <= Integer.getInteger(controlArray[0]);
+            correctYear = Integer.getInteger(dateArray[0]) >= 1990;
+
+            boolean correctMonth = Integer.getInteger(dateArray[1]) <= 12;
+            correctMonth = Integer.getInteger(dateArray[1]) >= 01;
+
+            //room for improvement here depending on month
+            boolean correctDay = Integer.getInteger(dateArray[2]) <= 31;
+            correctDay = Integer.getInteger(dateArray[2]) <= 01;
+
+            return correctYear && correctMonth && correctDay;
+        }
+        return false;
     }
 }
