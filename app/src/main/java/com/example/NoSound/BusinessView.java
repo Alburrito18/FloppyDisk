@@ -79,6 +79,21 @@ public class BusinessView extends Fragment {
         customerNameText = requireView().findViewById(R.id.customerNameText);
         dateEditText1 = requireView().findViewById(R.id.dateEditText1);
         dateEditText1.setText(getDate());
+
+        dateEditText1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus && dateEditText1.getText().toString().equals(getDate())) {
+                    String fullDate = getDate();
+                    String onlyYear = fullDate.substring(0, 5);
+                    dateEditText1.setText(onlyYear);
+                } else if(!hasFocus) {
+                    if(dateEditText1.getText().toString().length() < 6) {
+                        dateEditText1.setText(getDate());
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -102,7 +117,7 @@ public class BusinessView extends Fragment {
         super.onAttach(context);
         dataPasser = (OnDataPass) context;
     }
-
+    
     private String getDate() {
         Date date = Calendar.getInstance().getTime();
         String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
