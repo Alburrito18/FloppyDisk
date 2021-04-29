@@ -1,5 +1,6 @@
 package com.example.NoSound;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,13 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PersonalInfo#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class PersonalInfo extends Fragment {
-
+    private OnDataPass dataPasser;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,6 +28,10 @@ public class PersonalInfo extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextInputEditText firstNameText;
+    private TextInputEditText lastNameText;
+    private TextInputEditText departmentText;
+    private TextInputEditText birthNumberText;
 
     public PersonalInfo() {
         // Required empty public constructor
@@ -47,7 +54,14 @@ public class PersonalInfo extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState){
+        super.onActivityCreated(savedInstanceState);
+        firstNameText= requireView().findViewById(R.id.firstName);
+        lastNameText = requireView().findViewById(R.id.lastName);
+        departmentText = requireView().findViewById(R.id.department);
+        birthNumberText = requireView().findViewById(R.id.birthNumber);
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +83,26 @@ public class PersonalInfo extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Employee employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
+                passData(employee);
+                saveInfo(view);
                 NavHostFragment.findNavController(PersonalInfo.this)
                         .navigate(R.id.action_personalInfo_to_vy3);
             }
         });
-
+    }
+    private void saveInfo(View v){
+        ((MainActivity) requireActivity()).saveEmployeePublicly(v);
+    }
+    private void passData(Employee employee) {
+        dataPasser.onEmployeePass(employee);
+    }
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        dataPasser = (OnDataPass) context;
     }
 }

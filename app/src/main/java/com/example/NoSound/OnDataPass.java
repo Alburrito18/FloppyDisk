@@ -10,4 +10,5 @@ public interface OnDataPass {
      * @param customerID a String representing the customers unique ID
      */
     public void onDataPass(String customerName, String customerID);
+    public void onEmployeePass(Employee employee);
 }
