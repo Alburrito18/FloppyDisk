@@ -1,0 +1,9 @@
+Individual reflection 5 - Vilhelm
+
+I want to better understand storage and writing/reading in android, it is one of the most crucial parts of our project and it is a bit messy to understand as there seem to be a bunch of waays to do it and I think I am not understanding them very well.
+
+See last week, short week this week so not much development.
+
+Not much remarkable compared to other members of the group.
+
+I did not do very much this week due to missing one day because of feeling unwell and another to valborg. However I did complete a user story with Kai and I'm very pleased with how it turned out.
