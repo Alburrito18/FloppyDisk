@@ -7,11 +7,19 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +30,7 @@ public class BusinessView extends Fragment {
     private OnDataPass dataPasser;
     private TextInputEditText customerIDText;
     private TextInputEditText customerNameText;
+    private TextInputEditText dateEditText1;
 
     public BusinessView() {
         // Required empty public constructor
@@ -41,10 +50,10 @@ public class BusinessView extends Fragment {
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_business_view, container, false);
     }
@@ -69,6 +78,28 @@ public class BusinessView extends Fragment {
         super.onActivityCreated(savedInstanceState);
         customerIDText = requireView().findViewById(R.id.customerIDText);
         customerNameText = requireView().findViewById(R.id.customerNameText);
+        dateEditText1 = requireView().findViewById(R.id.dateEditText1);
+        dateEditText1.setText(getDate());
+
+        dateEditText1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus && Objects.requireNonNull(dateEditText1.getText()).toString().equals(getDate())) {
+                    String fullDate = getDate();
+                    String onlyYear = fullDate.substring(0, 5);
+                    dateEditText1.setText(onlyYear);
+                } else if(!hasFocus) {
+                    if(dateEditText1.getText().toString().length() < 6) {
+                        dateEditText1.setText(getDate());
+                    }
+                    if(!checkDateFormat(dateEditText1.getText().toString())) {
+                        dateEditText1.setBackgroundColor(0xBECC0000);
+                    } else {
+                        dateEditText1.setBackgroundColor(0xBECECECE);
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -91,5 +122,30 @@ public class BusinessView extends Fragment {
     public void onAttach(Context context){
         super.onAttach(context);
         dataPasser = (OnDataPass) context;
+    }
+
+    private String getDate() {
+        Date date = Calendar.getInstance().getTime();
+        String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+        //Log.d("testTag", formattedDate);
+        return formattedDate;
+    }
+
+    //Checks if the date is entered in the correct format and is valid
+    private boolean checkDateFormat(String date) {
+        String[] dateArray = date.split("-");
+        if(date.length() == 10 && dateArray.length == 3) {
+            for(String sub : dateArray) {
+                if (sub == null) return false;
+            }
+            String[] controlArray = getDate().split("-");
+            boolean correctYear = Integer.parseInt(dateArray[0]) <= Integer.parseInt(controlArray[0]) && Integer.parseInt(dateArray[0]) >= 1990;
+            boolean correctMonth = Integer.parseInt(dateArray[1]) <= 12 && Integer.parseInt(dateArray[1]) >= 1;
+            //room for improvement here depending on month
+            boolean correctDay = Integer.parseInt(dateArray[2]) <= 31 && Integer.parseInt(dateArray[2]) >= 1;
+
+            return correctYear && correctMonth && correctDay;
+        }
+        return false;
     }
 }

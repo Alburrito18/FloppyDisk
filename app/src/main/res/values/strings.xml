@@ -36,6 +36,7 @@
     <string name="g_till_personal">Gå till personal</string>
     <string name="avbryt">avbryt</string>
     <string name="datum">Datum</string>
+    <string name="datum1">Datum<font color='#FF0000'>*</font></string>
     <string name="kund">Kund</string>
     <string name="ordernummer">Ordernummer</string>
     <string name="hear_nordic_nr">Hear Nordic Nr:</string>
