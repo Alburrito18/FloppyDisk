@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
    
     private BusinessData order;
     private String orderID;
-    private Employee employee;
+    private File file;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
     private HashMap<String,BusinessData> customerInfo = new HashMap<>();
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
 
         // Storing the data in file with name as geeksData.txt
-        File file = new File(folder, "customerinfo.txt");
+        file = new File(folder, order.getCustomerName() + "Customerinfo.txt");
         writeTextData(file,orderID, order);
     }
 
@@ -122,14 +122,8 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                 EXTERNAL_STORAGE_PERMISSION_CODE);
 
-
-        // getExternalStoragePublicDirectory() represents root of external storage, we are using DOWNLOADS
-        // We can use following directories: MUSIC, PODCASTS, ALARMS, RINGTONES, NOTIFICATIONS, PICTURES, MOVIES
-        File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
-
         // Storing the data in file with name as geeksData.txt
-        File file = new File(folder, "employeeinfo.txt");
-        writeEmployeeData(file, employee);
+        writeEmployeeData(file, order.getEmployee(0));
     } /**
      * This method takes an employee an stores the employee in a file. Similarly to the previous method WriteTextData.
      * @param file  a File that the map will be stored in.
@@ -139,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream;
         try {
-            fileOutputStream = new FileOutputStream(file);
+            fileOutputStream = new FileOutputStream(file,true);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(employee);
             objectOutputStream.close();
@@ -166,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
 
     @Override
     public void onEmployeePass(Employee employee) {
-        this.employee = employee;
+        order.addEmployee(employee);
     }
 
 }

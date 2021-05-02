@@ -21,4 +21,25 @@ public class BusinessData implements Serializable {
         this.hearNordicNr = hearNordicNr;
         this.city = city;
     }
+
+    /**
+     * Adds an employee to the list of employees
+     * @param employee the employee to be added to the list
+     */
+    public void addEmployee(Employee employee){
+        employees.add(employee);
+    }
+
+    /**
+     * Method to get an employee from the list of employees in the order
+     * @param index the index of the employee in the list
+     * @return an employee
+     */
+    public Employee getEmployee(int index){
+        return employees.get(index);
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
 }
