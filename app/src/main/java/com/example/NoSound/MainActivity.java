@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.NoSound.Business.BusinessData;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,12 +23,13 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements OnDataPass {
 
-    private String customerName;
-    private String customerID;
+   
+    private BusinessData order;
+    private String orderID;
     private Employee employee;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
-    private HashMap<String,String> customerInfo = new HashMap<>();
+    private HashMap<String,BusinessData> customerInfo = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,19 +78,19 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
 
         // Storing the data in file with name as geeksData.txt
         File file = new File(folder, "customerinfo.txt");
-        writeTextData(file, customerName,customerID);
+        writeTextData(file,orderID, order);
     }
 
     /**
      * The method puts ID coupled with Name into a map then makes sure that it is saved on the file
      * that it takes as an argument.
      * @param file  a File that the map will be stored in.
-     * @param name a String representing the businesses name .
-     * @param id a String representing the business ID .
+     * @param orderID a String representing the ID of the order.
+     * @param order a BusinessData variable conating information about the order.
      */
-    private void writeTextData(File file, String name ,String id) {
-        if (!(name == null || id == null)){
-            customerInfo.put(id,name);
+    private void writeTextData(File file, String orderID ,BusinessData order) {
+        if (!(orderID == null || order == null)){
+            customerInfo.put(orderID,order);
         }
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream;
@@ -156,14 +159,14 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     }
 
     @Override
-    public void onDataPass(String customerName, String customerID) {
-        this.customerName = customerName;
-        this.customerID = customerID;
+    public void onDataPass(BusinessData order,String orderID) {
+        this.order = order;
+        this.orderID = orderID;
     }
 
     @Override
     public void onEmployeePass(Employee employee) {
         this.employee = employee;
     }
-    //Hej hallå
+
 }
