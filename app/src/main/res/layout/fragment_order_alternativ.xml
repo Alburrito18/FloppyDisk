@@ -5,7 +5,7 @@
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderAlternativ" >
+    tools:context=".OrderAlternative" >
 
     <TextView
         android:id="@+id/customerName"

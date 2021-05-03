@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.NoSound.Business.BusinessData;
+import com.example.NoSound.BusinessView.BusinessData;
 
 import java.io.File;
 import java.io.FileOutputStream;

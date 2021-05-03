@@ -1,6 +1,6 @@
 package com.example.NoSound;
 
-import com.example.NoSound.Business.BusinessData;
+import com.example.NoSound.BusinessView.BusinessData;
 
 /**
  * Listener for passing data from a fragment to an activity

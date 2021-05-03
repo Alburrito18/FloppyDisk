@@ -1,4 +1,4 @@
-package com.example.NoSound.Business;
+package com.example.NoSound.BusinessView;
 
 import android.content.Context;
 import android.os.Bundle;

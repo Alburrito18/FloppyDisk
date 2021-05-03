@@ -15,10 +15,10 @@ import com.google.android.material.textfield.TextInputEditText;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link PersonalInfo#newInstance} factory method to
+ * Use the {@link PersonelInfo#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PersonalInfo extends Fragment {
+public class PersonelInfo extends Fragment {
     private OnDataPass dataPasser;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +33,7 @@ public class PersonalInfo extends Fragment {
     private TextInputEditText departmentText;
     private TextInputEditText birthNumberText;
 
-    public PersonalInfo() {
+    public PersonelInfo() {
         // Required empty public constructor
     }
 
@@ -46,8 +46,8 @@ public class PersonalInfo extends Fragment {
      * @return A new instance of fragment PersonalInfo.
      */
     // TODO: Rename and change types and number of parameters
-    public static PersonalInfo newInstance(String param1, String param2) {
-        PersonalInfo fragment = new PersonalInfo();
+    public static PersonelInfo newInstance(String param1, String param2) {
+        PersonelInfo fragment = new PersonelInfo();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -89,7 +89,7 @@ public class PersonalInfo extends Fragment {
                 Employee employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
                 passData(employee);
                 saveInfo(view);
-                NavHostFragment.findNavController(PersonalInfo.this)
+                NavHostFragment.findNavController(PersonelInfo.this)
                         .navigate(R.id.action_personalInfo_to_vy3);
             }
         });

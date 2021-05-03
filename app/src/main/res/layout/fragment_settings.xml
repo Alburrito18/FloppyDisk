@@ -6,19 +6,19 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/TextOfficeHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="50dp"
         android:text="Val av kontor (prefix filterkod)"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/Spinner_kontorsval"
+        app:layout_constraintEnd_toStartOf="@+id/SpinnerChooseOffice"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Text_inställningar" />
+        app:layout_constraintTop_toBottomOf="@+id/TextSettings" />
 
     <TextView
-        android:id="@+id/Text_inställningar"
+        android:id="@+id/TextSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="400dp"
@@ -33,7 +33,7 @@
 
 
     <Spinner
-        android:id="@+id/Spinner_kontorsval"
+        android:id="@+id/SpinnerChooseOffice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="400dp"
@@ -44,10 +44,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Text_inställningar" />
+        app:layout_constraintTop_toBottomOf="@+id/TextSettings" />
 
     <Button
-        android:id="@+id/Knapp_spara"
+        android:id="@+id/ButtonSave"
         android:layout_width="191dp"
         android:layout_height="86dp"
         android:layout_marginEnd="100dp"
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/Knapp_tillbaka"
+        android:id="@+id/ButtonBack"
         android:layout_width="232dp"
         android:layout_height="89dp"
         android:layout_marginStart="100dp"
