@@ -1,4 +1,4 @@
-package com.example.NoSound;
+package com.example.NoSound.Business;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,15 +7,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.example.NoSound.MainActivity;
+import com.example.NoSound.OnDataPass;
+import com.example.NoSound.R;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,6 +31,9 @@ public class BusinessView extends Fragment {
     private TextInputEditText customerIDText;
     private TextInputEditText customerNameText;
     private TextInputEditText dateEditText1;
+    private TextInputEditText orderIDtext;
+    private TextInputEditText hearNordicNrText;
+    private TextInputEditText cityText;
 
     public BusinessView() {
         // Required empty public constructor
@@ -63,9 +66,11 @@ public class BusinessView extends Fragment {
         view.findViewById(R.id.button_personel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String customerName = customerIDText.getText().toString();
-                String customerID = customerNameText.getText().toString();
-                passCustomerData(customerName,customerID);
+
+                BusinessData order = new BusinessData(customerNameText.getText().toString(),
+                        customerIDText.getText().toString(), dateEditText1.getText().toString(),
+                        hearNordicNrText.getText().toString(), cityText.getText().toString());
+                passCustomerData(order,orderIDtext.getText().toString());
                 saveInfo(view);
                 NavHostFragment.findNavController(BusinessView.this)
                         .navigate(R.id.action_businessView_to_personalInfo);
@@ -79,6 +84,9 @@ public class BusinessView extends Fragment {
         customerIDText = requireView().findViewById(R.id.customerIDText);
         customerNameText = requireView().findViewById(R.id.customerNameText);
         dateEditText1 = requireView().findViewById(R.id.dateEditText1);
+        orderIDtext = requireView().findViewById(R.id.orderIDtext);
+        hearNordicNrText = requireView().findViewById(R.id.hearNordicNrtext);
+        cityText = requireView().findViewById(R.id.cityText);
         dateEditText1.setText(getDate());
 
         dateEditText1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -110,13 +118,9 @@ public class BusinessView extends Fragment {
         ((MainActivity) requireActivity()).savePublicly(v);
     }
 
-    /**
-     * The method that passes the data that needs to be stored
-     * @param customerName a String representing the customers company name
-     * @param customerID a String representing the customers unique ID
-     */
-    private void passCustomerData(String customerName,String customerID) {
-        dataPasser.onDataPass(customerName,customerID);
+
+    private void passCustomerData(BusinessData businessData, String orderID) {
+        dataPasser.onDataPass(businessData, orderID);
     }
     @Override
     public void onAttach(Context context){

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#BEFFFFFF"
-    tools:context=".BusinessView">
+    tools:context=".Business.BusinessView">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout6"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText6"
+            android:id="@+id/cityText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/ort" />
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText5"
+            android:id="@+id/hearNordicNrtext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText4"
+            android:id="@+id/orderIDtext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
