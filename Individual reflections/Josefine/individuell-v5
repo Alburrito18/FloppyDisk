@@ -1,0 +1,22 @@
+• what do I want to learn or understand better?
+Inför nästa vecka vill jag fortfarande lära mig mer om lagringen och även ta reda på mer om hur
+vi ska lösa så att vår text-fil sparas i en wordfil. Kände också att jag i framtiden skulle vilja
+ha bättre koll på databaser, men jag tror inte att det blir någon möjlighet att lösa det i veckan som kommer.
+
+• how can I help someone else, or the entire team, to learn something new?
+Jag kan hjälpa teamet genom att kanske hålla en något lägre profil och prata mindre, känner ibland
+att jag hör min egen röst lite för mycket, och om jag är tystare kanske det innebär att de andra tvingas ta
+mer plats. Samtidigt så kanske inte är de som tar minst plats som kommer ta för sig i den platsen jag lämnar
+så jag vet inte. Jag kan även hjälpa teamet genom att ställa "dumma"-frågor. Om jag vågar fråga
+om det som jag tycker verkar oklart så kanske andra får svar på det de själva har svårt att själva fråga efter.
+
+• what is my contribution towards the team’s use of Scrum?
+Jag är väldigt drivande i arbetet att skriva user stories, och balansera så att vi inte tar på oss
+för mycket, eller för lite arbete.
+
+• what is my contribution towards the team’s deliveries?
+Denna veckan har jag och Albert flyttat runt lite i lagringen. Parametrar som förr fanns i main
+är nu reglerade i den nya klassen vid namn BusinessData. Där ordnade vi även så att andra parametrar
+som inte lagrades förut, nu lagras. Vi har även jobbat med navigationen genom programmet. Vi har ersatt
+sidor som fyllde liten funktion med nya som följer vår prototyp bättre, och även kopplat sidor som inte
+var kopplade till main-sidan med knappar.
