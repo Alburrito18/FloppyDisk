@@ -1,4 +1,4 @@
-package com.example.NoSound.ordervy;
+package com.example.NoSound.OrderView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,7 +15,7 @@ import com.example.NoSound.R;
 
 import java.util.ArrayList;
 
-public class OrdervyListAdapter extends ArrayAdapter<Ordervy> {
+public class OrderViewListAdapter extends ArrayAdapter<OrderView> {
     private static final String TAG = "ProfileListAdapter";
 
     private Context mContext;
@@ -23,7 +23,7 @@ public class OrdervyListAdapter extends ArrayAdapter<Ordervy> {
 
 
 
-    public OrdervyListAdapter(Context context, int resource, ArrayList<Ordervy> objects) {
+    public OrderViewListAdapter(Context context, int resource, ArrayList<OrderView> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -34,23 +34,23 @@ public class OrdervyListAdapter extends ArrayAdapter<Ordervy> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         //hämta informationen
-        String KundIDProfil = getItem(position).getKundIDProfil();
-        String NamnProfil = getItem(position).getNamnProfil();
-        String DagensDatumProfil = getItem(position).getDagensDatumProfil();
+        String CustomerIDProfile = getItem(position).getCustomerIDProfile();
+        String NameProfile = getItem(position).getNameProfile();
+        String DateProfile = getItem(position).getDateProfile();
 
         //skapa objekt med informationen
-        Ordervy ordervy = new Ordervy(KundIDProfil, NamnProfil, DagensDatumProfil);
+        OrderView orderView = new OrderView(CustomerIDProfile, NameProfile, DateProfile);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
-        TextView tvNamn = (TextView) convertView.findViewById(R.id.NamnProfil);
-        TextView tvKundID = (TextView) convertView.findViewById(R.id.KundIDProfil);
-        TextView tvDatum = (TextView) convertView.findViewById(R.id.DagensDatumProfil);
+        TextView tvName = (TextView) convertView.findViewById(R.id.NameProfile);
+        TextView tvCustomerID = (TextView) convertView.findViewById(R.id.CustomerIDProfile);
+        TextView tvDate = (TextView) convertView.findViewById(R.id.DateProfile);
 
-        tvNamn.setText(NamnProfil);
-        tvKundID.setText(KundIDProfil);
-        tvDatum.setText(DagensDatumProfil);
+        tvName.setText(NameProfile);
+        tvCustomerID.setText(CustomerIDProfile);
+        tvDate.setText(DateProfile);
 
         return convertView;
     }

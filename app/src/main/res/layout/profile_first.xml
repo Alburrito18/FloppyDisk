@@ -6,7 +6,7 @@
     android:weightSum="100">
 
     <TextView
-        android:id="@+id/KundIDProfil"
+        android:id="@+id/CustomerIDProfile"
         android:layout_width="410dp"
         android:layout_height="30dp"
         android:layout_weight="60"
@@ -14,7 +14,7 @@
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/NamnProfil"
+        android:id="@+id/NameProfile"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:gravity="center"
@@ -28,7 +28,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/DagensDatumProfil"
+            android:id="@+id/DateProfile"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_below="@+id/textView"
@@ -37,7 +37,7 @@
             android:textAlignment="center"/>
 
         <Button
-            android:id="@+id/InfoKnappProfil"
+            android:id="@+id/InfoButtonProfile"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="117dp"
             android:layout_height="wrap_content"

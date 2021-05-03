@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/personalInfo"
-        android:name="com.example.NoSound.PersonalInfo"
+        android:name="com.example.NoSound.PersonelInfo"
         android:label="fragment_personal_info"
         tools:layout="@layout/fragment_personal_info" >
         <action
@@ -28,12 +28,12 @@
     </fragment>
     <fragment
         android:id="@+id/vy3"
-        android:name="com.example.NoSound.Vy3"
+        android:name="com.example.NoSound.ThirdFragment"
         android:label="fragment_vy3"
-        tools:layout="@layout/fragment_vy3" />
+        tools:layout="@layout/fragment_thirdFragment" />
     <fragment
         android:id="@+id/businessView"
-        android:name="com.example.NoSound.Business.BusinessView"
+        android:name="com.example.NoSound.BusinessView.BusinessView"
         android:label="fragment_business_view"
         tools:layout="@layout/fragment_business_view" >
         <action
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/installningar2"
-        android:name="com.example.NoSound.Installningar"
+        android:name="com.example.NoSound.Settings"
         android:label="fragment_installningar"
-        tools:layout="@layout/fragment_installningar" />
+        tools:layout="@layout/fragment_settings" />
 </navigation>

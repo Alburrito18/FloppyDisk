@@ -1,4 +1,4 @@
-package com.example.NoSound.Business;
+package com.example.NoSound.BusinessView;
 
 import com.example.NoSound.Employee;
 

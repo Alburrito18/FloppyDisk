@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.NoSound.ordervy.Ordervy;
-import com.example.NoSound.ordervy.OrdervyListAdapter;
+import com.example.NoSound.OrderView.OrderView;
+import com.example.NoSound.OrderView.OrderViewListAdapter;
 
 import java.util.ArrayList;
 
@@ -34,17 +34,17 @@ public class FirstFragment extends Fragment {
         ListView mListView = (ListView) view.findViewById(R.id.ListViewProfile);
 
         //Lite namn för test (tas bort senare)
-        Ordervy MacDonalds = new Ordervy("112", "MacDonalds", "infoga dagens datum");
-        Ordervy LegoLand = new Ordervy("113", "LegoLand", "infoga dagens datum");
-        Ordervy kolmården = new Ordervy("114", "Kolmården", "infoga dagens datum");
+        OrderView MacDonalds = new OrderView("112", "MacDonalds", "infoga dagens datum");
+        OrderView LegoLand = new OrderView("113", "LegoLand", "infoga dagens datum");
+        OrderView kolmården = new OrderView("114", "Kolmården", "infoga dagens datum");
 
         //En arrayList för dessa profiler, används inte efter ihopkoppling med Drill och Snows del?
-        ArrayList<Ordervy> ordervyList = new ArrayList<>();
-        ordervyList.add(MacDonalds);
-        ordervyList.add(LegoLand);
-        ordervyList.add(kolmården);
+        ArrayList<OrderView> orderViewList = new ArrayList<>();
+        orderViewList.add(MacDonalds);
+        orderViewList.add(LegoLand);
+        orderViewList.add(kolmården);
 
-        OrdervyListAdapter adapter = new OrdervyListAdapter(getContext(), R.layout.profile_first, ordervyList);
+        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList);
         mListView.setAdapter(adapter);
 
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
