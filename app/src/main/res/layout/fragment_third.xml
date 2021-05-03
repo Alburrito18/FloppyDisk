@@ -166,7 +166,7 @@
                 android:layout_width="270dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="300dp"
-                android:text="Val markerade med * innebär extra kostnad"
+                android:text="@string/val_markerade_med_inneb_r_extra_kostnad"
                 app:layout_constraintBottom_toTopOf="@+id/textView5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ColorRight" />
@@ -178,7 +178,7 @@
                 android:layout_marginTop="32dp"
                 android:scaleX="1.2"
                 android:scaleY="1.2"
-                android:text="Detect"
+                android:text="@string/detect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Concha" />
@@ -190,7 +190,7 @@
                 android:layout_marginTop="16dp"
                 android:scaleX="1.2"
                 android:scaleY="1.2"
-                android:text="Trippel-set"
+                android:text="@string/trippel_set"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detect" />
@@ -206,6 +206,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tripleset" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="100dp"
+                android:text="@string/spara"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filterChoice" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
