@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="ConchaChoices">
+    <string-array name="filterChoices">
         <item>HN7 - Vit</item>
         <item>HN0 - Magenta</item>
         <item>HN6 - Gul</item>
