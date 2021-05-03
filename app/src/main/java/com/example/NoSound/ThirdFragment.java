@@ -81,6 +81,7 @@ public class ThirdFragment extends Fragment {
 
         //Add cord to output
         if(!triple) {
+            //Weird if statement since this letter is omitted if both sides are Conch
             if(cord && !(rightConch && leftConch)) {
                 output = output + "M";
             } else if(!(rightConch && leftConch)) {
@@ -119,8 +120,10 @@ public class ThirdFragment extends Fragment {
         }
 
         if(triple) {
+            //Add + sign and filter again
             output = output + "+" + output.substring(0, 3);
 
+            //Add which side has Conch
             if(leftConch && !rightConch) {
                 output = output + "LNT";
             } else if (rightConch && !leftConch) {
@@ -133,6 +136,7 @@ public class ThirdFragment extends Fragment {
                 output = output + "D";
             }
 
+            //Add correct colour for the Conch
             if(leftConch && !leftColour.equals("Transparent")) {
                 output = output + colourNameToCode(leftColour);
             } else if(rightConch && !rightColour.equals("Transparent")) {
