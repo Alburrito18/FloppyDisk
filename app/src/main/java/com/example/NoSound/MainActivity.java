@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
 
         // Storing the data in file with name as geeksData.txt
-        file = new File(folder, order.getCustomerName() + "Customerinfo.txt");
+        file = new File(folder, orderID + "Customerinfo.txt");
         writeTextData(file,orderID, order);
     }
 
