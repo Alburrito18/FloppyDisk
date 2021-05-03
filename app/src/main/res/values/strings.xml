@@ -40,4 +40,8 @@
     <string name="kund">Kund</string>
     <string name="ordernummer">Ordernummer</string>
     <string name="hear_nordic_nr">Hear Nordic Nr:</string>
+    <string name="spara">Spara</string>
+    <string name="val_markerade_med_inneb_r_extra_kostnad">Val markerade med * innebär extra kostnad</string>
+    <string name="detect">Detect</string>
+    <string name="trippel_set">Trippel-set</string>
 </resources>

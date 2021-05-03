@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private BusinessData order;
     private String orderID;
     private File file;
+    private Employee employee;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
     private HashMap<String,BusinessData> customerInfo = new HashMap<>();
@@ -161,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     @Override
     public void onEmployeePass(Employee employee) {
         order.addEmployee(employee);
+        this.employee = employee;
     }
 
 }

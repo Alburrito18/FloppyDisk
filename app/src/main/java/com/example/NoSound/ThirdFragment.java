@@ -2,11 +2,13 @@ package com.example.NoSound;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Switch;
 
@@ -25,6 +27,7 @@ public class ThirdFragment extends Fragment {
     private Switch detect;
     private Switch tripleset;
     private Switch stringAttachment;
+    private Button saveButton;
 
     public ThirdFragment() {
         // Required empty public constructor
@@ -50,11 +53,25 @@ public class ThirdFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_third, container, false);
     }
     @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
+
+        view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+    }
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         colorLeft = requireView().findViewById(R.id.ColorLeft);
         colorRight = requireView().findViewById(R.id.ColorRight);
         concha = requireView().findViewById(R.id.Concha);
         filterChoice = requireView().findViewById(R.id.filterChoice);
+        detect = requireView().findViewById(R.id.detect);
+        tripleset = requireView().findViewById(R.id.tripleset);
+        stringAttachment = requireView().findViewById(R.id.stringAttachment);
     }
 }
