@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
+import android.widget.Switch;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +25,13 @@ public class ThirdFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Spinner ColorLeft;
+    private Spinner ColorRight;
+    private Spinner Concha;
+    private Spinner filterChoice;
+    private Switch detect;
+    private Switch tripleset;
+    private Switch stringAttachment;
 
     public ThirdFragment() {
         // Required empty public constructor

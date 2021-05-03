@@ -21,7 +21,7 @@
             android:layout_height="wrap_content">
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/ColorLeft"
                 android:layout_width="303dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="48dp"
@@ -42,7 +42,7 @@
                 android:layout_marginEnd="108dp"
                 android:layout_marginBottom="17dp"
                 android:text="@string/nedan_r_de_olika_val_som_kan_g_ras"
-                app:layout_constraintBottom_toTopOf="@+id/switch2"
+                app:layout_constraintBottom_toTopOf="@+id/stringAttachment"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -71,13 +71,13 @@
                 android:layout_marginEnd="81dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/f_rgval_v_nster_sida"
-                app:layout_constraintBottom_toTopOf="@+id/spinner2"
+                app:layout_constraintBottom_toTopOf="@+id/ColorLeft"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch2" />
+                app:layout_constraintTop_toBottomOf="@+id/stringAttachment" />
 
             <Switch
-                android:id="@+id/switch2"
+                android:id="@+id/stringAttachment"
                 android:layout_width="272dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="48dp"
@@ -93,7 +93,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/ColorRight"
                 android:layout_width="303dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="48dp"
@@ -115,10 +115,10 @@
                 android:layout_marginEnd="81dp"
                 android:layout_marginBottom="19dp"
                 android:text="@string/f_rgval_h_ger_sida"
-                app:layout_constraintBottom_toTopOf="@+id/spinner"
+                app:layout_constraintBottom_toTopOf="@+id/ColorRight"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+                app:layout_constraintTop_toBottomOf="@+id/ColorLeft" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -133,7 +133,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/textView6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/ColorRight" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -144,13 +144,13 @@
                 android:layout_marginEnd="192dp"
                 android:layout_marginBottom="3dp"
                 android:text="@string/concha_telefonsn_cka"
-                app:layout_constraintBottom_toTopOf="@+id/spinner3"
+                app:layout_constraintBottom_toTopOf="@+id/Concha"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/Concha"
                 android:layout_width="297dp"
                 android:layout_height="58dp"
                 android:layout_marginStart="48dp"
@@ -169,7 +169,7 @@
                 android:text="Val markerade med * innebär extra kostnad"
                 app:layout_constraintBottom_toTopOf="@+id/textView5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/ColorRight" />
 
             <Switch
                 android:id="@+id/detect"
@@ -181,7 +181,7 @@
                 android:text="Detect"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+                app:layout_constraintTop_toBottomOf="@+id/Concha" />
 
             <Switch
                 android:id="@+id/tripleset"
@@ -202,6 +202,7 @@
                 android:layout_marginStart="293dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="304dp"
+                android:entries="@array/filterChoices"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tripleset" />

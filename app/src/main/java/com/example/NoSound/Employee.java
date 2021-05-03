@@ -7,6 +7,14 @@ public class Employee implements Serializable {
     private String surName;
     private String department;
     private String personalNumber;
+    private boolean stringAttachment;
+    private String leftSideColor;
+    private String rightSideColor;
+    private boolean detect;
+    private boolean tripleset;
+    private String filterChoice;
+    private boolean leftSideConcha;
+    private boolean rightSideConcha;
 
     public Employee(String firstName, String surName, String department, String personalNumber) {
         this.firstName = firstName;
