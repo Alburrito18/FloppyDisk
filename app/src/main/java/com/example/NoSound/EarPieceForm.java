@@ -14,11 +14,9 @@ import android.widget.Spinner;
 import android.widget.Switch;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link ThirdFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * A fragment representing the view containing different choices of the earpiece for the employee
  */
-public class ThirdFragment extends Fragment {
+public class EarPieceForm extends Fragment {
 
     private Spinner colorLeft;
     private Spinner colorRight;
@@ -29,13 +27,12 @@ public class ThirdFragment extends Fragment {
     private Switch stringAttachment;
     private Button saveButton;
 
-    public ThirdFragment() {
+    public EarPieceForm() {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
-    public static ThirdFragment newInstance() {
-        ThirdFragment fragment = new ThirdFragment();
+    public static EarPieceForm newInstance() {
+        EarPieceForm fragment = new EarPieceForm();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -50,7 +47,7 @@ public class ThirdFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_third, container, false);
+        return inflater.inflate(R.layout.fragment_ear_piece_form, container, false);
     }
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
@@ -69,7 +66,7 @@ public class ThirdFragment extends Fragment {
                 employee1.setLeftSideConcha(leftSideConchaChoice());
                 employee1.setRightSideConcha(rightSideConchaChoice());
                 saveInfo(view);
-                NavHostFragment.findNavController(ThirdFragment.this).navigate(R.id.action_thirdfragment_to_FirstFragment);
+                NavHostFragment.findNavController(EarPieceForm.this).navigate(R.id.action_thirdfragment_to_FirstFragment);
             }
         });
     }
