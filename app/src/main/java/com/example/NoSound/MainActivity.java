@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
                 EXTERNAL_STORAGE_PERMISSION_CODE);
 
         // Storing the data in file with name as geeksData.txt
-        writeEmployeeData(file, order.getEmployee(0));
+        writeEmployeeData(file, employee);
     } /**
      * This method takes an employee an stores the employee in a file. Similarly to the previous method WriteTextData.
      * @param file  a File that the map will be stored in.
@@ -164,5 +164,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         order.addEmployee(employee);
         this.employee = employee;
     }
-
+    Employee getEmployee(){
+        return employee;
+    }
 }

@@ -88,14 +88,10 @@ public class PersonelInfo extends Fragment {
             public void onClick(View view) {
                 Employee employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
                 passData(employee);
-                saveInfo(view);
                 NavHostFragment.findNavController(PersonelInfo.this)
-                        .navigate(R.id.action_personalInfo_to_vy3);
+                        .navigate(R.id.action_personalInfo_to_ThirdFragment);
             }
         });
-    }
-    private void saveInfo(View v){
-        ((MainActivity) requireActivity()).saveEmployeePublicly(v);
     }
     private void passData(Employee employee) {
         dataPasser.onEmployeePass(employee);

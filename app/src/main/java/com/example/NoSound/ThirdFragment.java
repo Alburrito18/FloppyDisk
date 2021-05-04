@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,6 @@ import android.widget.Switch;
  */
 public class ThirdFragment extends Fragment {
 
-    private Employee employee;
     private Spinner colorLeft;
     private Spinner colorRight;
     private Spinner concha;
@@ -59,7 +59,17 @@ public class ThirdFragment extends Fragment {
         view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Employee employee1 = ((MainActivity) requireActivity()).getEmployee();
+                employee1.setStringAttachment(stringAttachment.isChecked());
+                employee1.setRightSideColor(colorRight.getSelectedItem().toString());
+                employee1.setLeftSideColor(colorLeft.getSelectedItem().toString());
+                employee1.setDetect(detect.isChecked());
+                employee1.setTripleset(tripleset.isChecked());
+                employee1.setFilterChoice(filterChoice.getSelectedItem().toString());
+                employee1.setLeftSideConcha(leftSideConchaChoice());
+                employee1.setRightSideConcha(rightSideConchaChoice());
+                saveInfo(view);
+                NavHostFragment.findNavController(ThirdFragment.this).navigate(R.id.action_thirdfragment_to_FirstFragment);
             }
         });
     }
@@ -73,5 +83,14 @@ public class ThirdFragment extends Fragment {
         detect = requireView().findViewById(R.id.detect);
         tripleset = requireView().findViewById(R.id.tripleset);
         stringAttachment = requireView().findViewById(R.id.stringAttachment);
+    }
+    private boolean leftSideConchaChoice() {
+        return concha.getSelectedItem().toString().equals("Vänster") || concha.getSelectedItem().toString().equals("Båda");
+    }
+    private boolean rightSideConchaChoice() {
+        return concha.getSelectedItem().toString().equals("Höger") || concha.getSelectedItem().toString().equals("Båda");
+    }
+    private void saveInfo(View v){
+        ((MainActivity) requireActivity()).saveEmployeePublicly(v);
     }
 }
