@@ -2,12 +2,17 @@ package com.example.NoSound;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Switch;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,33 +21,23 @@ import android.view.ViewGroup;
  */
 public class ThirdFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Spinner colorLeft;
+    private Spinner colorRight;
+    private Spinner concha;
+    private Spinner filterChoice;
+    private Switch detect;
+    private Switch tripleset;
+    private Switch stringAttachment;
+    private Button saveButton;
 
     public ThirdFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Vy3.
-     */
     // TODO: Rename and change types and number of parameters
-    public static ThirdFragment newInstance(String param1, String param2) {
+    public static ThirdFragment newInstance() {
         ThirdFragment fragment = new ThirdFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,10 +45,6 @@ public class ThirdFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -63,7 +54,46 @@ public class ThirdFragment extends Fragment {
         Log.d("codeTag", generateFilterCode("HN1 - Svart", true, true, false, true, "Blå", "Blå", true));
         return inflater.inflate(R.layout.fragment_third, container, false);
     }
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
 
+        view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Employee employee1 = ((MainActivity) requireActivity()).getEmployee();
+                employee1.setStringAttachment(stringAttachment.isChecked());
+                employee1.setRightSideColor(colorRight.getSelectedItem().toString());
+                employee1.setLeftSideColor(colorLeft.getSelectedItem().toString());
+                employee1.setDetect(detect.isChecked());
+                employee1.setTripleset(tripleset.isChecked());
+                employee1.setFilterChoice(filterChoice.getSelectedItem().toString());
+                employee1.setLeftSideConcha(leftSideConchaChoice());
+                employee1.setRightSideConcha(rightSideConchaChoice());
+                saveInfo(view);
+                NavHostFragment.findNavController(ThirdFragment.this).navigate(R.id.action_thirdfragment_to_FirstFragment);
+            }
+        });
+    }
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        colorLeft = requireView().findViewById(R.id.ColorLeft);
+        colorRight = requireView().findViewById(R.id.ColorRight);
+        concha = requireView().findViewById(R.id.Concha);
+        filterChoice = requireView().findViewById(R.id.filterChoice);
+        detect = requireView().findViewById(R.id.detect);
+        tripleset = requireView().findViewById(R.id.tripleset);
+        stringAttachment = requireView().findViewById(R.id.stringAttachment);
+    }
+    private boolean leftSideConchaChoice() {
+        return concha.getSelectedItem().toString().equals("Vänster") || concha.getSelectedItem().toString().equals("Båda");
+    }
+    private boolean rightSideConchaChoice() {
+        return concha.getSelectedItem().toString().equals("Höger") || concha.getSelectedItem().toString().equals("Båda");
+    }
+    private void saveInfo(View v){
+        ((MainActivity) requireActivity()).saveEmployeePublicly(v);
     private String generateFilterCode(String filter, boolean cord, boolean rightConch,
                                       boolean leftConch, boolean detect, String rightColour,
                                       String leftColour, boolean triple) {

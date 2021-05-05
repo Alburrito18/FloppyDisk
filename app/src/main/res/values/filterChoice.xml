@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filterChoices">
+        <item>HN7 - Vit</item>
+        <item>HN0 - Magenta</item>
+        <item>HN6 - Gul</item>
+        <item>HN5 - Orange</item>
+        <item>HN4 - Grå</item>
+        <item>HN1 - Svart</item>
+        <item>HN2 - Grön</item>
+        <item>HN3 - Guld</item>
+    </string-array>
+</resources>

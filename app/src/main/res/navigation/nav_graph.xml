@@ -20,17 +20,21 @@
         android:label="fragment_personal_info"
         tools:layout="@layout/fragment_personal_info" >
         <action
-            android:id="@+id/action_personalInfo_to_vy3"
-            app:destination="@id/vy3" />
+            android:id="@+id/action_personalInfo_to_ThirdFragment"
+            app:destination="@id/thirdfragment" />
         <action
             android:id="@+id/action_personalInfo_to_businessView"
             app:destination="@id/businessView" />
     </fragment>
     <fragment
-        android:id="@+id/vy3"
+        android:id="@+id/thirdfragment"
         android:name="com.example.NoSound.ThirdFragment"
-        android:label="fragment_vy3"
-        tools:layout="@layout/fragment_thirdFragment" />
+        android:label="fragment_third"
+        tools:layout="@layout/fragment_third" >
+        <action
+            android:id="@+id/action_thirdfragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
     <fragment
         android:id="@+id/businessView"
         android:name="com.example.NoSound.BusinessView.BusinessView"
