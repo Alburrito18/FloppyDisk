@@ -89,7 +89,7 @@ public class PersonelInfo extends Fragment {
                 Employee employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
                 passData(employee);
                 NavHostFragment.findNavController(PersonelInfo.this)
-                        .navigate(R.id.action_personalInfo_to_EarPieceForm);
+                        .navigate(R.id.action_personalInfo_to_ThirdFragment);
             }
         });
     }
