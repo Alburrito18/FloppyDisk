@@ -47,7 +47,7 @@ public class FirstFragment extends Fragment {
 
         OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList);
         mListView.setAdapter(adapter);
-        //((MainActivity) requireActivity()).setFirstFragment(this);
+        ((MainActivity) requireActivity()).setFirstFragment(this);
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
