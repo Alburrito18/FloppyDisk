@@ -1,34 +1,30 @@
-Individual reflection first week 
+Individual reflection
 __________________________________________
 
 
 0. what do I want to learn or understand better?
-	ANS: Android studio: varför inte emulatorn fungerar som tänkt. Varför jag har svårt att öppna det på min PC. Hur navgraph fungerar och mycket mer. Har bättre koll på git denna veckan, men kopplingen till mitt android studio verkar lagga lite?! Ska kolla upp detta på mötet på måndag. 
-
+	Ans: Från förra veckan har jag numera bättre koll på hur emulatorn fungerar, har felsökt lite via google ibland. Navgraph är dock fortfarande lite mystisk även om jag förstår att det hänger ihop med klassen till vår business view. Git har från förra veckan inte krånglat något och jag har kunnat spara mitt arbete, uppdatera mig om andras och merge:a vårt arbete.  
 
 1. how can I help someone else, or the entire team, to learn something new?
-	ANS: Hjälpa när jag blir tillfrågad. Har inte någon direkt agende för nästkommande vecka. 
+	ANS: Genom att använda ett systematiskt shcema i excel så kanske jag kan hjälpa min labbpartner att hitta en smidig väg att ta fram alla relevanta kombinationer för att genomföra en grundlig testning av kodens täckning och korrekthet. Sen får man nog reservera sig för att göra en bra bedömning av vilka man verkligen behöver testa för att man omöjligen kommer hinna med alla. 
 
 2. what is my contribution towards the team’s use of Scrum?
-	ANS: Har fått bättre koll på våra KPIer och redovisar dessa nu för varje vecka. Dessutom har jag gett hela teamet full access till våra mätningar och individuella (men anonyma) svar på varje mätning. Till nästa vecka ska jag försöka skicka ut samtliga mätningar i en enda eller samma dag åtminstone. 
+	ANS: Denna veckan har jag infört en nya KPI. Värdeleverans till PO är en ny generation av meaninfulness KPI:n. Förutom att involvera teamet så får även vår PO ge feedback med denna. 
 
 3. what is my contribution towards the team’s deliveries?
-	ANS: Denna veckan har jag primärt designat vinerna och försökt städa upp lite. Jag har skött den administrativa sidan tex. med KPIer, nya kolumner på Trello och genom att försöka skriva upp utvecklingsområden som vi kan behöva ta tag i och koordinera oss på. 
+	ANS: Denna veckan så har jag och min partner skapat ett datum för imatningsfältet som är "smart". Den kan autofylla, detektera fel format, ge dig en smidig rekommendation av år och även begränsa datumen till hyfsat rimliga bedömningar av ett korrekt datum(tex. 31 dagar på en månad). Det den saknar är en mer skarp detektion av verkliga datum för det året, dvs med hänsyn til skottår etc.
 
 OTHER THINGS TO MENTI@N
 - Na... Nothing in particular. 
 
 Form old week: 
-- Better understand flourish and use the data from the tool. --> Check 
-- Make sure to understand github (by this I mean google and explore it a little more) --> Check
-	- Especially the workflow... 
-- Make sure that our work has more well defined user stories with better depth and clearer hierarchies. --> check 
-
+- Smoother measurements of KPI. --> gick inte att klumpa samman alla KPIer till ett utskick, begränsning i verktyget...
+- New KPI which connects to our PO --> framgångsrikt implementerad och testad. PO hade lite svårt att förhålla sig till skalan då den är ny och ska relatera till den tidigare veckan. Därmed fick vi ett väldigt högt betyg, men han menar också på att han genuint är nöjd med den leverans som sprinten förde med sig. 
+- Hoppas att vi kan få en snyggare standard för våra vyer och koppla samman alla lagringsdelar så att dessa vyerna också får en backend till sig. --> Har lyft det med gruppen men denna punkten är kanske inte prio #1 just nu. Tar upp den lite senare igen och skriver upp det i vår Trello. 
 
 To text week: 
-- Smoother measurements of KPI. 
-- New KPI which connects to our PO 
-- Hoppas att vi kan få en snyggare standard för våra vyer och koppla samman alla lagringsdelar så att dessa vyerna också får en backend till sig. 
+- Försök få PO att hitta ett bra sätt att förhålla sig till sitt KPI-svar. Tex. 5/10 är lika bra som förra veckan, och vi siktar på att alltid ligga på 5 eller högre. 
+
 ___________________________________________
 SMART OBJECTIVES: 
 	Specific – target a specific area for improvement.
