@@ -13,9 +13,11 @@ import android.view.ViewGroup;
 
 import com.example.NoSound.MainActivity;
 import com.example.NoSound.OnDataPass;
+import com.example.NoSound.OrderView.OrderViewListAdapter;
 import com.example.NoSound.R;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -71,7 +73,13 @@ public class BusinessView extends Fragment {
                         customerIDText.getText().toString(), dateEditText1.getText().toString(),
                         hearNordicNrText.getText().toString(), cityText.getText().toString());
                 passCustomerData(order,orderIDtext.getText().toString());
-                saveInfo(view);
+                try {
+                    saveInfo(view);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 NavHostFragment.findNavController(BusinessView.this)
                         .navigate(R.id.action_businessView_to_personalInfo);
 
@@ -114,8 +122,9 @@ public class BusinessView extends Fragment {
      * The method called when information needs to be stored
      * @param v The view which needs to be saved
      */
-    private void saveInfo(View v){
+    private void saveInfo(View v) throws IOException, ClassNotFoundException {
         ((MainActivity) requireActivity()).savePublicly(v);
+        ((MainActivity) requireActivity()).printBusinessData(orderIDtext.getText().toString());
     }
 
 

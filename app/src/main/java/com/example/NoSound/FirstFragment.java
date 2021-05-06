@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 public class FirstFragment extends Fragment {
 
+    private ArrayList<OrderView> orderViewList = new ArrayList<>();
+    private ListView mListView;
     private static final String TAG = "FirstFragment";
     @Override
     public View onCreateView(
@@ -31,7 +33,7 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d(TAG, "onCreate: Started.");
-        ListView mListView = (ListView) view.findViewById(R.id.ListViewProfile);
+        mListView = (ListView) view.findViewById(R.id.ListViewProfile);
 
         //Lite namn för test (tas bort senare)
         OrderView MacDonalds = new OrderView("112", "MacDonalds", "infoga dagens datum");
@@ -39,14 +41,13 @@ public class FirstFragment extends Fragment {
         OrderView kolmården = new OrderView("114", "Kolmården", "infoga dagens datum");
 
         //En arrayList för dessa profiler, används inte efter ihopkoppling med Drill och Snows del?
-        ArrayList<OrderView> orderViewList = new ArrayList<>();
         orderViewList.add(MacDonalds);
         orderViewList.add(LegoLand);
         orderViewList.add(kolmården);
 
         OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList);
         mListView.setAdapter(adapter);
-
+        //((MainActivity) requireActivity()).setFirstFragment(this);
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,5 +57,16 @@ public class FirstFragment extends Fragment {
             }
 
         });
+    }
+    public ListView getmListView() {
+        return mListView;
+    }
+
+    public void updateOrderView(OrderView orderView) {
+        orderViewList.add(orderView);
+        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList);
+        mListView.invalidateViews();
+        mListView.setAdapter(adapter);
+
     }
 }
