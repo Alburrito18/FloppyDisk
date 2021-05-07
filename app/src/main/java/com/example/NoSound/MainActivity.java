@@ -159,18 +159,25 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         }
 
     }
+
     public void setFirstFragment(FirstFragment firstFragment){
         this.firstFragment = firstFragment;
     }
-    public void printBusinessData(String orderID) throws IOException, ClassNotFoundException {
-        System.out.println(Environment.getExternalStorageDirectory().getAbsolutePath());
+
+    /**
+     * This method creates an ObjectInput stream that gets an order from the documents directory
+     * with the specified ID. It then recreates said order and updates First fragment with the
+     * information.
+     * @param orderID The entered orderID that is given by the textbox in the BusinessView
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public void loadOrderInfo(String orderID) throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/" + orderID + "Customerinfo.txt"));
         HashMap<String,BusinessData> customerInfo = (HashMap<String, BusinessData>) ois.readObject();
         ois.close();
         OrderView newOrder = new OrderView(orderID,customerInfo.get(orderID).getCustomerName(),customerInfo.get(orderID).getDate());
         firstFragment.updateOrderView(newOrder);
-        System.out.println(customerInfo.get(orderID).getCustomerName());
-        System.out.println(customerInfo.get(orderID).getDate());
     }
     @Override
     public void onDataPass(BusinessData order,String orderID) {

@@ -124,7 +124,7 @@ public class BusinessView extends Fragment {
      */
     private void saveInfo(View v) throws IOException, ClassNotFoundException {
         ((MainActivity) requireActivity()).savePublicly(v);
-        ((MainActivity) requireActivity()).printBusinessData(orderIDtext.getText().toString());
+        ((MainActivity) requireActivity()).loadOrderInfo(orderIDtext.getText().toString());
     }
 
 
