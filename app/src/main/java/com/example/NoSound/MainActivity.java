@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Environment;
 import android.view.Menu;
@@ -14,16 +16,22 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
+import com.example.NoSound.OrderView.OrderView;
+import com.example.NoSound.OrderView.OrderViewListAdapter;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements OnDataPass {
 
-   
+    FirstFragment firstFragment;// = (FirstFragment) getSupportFragmentManager().findFragmentById(R.id.FirstFragment);
     private BusinessData order;
     private String orderID;
     private File file;
@@ -153,6 +161,25 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
 
     }
 
+    public void setFirstFragment(FirstFragment firstFragment){
+        this.firstFragment = firstFragment;
+    }
+
+    /**
+     * This method creates an ObjectInput stream that gets an order from the documents directory
+     * with the specified ID. It then recreates said order and updates First fragment with the
+     * information.
+     * @param orderID The entered orderID that is given by the textbox in the BusinessView
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public void loadOrderInfo(String orderID) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/" + orderID + "Customerinfo.txt"));
+        HashMap<String,BusinessData> customerInfo = (HashMap<String, BusinessData>) ois.readObject();
+        ois.close();
+        OrderView newOrder = new OrderView(orderID,customerInfo.get(orderID).getCustomerName(),customerInfo.get(orderID).getDate());
+        firstFragment.updateOrderView(newOrder);
+    }
     @Override
     public void onDataPass(BusinessData order,String orderID) {
         this.order = order;

@@ -42,4 +42,8 @@ public class BusinessData implements Serializable {
     public String getCustomerName() {
         return customerName;
     }
+
+    public String getDate() {
+        return date;
+    }
 }

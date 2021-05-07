@@ -15,9 +15,12 @@ import com.example.NoSound.OrderView.OrderView;
 import com.example.NoSound.OrderView.OrderViewListAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FirstFragment extends Fragment {
 
+    private ArrayList<OrderView> orderViewList = new ArrayList<>();
+    private ListView mListView;
     private static final String TAG = "FirstFragment";
     @Override
     public View onCreateView(
@@ -31,22 +34,12 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d(TAG, "onCreate: Started.");
-        ListView mListView = (ListView) view.findViewById(R.id.ListViewProfile);
 
-        //Lite namn för test (tas bort senare)
-        OrderView MacDonalds = new OrderView("112", "MacDonalds", "infoga dagens datum");
-        OrderView LegoLand = new OrderView("113", "LegoLand", "infoga dagens datum");
-        OrderView kolmården = new OrderView("114", "Kolmården", "infoga dagens datum");
-
-        //En arrayList för dessa profiler, används inte efter ihopkoppling med Drill och Snows del?
-        ArrayList<OrderView> orderViewList = new ArrayList<>();
-        orderViewList.add(MacDonalds);
-        orderViewList.add(LegoLand);
-        orderViewList.add(kolmården);
+        mListView = view.findViewById(R.id.ListViewProfile);
 
         OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList);
         mListView.setAdapter(adapter);
-
+        ((MainActivity) requireActivity()).setFirstFragment(this);
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,5 +49,15 @@ public class FirstFragment extends Fragment {
             }
 
         });
+    }
+
+    /**
+     * This method updates the ListView with the new Order given.
+     * @param orderView the order that needs to added to the listview.
+     */
+    public void updateOrderView(OrderView orderView) {
+        orderViewList.add(orderView);
+        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList);
+        mListView.setAdapter(adapter);
     }
 }
