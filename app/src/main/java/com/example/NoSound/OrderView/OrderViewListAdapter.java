@@ -7,10 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.NoSound.FirstFragment;
+import com.example.NoSound.MainActivity;
+import com.example.NoSound.OrderAlternative;
 import com.example.NoSound.R;
 
 import java.util.ArrayList;
@@ -20,13 +26,15 @@ public class OrderViewListAdapter extends ArrayAdapter<OrderView> {
 
     private Context mContext;
     private int mResource;
+    private Fragment firstFragment;
 
 
 
-    public OrderViewListAdapter(Context context, int resource, ArrayList<OrderView> objects) {
+    public OrderViewListAdapter(Context context, int resource, ArrayList<OrderView> objects, Fragment firstFragment) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
+        this.firstFragment = firstFragment;
 
     }
     @SuppressLint("ViewHolder")
@@ -52,6 +60,13 @@ public class OrderViewListAdapter extends ArrayAdapter<OrderView> {
         tvCustomerID.setText(CustomerIDProfile);
         tvDate.setText(DateProfile);
 
+        convertView.findViewById(R.id.InfoButtonProfile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(firstFragment)
+                        .navigate(R.id.action_FirstFragment_to_orderAlternative);
+            }
+        });
         return convertView;
     }
 
