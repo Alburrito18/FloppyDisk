@@ -2,11 +2,15 @@ package com.example.NoSound;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.NoSound.BusinessView.BusinessData;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +18,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class OrderAlternative extends Fragment {
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,4 +66,13 @@ public class OrderAlternative extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_order_alternativ, container, false);
     }
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        String latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
+        BusinessData businessData = ((MainActivity) requireActivity()).getBusinessData(latestOrderID);
+        ((TextView)view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
+        ((TextView)view.findViewById(R.id.date)).setText(businessData.getDate());
+        ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + latestOrderID);
+        }
 }

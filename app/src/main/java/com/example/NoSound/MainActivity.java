@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private BusinessData order;
     private String orderID;
     private File file;
+    private String latestOrderID; // disgusting way to update orderalternative fragment
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
     private HashMap<String,BusinessData> customerInfo = new HashMap<>();
@@ -191,5 +192,16 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         order.addEmployee(employee);
     }
 
+    public String getLatestOrderID() {
+        return latestOrderID;
+    }
+
+    public void setLatestorderID(String latestOrderID) {
+        this.latestOrderID = latestOrderID;
+    }
+
+    public BusinessData getBusinessData(String orderID){
+        return customerInfo.get(orderID);
+    }
 
 }
