@@ -18,6 +18,8 @@ public class Employee implements Serializable {
     private String filterChoice;
     private boolean leftSideConcha;
     private boolean rightSideConcha;
+    private String comment;
+    private String filterCode;
 
     public Employee(String firstName, String surName, String department, String personalNumber) {
         this.firstName = firstName;
@@ -104,5 +106,11 @@ public class Employee implements Serializable {
      */
     public void setRightSideConcha(boolean rightSideConcha) {
         this.rightSideConcha = rightSideConcha;
+    }
+    public void setComment(String comment){
+        this.comment = comment;
+    }
+    public void setFilterCode(String filterCode){
+        this.filterCode = filterCode;
     }
 }

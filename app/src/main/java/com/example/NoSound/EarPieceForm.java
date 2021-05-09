@@ -10,9 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +32,9 @@ public class EarPieceForm extends Fragment {
     private Switch tripleset;
     private Switch stringAttachment;
     private Button saveButton;
+    private EditText commentText;
+    private String filterCode;
+    private TextView filterCodeTextView;
 
     public EarPieceForm() {
         // Required empty public constructor
@@ -51,13 +57,12 @@ public class EarPieceForm extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Log.d("codeTag", generateFilterCode("HN1 - Svart", true, true, false, true, "Blå", "Blå", true));
+        //Log.d("codeTag", generateFilterCode("HN1 - Svart", true, true, false, true, "Blå", "Blå", true));
         return inflater.inflate(R.layout.fragment_earpiece, container, false);
     }
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-
         view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,8 +75,28 @@ public class EarPieceForm extends Fragment {
                 employee1.setFilterChoice(filterChoice.getSelectedItem().toString());
                 employee1.setLeftSideConcha(leftSideConchaChoice());
                 employee1.setRightSideConcha(rightSideConchaChoice());
+                employee1.setComment(commentText.getText().toString());
+                employee1.setFilterCode(filterCode);
                 saveInfo(view);
                 NavHostFragment.findNavController(EarPieceForm.this).navigate(R.id.action_thirdfragment_to_FirstFragment);
+            }
+        });
+        view.findViewById(R.id.stringAttachment).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               updateFilterCode();
+            }
+        });
+        view.findViewById(R.id.detect).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateFilterCode();
+            }
+        });
+        view.findViewById(R.id.tripleset).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateFilterCode();
             }
         });
     }
@@ -85,6 +110,48 @@ public class EarPieceForm extends Fragment {
         detect = requireView().findViewById(R.id.detect);
         tripleset = requireView().findViewById(R.id.tripleset);
         stringAttachment = requireView().findViewById(R.id.stringAttachment);
+        commentText = requireView().findViewById(R.id.commentText);
+        filterCodeTextView = requireView().findViewById(R.id.filterCodeTextView);
+        updateFilterCode();
+        colorLeft.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateFilterCode();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        colorRight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateFilterCode();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        concha.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateFilterCode();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        filterChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateFilterCode();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
     private boolean leftSideConchaChoice() {
         return concha.getSelectedItem().toString().equals("Vänster") || concha.getSelectedItem().toString().equals("Båda");
@@ -197,5 +264,11 @@ public class EarPieceForm extends Fragment {
             default :
                 return "Illegal colour choice";
         }
+    }
+    private void updateFilterCode(){
+        filterCode = generateFilterCode(filterChoice.getSelectedItem().toString(),stringAttachment.isChecked(),
+                rightSideConchaChoice(),leftSideConchaChoice(),detect.isChecked(),colorRight.getSelectedItem().toString(),
+                colorLeft.getSelectedItem().toString(),tripleset.isChecked());
+        filterCodeTextView.setText(filterCode);
     }
 }

@@ -20,6 +20,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <EditText
+                android:id="@+id/commentText"
+                android:layout_width="308dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="293dp"
+                android:layout_marginTop="30dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/kommentar"
+                android:inputType="textMultiLine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filterChoice" />
+
             <Spinner
                 android:id="@+id/ColorLeft"
                 android:layout_width="303dp"
@@ -211,11 +225,21 @@
                 android:id="@+id/saveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="100dp"
                 android:text="@string/spara"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filterChoice" />
+                app:layout_constraintTop_toBottomOf="@+id/commentText" />
+
+            <TextView
+                android:id="@+id/filterCodeTextView"
+                android:layout_width="311dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="293dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/filter_kod"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/commentText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
