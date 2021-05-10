@@ -253,13 +253,13 @@ public class EarPieceForm extends Fragment {
                 return "1";
             case "Röd" :
                 return "2";
-            case "Gul" :
+            case "Gul*" :
                 return "3";
-            case "Grön" :
+            case "Grön*" :
                 return "4";
-            case "Orange" :
+            case "Orange*" :
                 return "5";
-            case "Lila" :
+            case "Lila*" :
                 return "6";
             default :
                 return "Illegal colour choice";
