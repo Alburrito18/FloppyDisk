@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.NoSound.BusinessView.BusinessData;
 
+import org.apache.poi.xwpf.usermodel.BreakType;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -97,9 +98,19 @@ public class OrderAlternative extends Fragment {
             XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
             XWPFRun xwpfRun = xwpfParagraph.createRun();
             Log.d("BusineddDataToString",businessData.toString());
-            xwpfRun.setText(businessData.toString());
+            String data = businessData.toString();
+            if (data.contains("\n")) {
+                String[] lines = data.split("\n");
+                xwpfRun.setText(lines[0], 0); // set first line into XWPFRun
+                for(int i=1;i<lines.length;i++){
+                    // add break and insert new text
+                    xwpfRun.addBreak();
+                    xwpfRun.setText(lines[i]);
+                }
+            } else {
+                xwpfRun.setText(data, 0);
+            }
             xwpfRun.setFontSize(12);
-
             FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
             xwpfDocument.write(fileOutputStream);
 
