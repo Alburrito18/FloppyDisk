@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -37,8 +38,9 @@ public class FirstFragment extends Fragment {
 
         mListView = view.findViewById(R.id.ListViewProfile);
 
-        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList);
+        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList, this);
         mListView.setAdapter(adapter);
+
         ((MainActivity) requireActivity()).setFirstFragment(this);
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +59,7 @@ public class FirstFragment extends Fragment {
      */
     public void updateOrderView(OrderView orderView) {
         orderViewList.add(orderView);
-        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList);
+        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList, this);
         mListView.setAdapter(adapter);
     }
 }

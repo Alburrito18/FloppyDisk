@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private BusinessData order;
     private String orderID;
     private File file;
+    private String latestOrderID; // disgusting way to update orderalternative fragment
     private Employee employee;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
@@ -165,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         this.firstFragment = firstFragment;
     }
 
+
     /**
      * This method creates an ObjectInput stream that gets an order from the documents directory
      * with the specified ID. It then recreates said order and updates First fragment with the
@@ -193,5 +195,16 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     }
     Employee getEmployee(){
         return employee;
+    }
+    public String getLatestOrderID() {
+        return latestOrderID;
+    }
+
+    public void setLatestorderID(String latestOrderID) {
+        this.latestOrderID = latestOrderID;
+    }
+
+    public BusinessData getBusinessData(String orderID){
+        return customerInfo.get(orderID);
     }
 }
