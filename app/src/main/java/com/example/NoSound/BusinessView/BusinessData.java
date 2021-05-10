@@ -46,4 +46,23 @@ public class BusinessData implements Serializable {
     public String getDate() {
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "Orderinformation:" + "\n" +
+                "Företag: " + customerName +
+                ", Kundnummer: " + customerID +
+                ", Datum: " + date +
+                ", hearNordicNr: " + hearNordicNr +
+                ", Ort: " + city +
+                "\n" + employeesToString();
+    }
+    private String employeesToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Anställda:").append("\n");
+        for (int i = 0; i<employees.size(); i++ ){
+            sb.append(employees.get(i).toString()).append("\n");
+        }
+        return sb.toString();
+    }
 }

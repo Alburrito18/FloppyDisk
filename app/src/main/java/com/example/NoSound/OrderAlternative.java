@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ import java.io.FileOutputStream;
  */
 public class OrderAlternative extends Fragment {
 
-
+    private BusinessData businessData;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -76,27 +77,27 @@ public class OrderAlternative extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
-        BusinessData businessData = ((MainActivity) requireActivity()).getBusinessData(latestOrderID);
+        businessData = ((MainActivity) requireActivity()).getBusinessData(latestOrderID);
         ((TextView)view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
         ((TextView)view.findViewById(R.id.date)).setText(businessData.getDate());
         ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + latestOrderID);
         view.findViewById(R.id.wordButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createDocx();
+                createDocx(businessData);
             }
         });
         }
 
-    private void createDocx(){
+    private void createDocx(BusinessData businessData){
 
         ((MainActivity) requireActivity()).generateDocx();
         try {
             XWPFDocument xwpfDocument = new XWPFDocument();
             XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
             XWPFRun xwpfRun = xwpfParagraph.createRun();
-
-            xwpfRun.setText("hej detta är ett test");
+            Log.d("BusineddDataToString",businessData.toString());
+            xwpfRun.setText(businessData.toString());
             xwpfRun.setFontSize(12);
 
             FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());

@@ -123,4 +123,14 @@ public class Employee implements Serializable {
     public void setFilterCode(String filterCode){
         this.filterCode = filterCode;
     }
+
+    @Override
+    public String toString() {
+        return "Förnamn: " + firstName +
+                ", Efternamn: " + surName +
+                ", Avdelning: " + department  +
+                ", Personnummer: " + personalNumber +
+                ", Anmärkning: " + comment +
+                ", Filterkod: " + filterCode;
+    }
 }
