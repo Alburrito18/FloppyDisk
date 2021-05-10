@@ -12,6 +12,12 @@ import android.widget.TextView;
 
 import com.example.NoSound.BusinessView.BusinessData;
 
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
+
+import java.io.FileOutputStream;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link OrderAlternative#newInstance} factory method to
@@ -74,5 +80,37 @@ public class OrderAlternative extends Fragment {
         ((TextView)view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
         ((TextView)view.findViewById(R.id.date)).setText(businessData.getDate());
         ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + latestOrderID);
+        view.findViewById(R.id.wordButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDocx();
+            }
+        });
         }
+
+    private void createDocx(){
+
+        ((MainActivity) requireActivity()).generateDocx();
+        try {
+            XWPFDocument xwpfDocument = new XWPFDocument();
+            XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
+            XWPFRun xwpfRun = xwpfParagraph.createRun();
+
+            xwpfRun.setText("hej detta är ett test");
+            xwpfRun.setFontSize(12);
+
+            FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
+            xwpfDocument.write(fileOutputStream);
+
+            if (fileOutputStream != null){
+                fileOutputStream.flush();
+                fileOutputStream.close();
+            }
+
+            xwpfDocument.close();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

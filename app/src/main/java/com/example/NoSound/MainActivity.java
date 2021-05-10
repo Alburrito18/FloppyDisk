@@ -1,6 +1,7 @@
 package com.example.NoSound;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private File file;
     private String latestOrderID; // disgusting way to update orderalternative fragment
     private Employee employee;
+    private File filePath = null;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
     private HashMap<String,BusinessData> customerInfo = new HashMap<>();
@@ -206,5 +208,23 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
 
     public BusinessData getBusinessData(String orderID){
         return customerInfo.get(orderID);
+    }
+    public void generateDocx(){
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                PackageManager.PERMISSION_GRANTED);
+
+        filePath = new File(getExternalFilesDir(null), "KaisTest.docx");
+
+        try {
+            if(!filePath.exists()){
+                filePath.createNewFile();
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public File fileGetter(){
+        return filePath;
     }
 }
