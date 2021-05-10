@@ -27,8 +27,10 @@ public class FirstFragment extends Fragment {
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
+
     ) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_first, container, false);
     }
 
@@ -38,10 +40,13 @@ public class FirstFragment extends Fragment {
 
         mListView = view.findViewById(R.id.ListViewProfile);
 
+
         OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList, this);
         mListView.setAdapter(adapter);
 
         ((MainActivity) requireActivity()).setFirstFragment(this);
+        orderViewList.clear();
+        ((MainActivity) requireActivity()).loadOrderViews();
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
