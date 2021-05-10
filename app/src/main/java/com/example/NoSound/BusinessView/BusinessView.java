@@ -62,6 +62,7 @@ public class BusinessView extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_business_view, container, false);
     }
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -72,7 +73,7 @@ public class BusinessView extends Fragment {
                 BusinessData order = new BusinessData(customerNameText.getText().toString(),
                         customerIDText.getText().toString(), dateEditText1.getText().toString(),
                         hearNordicNrText.getText().toString(), cityText.getText().toString());
-                passCustomerData(order,orderIDtext.getText().toString());
+                passCustomerData(order, orderIDtext.getText().toString());
                 try {
                     saveInfo(view);
                 } catch (IOException e) {
@@ -86,8 +87,9 @@ public class BusinessView extends Fragment {
             }
         });
     }
+
     @Override
-    public void onActivityCreated(Bundle savedInstanceState){
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         customerIDText = requireView().findViewById(R.id.customerIDText);
         customerNameText = requireView().findViewById(R.id.customerNameText);
@@ -100,15 +102,15 @@ public class BusinessView extends Fragment {
         dateEditText1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus && Objects.requireNonNull(dateEditText1.getText()).toString().equals(getDate())) {
+                if (hasFocus && Objects.requireNonNull(dateEditText1.getText()).toString().equals(getDate())) {
                     String fullDate = getDate();
                     String onlyYear = fullDate.substring(0, 5);
                     dateEditText1.setText(onlyYear);
-                } else if(!hasFocus) {
-                    if(dateEditText1.getText().toString().length() < 6) {
+                } else if (!hasFocus) {
+                    if (dateEditText1.getText().toString().length() < 6) {
                         dateEditText1.setText(getDate());
                     }
-                    if(!checkDateFormat(dateEditText1.getText().toString())) {
+                    if (!checkDateFormat(dateEditText1.getText().toString())) {
                         dateEditText1.setBackgroundColor(0xBECC0000);
                     } else {
                         dateEditText1.setBackgroundColor(0xBECECECE);
@@ -120,19 +122,20 @@ public class BusinessView extends Fragment {
 
     /**
      * The method called when information needs to be stored
+     *
      * @param v The view which needs to be saved
      */
     private void saveInfo(View v) throws IOException, ClassNotFoundException {
         ((MainActivity) requireActivity()).savePublicly(v);
-        ((MainActivity) requireActivity()).loadOrderInfo(orderIDtext.getText().toString());
     }
 
 
     private void passCustomerData(BusinessData businessData, String orderID) {
         dataPasser.onDataPass(businessData, orderID);
     }
+
     @Override
-    public void onAttach(Context context){
+    public void onAttach(Context context) {
         super.onAttach(context);
         dataPasser = (OnDataPass) context;
     }
@@ -147,8 +150,8 @@ public class BusinessView extends Fragment {
     //Checks if the date is entered in the correct format and is valid
     private boolean checkDateFormat(String date) {
         String[] dateArray = date.split("-");
-        if(date.length() == 10 && dateArray.length == 3) {
-            for(String sub : dateArray) {
+        if (date.length() == 10 && dateArray.length == 3) {
+            for (String sub : dateArray) {
                 if (sub == null) return false;
             }
             String[] controlArray = getDate().split("-");

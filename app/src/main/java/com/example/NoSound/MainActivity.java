@@ -27,7 +27,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements OnDataPass {
 
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private Employee employee;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
-    private HashMap<String,BusinessData> customerInfo = new HashMap<>();
+    private HashMap<String, BusinessData> customerInfo = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,14 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        try {
+            customerInfo = getOrdersFromFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -73,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     /**
      * This method creates a file and requests permission to store files in the external storage, which in this case is Documents.
      * It then calls upon the method that will store the file in the storage.
+     *
      * @param v
      */
     public void savePublicly(View v) {
@@ -86,20 +99,21 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
 
         // Storing the data in file with name as geeksData.txt
-        file = new File(folder, orderID + "Customerinfo.txt");
-        writeTextData(file,orderID, order);
+        file = new File(folder, "Customerinfo.txt");
+        writeTextData(file, orderID, order);
     }
 
     /**
      * The method puts ID coupled with Name into a map then makes sure that it is saved on the file
      * that it takes as an argument.
-     * @param file  a File that the map will be stored in.
+     *
+     * @param file    a File that the map will be stored in.
      * @param orderID a String representing the ID of the order.
-     * @param order a BusinessData variable conating information about the order.
+     * @param order   a BusinessData variable conating information about the order.
      */
-    private void writeTextData(File file, String orderID ,BusinessData order) {
-        if (!(orderID == null || order == null)){
-            customerInfo.put(orderID,order);
+    private void writeTextData(File file, String orderID, BusinessData order) {
+        if (!(orderID == null || order == null)) {
+            customerInfo.put(orderID, order);
         }
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream;
@@ -108,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(customerInfo);
             objectOutputStream.close();
+            updateOrderView(orderID);
             Toast.makeText(this, "Done" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,9 +136,11 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
             }
         }
     }
+
     /**
      * This method creates a file and requests permission to store files in the external storage, which in this case is Documents.
      * It then calls upon the method that will store the file in the storage. This method stores Employee info however.
+     *
      * @param v
      */
     public void saveEmployeePublicly(View v) {
@@ -133,16 +150,19 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
 
         // Storing the data in file with name as geeksData.txt
         writeEmployeeData(file, employee);
-    } /**
+    }
+
+    /**
      * This method takes an employee an stores the employee in a file. Similarly to the previous method WriteTextData.
-     * @param file  a File that the map will be stored in.
+     *
+     * @param file     a File that the map will be stored in.
      * @param employee a String representing the businesses name .
      */
-    private void writeEmployeeData(File file, Employee employee){
+    private void writeEmployeeData(File file, Employee employee) {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream;
         try {
-            fileOutputStream = new FileOutputStream(file,true);
+            fileOutputStream = new FileOutputStream(file, true);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(employee);
             objectOutputStream.close();
@@ -161,27 +181,41 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
 
     }
 
-    public void setFirstFragment(FirstFragment firstFragment){
+    public void setFirstFragment(FirstFragment firstFragment) {
         this.firstFragment = firstFragment;
     }
 
     /**
-     * This method creates an ObjectInput stream that gets an order from the documents directory
-     * with the specified ID. It then recreates said order and updates First fragment with the
-     * information.
-     * @param orderID The entered orderID that is given by the textbox in the BusinessView
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * adds one order to the view of the list of orders.
+     *
+     * @param orderID the specific order by it's id.
      */
-    public void loadOrderInfo(String orderID) throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/" + orderID + "Customerinfo.txt"));
-        HashMap<String,BusinessData> customerInfo = (HashMap<String, BusinessData>) ois.readObject();
-        ois.close();
-        OrderView newOrder = new OrderView(orderID,customerInfo.get(orderID).getCustomerName(),customerInfo.get(orderID).getDate());
+    public void updateOrderView(String orderID) {
+        OrderView newOrder = new OrderView(orderID, customerInfo.get(orderID).getCustomerName(), customerInfo.get(orderID).getDate());
         firstFragment.updateOrderView(newOrder);
     }
+
+    private HashMap<String, BusinessData> getOrdersFromFile() throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/Customerinfo.txt"));
+        HashMap<String, BusinessData> customerInfo = (HashMap<String, BusinessData>) ois.readObject();
+        ois.close();
+        return customerInfo;
+    }
+
+    /**
+     * loads orders to the view, but first sorts the elements so that they come in reverse size order.
+     */
+    public void loadOrderViews() {
+        List<String> orderByKey = new ArrayList<>(customerInfo.keySet());
+        Collections.sort(orderByKey);
+        Collections.reverse(orderByKey);
+        for (String id : orderByKey) {
+            updateOrderView(id);
+        }
+    }
+
     @Override
-    public void onDataPass(BusinessData order,String orderID) {
+    public void onDataPass(BusinessData order, String orderID) {
         this.order = order;
         this.orderID = orderID;
     }
@@ -191,7 +225,8 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         order.addEmployee(employee);
         this.employee = employee;
     }
-    Employee getEmployee(){
+
+    Employee getEmployee() {
         return employee;
     }
 }
