@@ -1,0 +1,39 @@
+Individual reflection 
+__________________________________________
+
+
+0. what do I want to learn or understand better?
+	ANS: STill need to understand android studio a littl better. Carried out some pretty advanced stuff last week, but I do not understand the storage functions properly. 
+
+
+1. how can I help someone else, or the entire team, to learn something new?
+	ANS: Genom att sitta i par och programmera så borde vi kunna lära oss tillsammans. Att lära sig saker helt själv och bli expert gynnar inte laget om det sedan inte är kunskap som sprider sig vidare...
+
+
+2. what is my contribution towards the team’s use of Scrum?
+	ANS: Från föregående veckan så har jag återigenom jobbat med KPIerna som något unikt och eget. Denna gången har jag förändrat skalan för värdeleverans KPIn. I övrigt så försöker jag styra upp diskussionen när vår ordinära scrum master inte är med. 
+
+3. what is my contribution towards the team’s deliveries?
+	ANS: I den ena user storyn så har jag inte bidragit supermycket till produktionen av kod, men jag har testat koden och review:at den grundligt. Sen hade jag en andra user story som jag faktiskt löste på egen hand och googlade fram lösningar på helt själv. Förutom några mindre skavanker så tycker jag att det gick bra.
+
+OTHER THINGS TO MENTI@N
+- Na... Nothing in particular. 
+
+Form old week: 
+- Smoother measurements of KPI. --> completly failed, since the application we use didn't schedule the measurements correctly. But I fixed manual forms. 
+- New KPI which connects to our PO --> Check. is in place since the week before. 
+- Hoppas att vi kan få en snyggare standard för våra vyer och koppla samman alla lagringsdelar så att dessa vyerna också får en backend till sig. --> on it. Har adresserat det, har lagt en user story i trello och behöver nu bara tilldela den någon egetnligen. Men denna sortens uppgifter har krånglat i mitt android studio och har generellt låg prio. 
+
+
+To text week: 
+- Se vad det sista vi behöver göra är enligt PO? 
+- Få till snygga och konsekventa vyer nudå. 
+- Lösa samtliga lagringen och utskrifter.
+
+___________________________________________
+SMART OBJECTIVES: 
+	Specific – target a specific area for improvement.
+	Measurable – quantify or at least suggest an indicator of progress.
+	Assignable – specify who will do it.
+	Realistic – state what results can realistically be achieved, given available resources.
+	Time-related – specify when the result(s) can be achieved.
