@@ -1,6 +1,7 @@
 package com.example.NoSound;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +14,16 @@ import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
 import com.example.NoSound.OrderView.OrderView;
 import com.example.NoSound.OrderView.OrderViewListAdapter;
+
+import org.apache.poi.xwpf.usermodel.XWPFDocument; // tycks inte existera...
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private String orderID;
     private File file;
     private Employee employee;
+    private File filePath = null;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
     private HashMap<String,BusinessData> customerInfo = new HashMap<>();
@@ -46,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
     }
 
     @Override
@@ -194,4 +202,35 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     Employee getEmployee(){
         return employee;
     }
+/*
+    public void onCreated(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                PackageManager.PERMISSION_GRANTED);
+
+
+    }
+*/
+    public void generateDocx(){
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                PackageManager.PERMISSION_GRANTED);
+
+        filePath = new File(getExternalFilesDir(null), "KaisTest.docx");
+
+        try {
+            if(!filePath.exists()){
+                filePath.createNewFile();
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public File fileGetter(){
+        return filePath;
+    }
+
 }

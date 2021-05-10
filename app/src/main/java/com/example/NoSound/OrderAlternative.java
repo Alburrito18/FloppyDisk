@@ -8,6 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.apache.poi.xwpf.usermodel.XWPFDocument; // tycks inte existera...
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
+
+import java.io.FileOutputStream;
+
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link OrderAlternative#newInstance} factory method to
@@ -53,6 +60,9 @@ public class OrderAlternative extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
     }
 
     @Override
@@ -60,5 +70,31 @@ public class OrderAlternative extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_order_alternativ, container, false);
+    }
+
+    public void ButtonCreated (View view){
+
+        ((MainActivity) requireActivity()).generateDocx();
+        try {
+            XWPFDocument xwpfDocument = new XWPFDocument();
+            XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
+            XWPFRun xwpfRun = xwpfParagraph.createRun();
+
+            xwpfRun.setText("hej detta är ett test");
+            xwpfRun.setFontSize(12);
+
+            FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
+            xwpfDocument.write(fileOutputStream);
+
+            if (fileOutputStream != null){
+                fileOutputStream.flush();
+                fileOutputStream.close();
+            }
+
+            xwpfDocument.close();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

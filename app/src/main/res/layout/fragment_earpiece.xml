@@ -180,7 +180,7 @@
                 android:layout_width="270dp"
                 android:layout_height="28dp"
                 android:layout_marginStart="300dp"
-                android:text="@string/val_markerade_med_inneb_r_extra_kostnad"
+                android:text="@string/Dessa_val_kostar_extra"
                 app:layout_constraintBottom_toTopOf="@+id/textView5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ColorRight" />
