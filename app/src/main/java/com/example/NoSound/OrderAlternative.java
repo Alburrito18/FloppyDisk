@@ -5,12 +5,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.NoSound.BusinessView.BusinessData;
+
+import org.apache.poi.xwpf.usermodel.BreakType;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
+
+import java.io.FileOutputStream;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +27,7 @@ import com.example.NoSound.BusinessView.BusinessData;
  */
 public class OrderAlternative extends Fragment {
 
-
+    private BusinessData businessData;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -70,9 +78,51 @@ public class OrderAlternative extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
-        BusinessData businessData = ((MainActivity) requireActivity()).getBusinessData(latestOrderID);
+        businessData = ((MainActivity) requireActivity()).getBusinessData(latestOrderID);
         ((TextView)view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
         ((TextView)view.findViewById(R.id.date)).setText(businessData.getDate());
         ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + latestOrderID);
+        view.findViewById(R.id.wordButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDocx(businessData);
+            }
+        });
         }
+
+    private void createDocx(BusinessData businessData){
+
+        ((MainActivity) requireActivity()).generateDocx();
+        try {
+            XWPFDocument xwpfDocument = new XWPFDocument();
+            XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
+            XWPFRun xwpfRun = xwpfParagraph.createRun();
+            Log.d("BusineddDataToString",businessData.toString());
+            String data = businessData.toString();
+            if (data.contains("\n")) {
+                String[] lines = data.split("\n");
+                xwpfRun.setText(lines[0], 0); // set first line into XWPFRun
+                for(int i=1;i<lines.length;i++){
+                    // add break and insert new text
+                    xwpfRun.addBreak();
+                    xwpfRun.setText(lines[i]);
+                }
+            } else {
+                xwpfRun.setText(data, 0);
+            }
+            xwpfRun.setFontSize(12);
+            FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
+            xwpfDocument.write(fileOutputStream);
+
+            if (fileOutputStream != null){
+                fileOutputStream.flush();
+                fileOutputStream.close();
+            }
+
+            xwpfDocument.close();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
