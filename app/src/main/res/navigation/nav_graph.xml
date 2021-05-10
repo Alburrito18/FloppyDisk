@@ -18,22 +18,26 @@
             app:destination="@id/orderAlternative" />
     </fragment>
     <fragment
-        android:id="@+id/personalInfo"
+        android:id="@+id/personelInfo"
         android:name="com.example.NoSound.PersonelInfo"
         android:label="fragment_personal_info"
-        tools:layout="@layout/fragment_personal_info" >
+        tools:layout="@layout/fragment_personell_info" >
         <action
-            android:id="@+id/action_personalInfo_to_vy3"
-            app:destination="@id/vy3" />
+            android:id="@+id/action_personalInfo_to_ThirdFragment"
+            app:destination="@id/earPieceForm" />
         <action
             android:id="@+id/action_personalInfo_to_businessView"
             app:destination="@id/businessView" />
     </fragment>
     <fragment
-        android:id="@+id/vy3"
-        android:name="com.example.NoSound.ThirdFragment"
-        android:label="fragment_vy3"
-        tools:layout="@layout/fragment_thirdFragment" />
+        android:id="@+id/earPieceForm"
+        android:name="com.example.NoSound.EarPieceForm"
+        android:label="fragment_earpiece"
+        tools:layout="@layout/fragment_earpiece">
+        <action
+            android:id="@+id/action_thirdfragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
     <fragment
         android:id="@+id/businessView"
         android:name="com.example.NoSound.BusinessView.BusinessView"
@@ -41,13 +45,13 @@
         tools:layout="@layout/fragment_business_view" >
         <action
             android:id="@+id/action_businessView_to_personalInfo"
-            app:destination="@id/personalInfo" />
+            app:destination="@id/personelInfo" />
         <action
             android:id="@+id/action_businessView_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
     <fragment
-        android:id="@+id/installningar2"
+        android:id="@+id/settings"
         android:name="com.example.NoSound.Settings"
         android:label="fragment_installningar"
         tools:layout="@layout/fragment_settings" />

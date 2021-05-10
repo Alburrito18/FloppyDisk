@@ -4,20 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThirdFragment">
+    tools:context=".EarPieceForm">
 
     <!-- TODO: Update blank fragment layout -->
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <EditText
+                android:id="@+id/commentText"
+                android:layout_width="308dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="293dp"
+                android:layout_marginTop="30dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/kommentar"
+                android:inputType="textMultiLine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filterChoice" />
+
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/ColorLeft"
                 android:layout_width="303dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="48dp"
@@ -38,7 +56,7 @@
                 android:layout_marginEnd="108dp"
                 android:layout_marginBottom="17dp"
                 android:text="@string/nedan_r_de_olika_val_som_kan_g_ras"
-                app:layout_constraintBottom_toTopOf="@+id/switch2"
+                app:layout_constraintBottom_toTopOf="@+id/stringAttachment"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -67,19 +85,21 @@
                 android:layout_marginEnd="81dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/f_rgval_v_nster_sida"
-                app:layout_constraintBottom_toTopOf="@+id/spinner2"
+                app:layout_constraintBottom_toTopOf="@+id/ColorLeft"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch2" />
+                app:layout_constraintTop_toBottomOf="@+id/stringAttachment" />
 
             <Switch
-                android:id="@+id/switch2"
+                android:id="@+id/stringAttachment"
                 android:layout_width="272dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="49dp"
+                android:layout_marginStart="48dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="90dp"
                 android:layout_marginBottom="9dp"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
                 android:text="@string/med_f_ste_f_r_sn_re"
                 app:layout_constraintBottom_toTopOf="@+id/textView3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +107,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/ColorRight"
                 android:layout_width="303dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="48dp"
@@ -109,10 +129,10 @@
                 android:layout_marginEnd="81dp"
                 android:layout_marginBottom="19dp"
                 android:text="@string/f_rgval_h_ger_sida"
-                app:layout_constraintBottom_toTopOf="@+id/spinner"
+                app:layout_constraintBottom_toTopOf="@+id/ColorRight"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+                app:layout_constraintTop_toBottomOf="@+id/ColorLeft" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -127,33 +147,109 @@
                 app:layout_constraintBottom_toTopOf="@+id/textView6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/ColorRight" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="172dp"
                 android:layout_height="27dp"
-                android:layout_marginStart="47dp"
+                android:layout_marginStart="48dp"
                 android:layout_marginTop="31dp"
                 android:layout_marginEnd="192dp"
                 android:layout_marginBottom="3dp"
                 android:text="@string/concha_telefonsn_cka"
-                app:layout_constraintBottom_toTopOf="@+id/spinner3"
+                app:layout_constraintBottom_toTopOf="@+id/Concha"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/Concha"
                 android:layout_width="297dp"
                 android:layout_height="58dp"
-                android:layout_marginStart="49dp"
+                android:layout_marginStart="48dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="65dp"
                 android:entries="@array/ConchaChoices"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <TextView
+                android:id="@+id/headsUp"
+                android:layout_width="270dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="300dp"
+                android:text="@string/val_markerade_med_inneb_r_extra_kostnad"
+                app:layout_constraintBottom_toTopOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ColorRight" />
+
+            <Switch
+                android:id="@+id/detect"
+                android:layout_width="268dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="32dp"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:text="@string/detect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Concha" />
+
+            <Switch
+                android:id="@+id/tripleset"
+                android:layout_width="268dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="16dp"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:text="@string/trippel_set"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detect" />
+
+            <Spinner
+                android:id="@+id/filterChoice"
+                android:layout_width="306dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="293dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="304dp"
+                android:entries="@array/filterChoices"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tripleset" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="100dp"
+                android:text="@string/spara"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/commentText" />
+
+            <TextView
+                android:id="@+id/filterCodeTextView"
+                android:layout_width="311dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="293dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/filter_kod"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="293dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/filter_kod"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/commentText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

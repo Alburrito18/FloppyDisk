@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private String orderID;
     private File file;
     private String latestOrderID; // disgusting way to update orderalternative fragment
+    private Employee employee;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
     private HashMap<String,BusinessData> customerInfo = new HashMap<>();
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
                 EXTERNAL_STORAGE_PERMISSION_CODE);
 
         // Storing the data in file with name as geeksData.txt
-        writeEmployeeData(file, order.getEmployee(0));
+        writeEmployeeData(file, employee);
     } /**
      * This method takes an employee an stores the employee in a file. Similarly to the previous method WriteTextData.
      * @param file  a File that the map will be stored in.
@@ -190,8 +191,11 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     @Override
     public void onEmployeePass(Employee employee) {
         order.addEmployee(employee);
+        this.employee = employee;
     }
-
+    Employee getEmployee(){
+        return employee;
+    }
     public String getLatestOrderID() {
         return latestOrderID;
     }
@@ -203,5 +207,4 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     public BusinessData getBusinessData(String orderID){
         return customerInfo.get(orderID);
     }
-
 }

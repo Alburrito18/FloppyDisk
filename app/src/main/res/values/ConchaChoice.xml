@@ -4,5 +4,6 @@
         <item>Ingen</item>
         <item>Höger</item>
         <item>Vänster</item>
+        <item>Båda</item>
     </string-array>
 </resources>
