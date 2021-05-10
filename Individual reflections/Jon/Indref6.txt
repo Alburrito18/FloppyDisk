@@ -1,0 +1,22 @@
+﻿what do I want to learn or understand better?
+
+
+this week I really wanna continue working on what I have done previously, storing data over many iterations and now retrieving it correctly.
+
+
+how can I help someone else, or the entire team, to learn something new?
+
+
+As said previously it feels like we are getting to a point where everyone is getting a hang of most things, I'll just have to keep everyone informed with what I do next week.
+
+
+what is my contribution towards the team’s use of Scrum?
+
+
+I continue being apart of meetings and contributing to those. I am not sure I do anything in particular  to add something special. I hope my input is enough. 
+
+
+what is my contribution towards the team’s deliveries?
+
+
+Last week we added important stuff in terms of retreving data, hopefully that will add a lot of functionality to the project in the coming week Where we seek to basically finalize this part.
