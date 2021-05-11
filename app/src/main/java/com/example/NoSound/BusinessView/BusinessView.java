@@ -70,9 +70,14 @@ public class BusinessView extends Fragment {
             @Override
             public void onClick(View view) {
 
-                BusinessData order = new BusinessData(customerNameText.getText().toString(),
-                        customerIDText.getText().toString(), dateEditText1.getText().toString(),
-                        hearNordicNrText.getText().toString(), cityText.getText().toString());
+                BusinessData order = null;
+                try {
+                    order = new BusinessData(customerNameText.getText().toString(),
+                            customerIDText.getText().toString(), dateEditText1.getText().toString(),
+                            hearNordicNrText.getText().toString(), cityText.getText().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 passCustomerData(order, orderIDtext.getText().toString());
                 try {
                     saveInfo(view);
