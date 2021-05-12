@@ -43,6 +43,10 @@ public class BusinessData implements Serializable {
         return customerName;
     }
 
+    public int getNumberOfEmployees(){
+        return employees.size();
+    }
+
     public String getDate() {
         return date;
     }

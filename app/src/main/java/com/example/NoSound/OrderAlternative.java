@@ -19,6 +19,7 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import java.io.FileOutputStream;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,11 +89,17 @@ public class OrderAlternative extends Fragment {
                 createDocx(businessData);
             }
         });
+        view.findViewById(R.id.printButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createCoupons(businessData);
+            }
+        });
         }
 
     private void createDocx(BusinessData businessData){
 
-        ((MainActivity) requireActivity()).generateDocx();
+        ((MainActivity) requireActivity()).generateDocx(businessData.getCustomerName());
         try {
             XWPFDocument xwpfDocument = new XWPFDocument();
             XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
@@ -124,5 +131,17 @@ public class OrderAlternative extends Fragment {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+    private void createCoupons(BusinessData businessData){
+        for (int i = 0; i<businessData.getNumberOfEmployees(); i++){
+            createCoupon(businessData.getEmployee(i));
+        }
+    }
+    private void createCoupon(Employee employee){
+        ((MainActivity) requireActivity()).generateDocx(employee.getPersonalNumber());
+        XWPFDocument xwpfDocument = new XWPFDocument();
+        XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
+        XWPFRun xwpfRun = xwpfParagraph.createRun();
+
     }
 }
