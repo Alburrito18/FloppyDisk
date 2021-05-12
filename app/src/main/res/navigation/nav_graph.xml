@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_businessView_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_businessView_to_personellList"
+            app:destination="@id/personellList" />
     </fragment>
     <fragment
         android:id="@+id/settings"
@@ -64,4 +67,9 @@
             android:id="@+id/action_orderAlternative_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/personellList"
+        android:name="com.example.NoSound.PersonellListView.PersonellListView"
+        android:label="fragment_personell_list"
+        tools:layout="@layout/fragment_personell_list" />
 </navigation>
