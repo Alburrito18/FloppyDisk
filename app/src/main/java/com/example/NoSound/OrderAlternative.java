@@ -1,5 +1,6 @@
 package com.example.NoSound;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,16 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
 
-import org.apache.poi.xwpf.usermodel.BreakType;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
-import java.util.List;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +30,8 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class OrderAlternative extends Fragment {
+
+    Resources resources;
 
     private BusinessData businessData;
     // TODO: Rename parameter arguments, choose names that match
@@ -92,7 +97,13 @@ public class OrderAlternative extends Fragment {
         view.findViewById(R.id.printButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createCoupons(businessData);
+                try {
+                    createCoupons(businessData);
+                } catch (IOException e) {
+                    Toast toast = Toast.makeText(((MainActivity) requireActivity()), "File: not found!", Toast.LENGTH_LONG);
+                    toast.show();
+                    e.printStackTrace();
+                }
             }
         });
         }
@@ -132,16 +143,37 @@ public class OrderAlternative extends Fragment {
             e.printStackTrace();
         }
     }
-    private void createCoupons(BusinessData businessData){
+    private void createCoupons(BusinessData businessData) throws IOException {
         for (int i = 0; i<businessData.getNumberOfEmployees(); i++){
             createCoupon(businessData.getEmployee(i));
         }
     }
-    private void createCoupon(Employee employee){
+    private void createCoupon(Employee employee) throws IOException {
         ((MainActivity) requireActivity()).generateDocx(employee.getPersonalNumber());
+        String output = LoadFile("kupong_template.docx");
         XWPFDocument xwpfDocument = new XWPFDocument();
         XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
         XWPFRun xwpfRun = xwpfParagraph.createRun();
+    }
 
+    private String LoadFile(String fileName) throws IOException
+    {
+        //Create a InputStream to read the file into
+        //get the file as a stream
+        InputStream iS = resources.getAssets().open(fileName);
+        //create a buffer that has the same size as the InputStream
+        byte[] buffer = new byte[iS.available()];
+        //read the text file as a stream, into the buffer
+        iS.read(buffer);
+        //create a output stream to write the buffer into
+        ByteArrayOutputStream oS = new ByteArrayOutputStream();
+        //write this buffer to the output stream
+        oS.write(buffer);
+        //Close the Input and Output streams
+        oS.close();
+        iS.close();
+
+        //return the output stream as a String
+        return oS.toString();
     }
 }
