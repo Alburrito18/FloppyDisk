@@ -53,7 +53,7 @@ public class BusinessData implements Serializable {
 
     @Override
     public String toString() {
-        return "Orderinformation:" + "\n" +
+        return "ORDERINFORMATION" + "\n" +
                 "Företag: " + customerName +"," + "\n" +
                 "Kundnummer: " + customerID +"," +"\n" +
                 "Datum: " + date +","  +"\n" +
@@ -68,5 +68,10 @@ public class BusinessData implements Serializable {
             sb.append(employees.get(i).toString()).append("\n");
         }
         return sb.toString();
+    }
+
+    // Ny metod som itererar över EN anställd och skriver ut kupong info.
+    public String toStringCupong() {
+        return "Kuponginfo" + "\n";
     }
 }

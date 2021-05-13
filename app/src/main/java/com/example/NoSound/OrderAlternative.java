@@ -90,7 +90,7 @@ public class OrderAlternative extends Fragment {
         ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + latestOrderID);
         view.findViewById(R.id.wordButton).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // listener
                 createDocx(businessData);
             }
         });
@@ -117,18 +117,58 @@ public class OrderAlternative extends Fragment {
             XWPFRun xwpfRun = xwpfParagraph.createRun();
             Log.d("BusineddDataToString",businessData.toString());
             String data = businessData.toString();
+
             if (data.contains("\n")) {
                 String[] lines = data.split("\n");
                 xwpfRun.setText(lines[0], 0); // set first line into XWPFRun
+                xwpfRun.setFontSize(24); // trying to create a bigger title
                 for(int i=1;i<lines.length;i++){
                     // add break and insert new text
                     xwpfRun.addBreak();
                     xwpfRun.setText(lines[i]);
+                    xwpfRun.setFontSize(12); // added to every line below title
                 }
             } else {
                 xwpfRun.setText(data, 0);
             }
-            xwpfRun.setFontSize(12);
+            // xwpfRun.setFontSize(12); // old position
+            FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
+            xwpfDocument.write(fileOutputStream);
+
+            if (fileOutputStream != null){
+                fileOutputStream.flush();
+                fileOutputStream.close();
+            }
+
+            xwpfDocument.close();
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void createCupong(BusinessData businessData){
+
+        ((MainActivity) requireActivity()).generateDocx("tempTestName");
+        try {
+            XWPFDocument xwpfDocument = new XWPFDocument();
+            XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
+            XWPFRun xwpfRun = xwpfParagraph.createRun();
+            Log.d("BusineddDataToString",businessData.toString());
+            String data = businessData.toString();
+
+            if (data.contains("\n")) {
+                String[] lines = data.split("\n");
+                xwpfRun.setText(lines[0], 0); // set first line into XWPFRun
+                for(int i=1;i<lines.length;i++){// add break and insert new text
+                    xwpfRun.addBreak();
+                    xwpfRun.setText(lines[i]);
+                    xwpfRun.setFontSize(12); // added to every line below title
+                }
+            } else {
+                xwpfRun.setText(data, 0);
+            }
+            // xwpfRun.setFontSize(12); // old position
             FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
             xwpfDocument.write(fileOutputStream);
 
