@@ -79,7 +79,7 @@ public class BusinessView extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                passCustomerData(order, orderIDtext.getText().toString());
+                passCustomerData(order);
                 try {
                     saveInfo(view);
                 } catch (IOException e) {
@@ -136,8 +136,8 @@ public class BusinessView extends Fragment {
     }
 
 
-    private void passCustomerData(BusinessData businessData, String orderID) {
-        dataPasser.onDataPass(businessData, orderID);
+    private void passCustomerData(BusinessData businessData) {
+        dataPasser.onDataPass(businessData);
     }
 
     @Override
