@@ -1,30 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PersonellListView.PersonellListView">
-    
+    tools:context=".FirstFragment">
 
     <Button
-        android:id="@+id/Add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/addButton"
+        android:layout_width="902dp"
+        android:layout_height="82dp"
         android:text="+"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        tools:layout_editor_absoluteX="-1dp" />
 
-    <RelativeLayout
-        android:id="@+id/relativePersonellList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="263dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="76dp"
+        android:text="Gå Vidare"
+        app:layout_constraintTop_toBottomOf="@+id/addButton"
+        tools:layout_editor_absoluteX="598dp" />
 
-        <ListView
-            android:id="@+id/personellList"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="903dp"
+        android:layout_height="1283dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:context=".PersonellListView.PersonellListView"
+        tools:layout_editor_absoluteY="-206dp">
+
+
+        <RelativeLayout
+            android:id="@+id/relativePersonellList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="922dp">
 
-        </ListView>
+            <ListView
+                android:id="@+id/personellList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </RelativeLayout>
+            </ListView>
 
-</FrameLayout>
+        </RelativeLayout>
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
