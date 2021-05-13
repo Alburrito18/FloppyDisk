@@ -35,8 +35,8 @@
 
         <RelativeLayout
             android:id="@+id/relativePersonellList"
-            android:layout_width="match_parent"
-            android:layout_height="922dp">
+            android:layout_width="993dp"
+            android:layout_height="1205dp">
 
             <ListView
                 android:id="@+id/personellList"
