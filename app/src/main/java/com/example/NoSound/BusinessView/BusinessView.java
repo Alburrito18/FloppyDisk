@@ -82,7 +82,7 @@ public class BusinessView extends Fragment {
                     e.printStackTrace();
                 }
                 NavHostFragment.findNavController(BusinessView.this)
-                        .navigate(R.id.action_businessView_to_personalInfo);
+                        .navigate(R.id.action_businessView_to_personellList);
 
             }
         });

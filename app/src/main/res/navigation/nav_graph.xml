@@ -25,9 +25,6 @@
         <action
             android:id="@+id/action_personalInfo_to_ThirdFragment"
             app:destination="@id/earPieceForm" />
-        <action
-            android:id="@+id/action_personalInfo_to_businessView"
-            app:destination="@id/businessView" />
     </fragment>
     <fragment
         android:id="@+id/earPieceForm"
@@ -43,9 +40,6 @@
         android:name="com.example.NoSound.BusinessView.BusinessView"
         android:label="fragment_business_view"
         tools:layout="@layout/fragment_business_view" >
-        <action
-            android:id="@+id/action_businessView_to_personalInfo"
-            app:destination="@id/personelInfo" />
         <action
             android:id="@+id/action_businessView_to_FirstFragment"
             app:destination="@id/FirstFragment" />
