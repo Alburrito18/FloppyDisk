@@ -10,14 +10,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.example.NoSound.Employee;
-import com.example.NoSound.OrderView.OrderView;
 import com.example.NoSound.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class EmployeeListAdapter extends ArrayAdapter<Employee> {
 
@@ -49,10 +46,10 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
-        TextView tvSurName = (TextView) convertView.findViewById(R.id.PersSurName);
-        TextView tvName = (TextView) convertView.findViewById(R.id.PersName);
-        TextView tvID = (TextView) convertView.findViewById(R.id.PersNr);
-        TextView tvFilterChoice = (TextView) convertView.findViewById(R.id.Filterkod);
+        TextView tvSurName = (TextView) convertView.findViewById(R.id.text1);
+        TextView tvName = (TextView) convertView.findViewById(R.id.text3);
+        TextView tvID = (TextView) convertView.findViewById(R.id.text4);
+        TextView tvFilterChoice = (TextView) convertView.findViewById(R.id.text5);
         //TextView tvHögRec = (TextView) convertView.findViewById(R.id.NameProfile);
         //TextView tvVänLink = (TextView) convertView.findViewById(R.id.NameProfile);
         //TextView tvAnmOpm = (TextView) convertView.findViewById(R.id.NameProfile);
