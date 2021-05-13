@@ -74,7 +74,8 @@ public class BusinessView extends Fragment {
                 try {
                     order = new BusinessData(customerNameText.getText().toString(),
                             customerIDText.getText().toString(), dateEditText1.getText().toString(),
-                            hearNordicNrText.getText().toString(), cityText.getText().toString());
+                            hearNordicNrText.getText().toString(), cityText.getText().toString(),
+                            orderIDtext.getText().toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

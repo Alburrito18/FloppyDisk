@@ -28,6 +28,9 @@ public class BusinessData implements Serializable {
     private String hearNordicNr;
     private String city;
 
+
+    private String orderID;
+
     public int getInternalOrderID() {
         return internalOrderID;
     }
@@ -36,13 +39,14 @@ public class BusinessData implements Serializable {
     private List<Employee> employees = new ArrayList<>();
     File file;
 
-    public BusinessData(String customerName, String customerID, String date, String hearNordicNr, String city) throws IOException {
+    public BusinessData(String customerName, String customerID, String date, String hearNordicNr, String city, String orderID) throws IOException {
         this.customerName = customerName;
         this.customerID = customerID;
         this.date = date;
         this.hearNordicNr = hearNordicNr;
         this.city = city;
         this.internalOrderID = generateOrderID();
+        this.orderID = orderID;
     }
 
     private int generateOrderID() throws IOException {
@@ -81,6 +85,10 @@ public class BusinessData implements Serializable {
      */
     public Employee getEmployee(int index){
         return employees.get(index);
+    }
+
+    public String getOrderID() {
+        return orderID;
     }
 
     public String getCustomerName() {

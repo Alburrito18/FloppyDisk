@@ -195,7 +195,11 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
      * @param internalOrderID the specific order by it's internal id.
      */
     public void updateOrderView(int internalOrderID) {
-        OrderView newOrder = new OrderView(orderID, customerInfo.get(internalOrderID).getCustomerName(), customerInfo.get(internalOrderID).getDate());
+        OrderView newOrder = new OrderView(
+                customerInfo.get(internalOrderID).getOrderID(),
+                customerInfo.get(internalOrderID).getCustomerName(),
+                customerInfo.get(internalOrderID).getDate());
+
         firstFragment.updateOrderView(newOrder);
     }
 
