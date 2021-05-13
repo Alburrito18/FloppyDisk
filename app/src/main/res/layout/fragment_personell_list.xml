@@ -4,8 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PersonellListView.PersonellListView">
+    
 
-    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/Add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
     <RelativeLayout
         android:id="@+id/relativePersonellList"
         android:layout_width="match_parent"
@@ -14,7 +21,10 @@
         <ListView
             android:id="@+id/personellList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+        </ListView>
+
     </RelativeLayout>
 
 </FrameLayout>

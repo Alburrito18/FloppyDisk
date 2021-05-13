@@ -44,6 +44,8 @@ public class Employee implements Serializable {
         return personalNumber;
     }
 
+    public String getFilterChoice() { return filterChoice; }
+
     /**
      * Looks if the user want a string fo their earpiece
      * @param stringAttachment a parameter that can be true if they want a an attachment or false if they don't.

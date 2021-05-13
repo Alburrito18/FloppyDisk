@@ -1,38 +1,68 @@
 package com.example.NoSound.PersonellListView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.NoSound.Employee;
 import com.example.NoSound.OrderView.OrderView;
+import com.example.NoSound.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeListAdapter extends ArrayAdapter<Employee> {
 
-    public EmployeeListAdapter(@NonNull Context context, int resource) {
-        super(context, resource);
-    }
+    private Context mContext;
+    private int mResource;
 
-    public EmployeeListAdapter(@NonNull Context context, int resource, int textViewResourceId) {
-        super(context, resource, textViewResourceId);
-    }
-
-    public EmployeeListAdapter(@NonNull Context context, int resource, @NonNull Employee[] objects) {
+    public EmployeeListAdapter(Context context, int resource, ArrayList<Employee> objects) {
         super(context, resource, objects);
+        mContext = context;
+        mResource = resource;
     }
 
-    public EmployeeListAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull Employee[] objects) {
-        super(context, resource, textViewResourceId, objects);
-    }
+    @SuppressLint("ViewHolder")
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        //hämta informationen
+        String PersSurName = getItem(position).getSurName();
+        String PersName = getItem(position).getFirstName();
+        String PersNr = getItem(position).getPersonalNumber();
+        String Filterkod = getItem(position).getFilterChoice();
 
-    public EmployeeListAdapter(@NonNull Context context, int resource, @NonNull List<Employee> objects) {
-        super(context, resource, objects);
-    }
+        //Parametrarna neden existerar inte just nu och behöver skapas innan de kan införas.
+        //String HögRec = getItem(position).get...
+        //String VänLink = getItem(position).get...
+        //String AnmOpm = getItem(position).get...
+        //String KupNr = getItem(position).get...
 
-    public EmployeeListAdapter(@NonNull Context context, int resource, int textViewResourceId, @NonNull List<Employee> objects) {
-        super(context, resource, textViewResourceId, objects);
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        convertView = inflater.inflate(mResource, parent, false);
+
+        TextView tvSurName = (TextView) convertView.findViewById(R.id.PersSurName);
+        TextView tvName = (TextView) convertView.findViewById(R.id.PersName);
+        TextView tvID = (TextView) convertView.findViewById(R.id.PersNr);
+        TextView tvFilterChoice = (TextView) convertView.findViewById(R.id.Filterkod);
+        //TextView tvHögRec = (TextView) convertView.findViewById(R.id.NameProfile);
+        //TextView tvVänLink = (TextView) convertView.findViewById(R.id.NameProfile);
+        //TextView tvAnmOpm = (TextView) convertView.findViewById(R.id.NameProfile);
+        //TextView tvKupNr = (TextView) convertView.findViewById(R.id.NameProfile);
+
+        tvSurName.setText(PersSurName);
+        tvName.setText(PersName);
+        tvID.setText(PersNr);
+        tvFilterChoice.setText(Filterkod);
+
+        return convertView;
     }
 }
