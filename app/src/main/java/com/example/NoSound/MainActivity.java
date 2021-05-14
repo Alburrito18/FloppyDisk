@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Environment;
 import android.view.Menu;
@@ -16,31 +18,34 @@ import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
 import com.example.NoSound.OrderView.OrderView;
+import com.example.NoSound.OrderView.OrderViewListAdapter;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements OnDataPass {
 
     FirstFragment firstFragment;// = (FirstFragment) getSupportFragmentManager().findFragmentById(R.id.FirstFragment);
     private BusinessData order;
     private String orderID;
-    private int internalOrderID;
     private File file;
     private String latestOrderID; // disgusting way to update orderalternative fragment
     private Employee employee;
     private File filePath = null;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
-    private HashMap<Integer, BusinessData> customerInfo = new HashMap<>();
+    private HashMap<String, BusinessData> customerInfo = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
 
         // Storing the data in file with name as geeksData.txt
         file = new File(folder, "Customerinfo.txt");
-        writeTextData(file, internalOrderID, order);
+        writeTextData(file, orderID, order);
     }
 
     /**
@@ -106,11 +111,13 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
      * that it takes as an argument.
      *
      * @param file    a File that the map will be stored in.
-     * @param internalOrderID a String representing the ID of the order.
+     * @param orderID a String representing the ID of the order.
      * @param order   a BusinessData variable conating information about the order.
      */
-    private void writeTextData(File file, int internalOrderID, BusinessData order) {
-        customerInfo.put(internalOrderID, order);
+    private void writeTextData(File file, String orderID, BusinessData order) {
+        if (!(orderID == null || order == null)) {
+            customerInfo.put(orderID, order);
+        }
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream;
         try {
@@ -118,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(customerInfo);
             objectOutputStream.close();
-            updateOrderView(internalOrderID);
+            updateOrderView(orderID);
             Toast.makeText(this, "Done" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -185,20 +192,16 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     /**
      * adds one order to the view of the list of orders.
      *
-     * @param internalOrderID the specific order by it's internal id.
+     * @param orderID the specific order by it's id.
      */
-    public void updateOrderView(int internalOrderID) {
-        OrderView newOrder = new OrderView(
-                customerInfo.get(internalOrderID).getOrderID(),
-                customerInfo.get(internalOrderID).getCustomerName(),
-                customerInfo.get(internalOrderID).getDate());
-
+    public void updateOrderView(String orderID) {
+        OrderView newOrder = new OrderView(orderID, customerInfo.get(orderID).getCustomerName(), customerInfo.get(orderID).getDate());
         firstFragment.updateOrderView(newOrder);
     }
 
-    private HashMap<Integer, BusinessData> getOrdersFromFile() throws IOException, ClassNotFoundException {
+    private HashMap<String, BusinessData> getOrdersFromFile() throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/Customerinfo.txt"));
-        HashMap<Integer, BusinessData> customerInfo = (HashMap<Integer, BusinessData>) ois.readObject();
+        HashMap<String, BusinessData> customerInfo = (HashMap<String, BusinessData>) ois.readObject();
         ois.close();
         return customerInfo;
     }
@@ -207,18 +210,18 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
      * loads orders to the view, but first sorts the elements so that they come in reverse size order.
      */
     public void loadOrderViews() {
-        List<Integer> orderByKey = new ArrayList<>(customerInfo.keySet());
+        List<String> orderByKey = new ArrayList<>(customerInfo.keySet());
         Collections.sort(orderByKey);
         Collections.reverse(orderByKey);
-        for (int id : orderByKey) {
+        for (String id : orderByKey) {
             updateOrderView(id);
         }
     }
 
     @Override
-    public void onDataPass(BusinessData order) {
+    public void onDataPass(BusinessData order, String orderID) {
         this.order = order;
-        this.internalOrderID = order.getInternalOrderID();
+        this.orderID = orderID;
     }
 
     @Override
