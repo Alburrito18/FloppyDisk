@@ -27,8 +27,6 @@ public class BusinessData implements Serializable {
     private String date;
     private String hearNordicNr;
     private String city;
-
-
     private String orderID;
 
     public int getInternalOrderID() {
