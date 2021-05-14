@@ -98,6 +98,7 @@
         android:id="@+id/frameLayout"
         android:layout_width="897dp"
         android:layout_height="804dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,11 +1,14 @@
 package com.example.NoSound.PersonellListView;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +22,8 @@ import com.example.NoSound.OrderView.OrderView;
 import com.example.NoSound.OrderView.OrderViewListAdapter;
 import com.example.NoSound.R;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 public class PersonellListView extends Fragment {
@@ -26,12 +31,25 @@ public class PersonellListView extends Fragment {
     private ArrayList<Employee> personellList = new ArrayList<>();
     private ListView mListView;
 
+    private static PersonellListView INSTANCE;
+    private String info = "Initial info class";
+
+    private PersonellListView() {
+    }
+
+    public static PersonellListView getInstance() {
+        if(INSTANCE == null) {
+            INSTANCE = new PersonellListView();
+        }
+
+        return INSTANCE;
+    }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ((MainActivity) requireActivity()).setPersonellListView(this);
         }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -40,11 +58,11 @@ public class PersonellListView extends Fragment {
         mListView = view.findViewById(R.id.personellList);
 
 
-        EmployeeListAdapter adapter = new EmployeeListAdapter(getContext(), R.layout.personell_segment, personellList);
+        EmployeeListAdapter adapter = new EmployeeListAdapter(getContext(), R.layout.personell_segment, personellList,this);
         mListView.setAdapter(adapter);
         ((MainActivity) requireActivity()).setPersonellListView(this);
         personellList.clear();
-        ((MainActivity) requireActivity()).loadOrderViews();
+        ((MainActivity) requireActivity()).loadEmployeeList();
         view.findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -70,7 +88,7 @@ public class PersonellListView extends Fragment {
 
     public void updateOrderView(ArrayList<Employee> employeeList) {
         personellList = employeeList;
-        EmployeeListAdapter adapter = new EmployeeListAdapter(getContext(), R.layout.personell_segment, personellList);
+        EmployeeListAdapter adapter = new EmployeeListAdapter(getContext(), R.layout.personell_segment, personellList,this);
         mListView.setAdapter(adapter);
     }
 }

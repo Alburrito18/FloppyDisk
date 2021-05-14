@@ -4,6 +4,7 @@ import com.example.NoSound.Employee;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BusinessData implements Serializable {
@@ -22,7 +23,7 @@ public class BusinessData implements Serializable {
         this.city = city;
     }
     public List<Employee> getEmployees(){
-        return employees;
+        return new ArrayList<>(employees);
     }
 
     /**

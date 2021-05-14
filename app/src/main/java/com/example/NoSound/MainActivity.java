@@ -1,14 +1,14 @@
 package com.example.NoSound;
 
 import android.Manifest;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Environment;
 import android.view.Menu;
@@ -38,7 +38,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements OnDataPass {
 
     FirstFragment firstFragment;// = (FirstFragment) getSupportFragmentManager().findFragmentById(R.id.FirstFragment);
-    private PersonellListView personellListView;
+    private PersonellListView personellListView = PersonellListView.getInstance();
     private BusinessData order;
     private String orderID;
     private File file;
@@ -221,6 +221,9 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     }
     public void loadEmployeeList() {
         personellListView.updateOrderView((ArrayList<Employee>) order.getEmployees());
+    }
+    public void loadEmployeeList(ArrayList<Employee> employees){
+        personellListView.updateOrderView(employees);
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.NoSound.Employee;
 import com.example.NoSound.R;
@@ -20,11 +21,13 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
 
     private Context mContext;
     private int mResource;
+    private Fragment personelListView;
 
-    public EmployeeListAdapter(Context context, int resource, ArrayList<Employee> objects) {
+    public EmployeeListAdapter(Context context, int resource, ArrayList<Employee> objects,Fragment personelListView) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
+        this.personelListView = personelListView;
     }
 
     @SuppressLint("ViewHolder")
