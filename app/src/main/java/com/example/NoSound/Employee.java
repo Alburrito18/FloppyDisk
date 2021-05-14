@@ -133,4 +133,8 @@ public class Employee implements Serializable {
                 comment +"," +
                 filterCode+".";
     }
+
+    public boolean isStringAttachment() {
+        return stringAttachment;
+    }
 }

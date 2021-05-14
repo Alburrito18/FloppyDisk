@@ -18,11 +18,16 @@ import com.example.NoSound.BusinessView.BusinessData;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,9 +90,9 @@ public class OrderAlternative extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
         businessData = ((MainActivity) requireActivity()).getBusinessData(latestOrderID);
-        ((TextView)view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
-        ((TextView)view.findViewById(R.id.date)).setText(businessData.getDate());
-        ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + latestOrderID);
+        ((TextView) view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
+        ((TextView) view.findViewById(R.id.date)).setText(businessData.getDate());
+        ((TextView) view.findViewById(R.id.orderNum)).setText("Ordernr: " + latestOrderID);
         view.findViewById(R.id.wordButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { // listener
@@ -106,23 +111,23 @@ public class OrderAlternative extends Fragment {
                 }
             }
         });
-        }
+    }
 
-    private void createDocx(BusinessData businessData){
+    private void createDocx(BusinessData businessData) {
 
         ((MainActivity) requireActivity()).generateDocx(businessData.getCustomerName());
         try {
             XWPFDocument xwpfDocument = new XWPFDocument();
             XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
             XWPFRun xwpfRun = xwpfParagraph.createRun();
-            Log.d("BusineddDataToString",businessData.toString());
+            Log.d("BusineddDataToString", businessData.toString());
             String data = businessData.toString();
 
             if (data.contains("\n")) {
                 String[] lines = data.split("\n");
                 xwpfRun.setText(lines[0], 0); // set first line into XWPFRun
                 xwpfRun.setFontSize(24); // trying to create a bigger title
-                for(int i=1;i<lines.length;i++){
+                for (int i = 1; i < lines.length; i++) {
                     // add break and insert new text
                     xwpfRun.addBreak();
                     xwpfRun.setText(lines[i]);
@@ -135,72 +140,68 @@ public class OrderAlternative extends Fragment {
             FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
             xwpfDocument.write(fileOutputStream);
 
-            if (fileOutputStream != null){
+            if (fileOutputStream != null) {
                 fileOutputStream.flush();
                 fileOutputStream.close();
             }
 
             xwpfDocument.close();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void createCupong(BusinessData businessData){
+    private void createCoupons(BusinessData businessData) throws IOException {
+        for (int i = 0; i < businessData.getNumberOfEmployees(); i++) {
+            createCoupon(businessData.getEmployee(i), businessData);
+        }
+    }
 
-        ((MainActivity) requireActivity()).generateDocx("tempTestName");
+    private void createCoupon(Employee employee, BusinessData businessData) throws IOException {
+        ((MainActivity) requireActivity()).generateDocx(employee.getPersonalNumber());
+        String output = LoadFile();
+        output = output.replace("PH_Datum", businessData.getDate());
+        output = output.replace("PH_snöre", String.valueOf(employee.isStringAttachment()));
         try {
             XWPFDocument xwpfDocument = new XWPFDocument();
             XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
             XWPFRun xwpfRun = xwpfParagraph.createRun();
-            Log.d("BusineddDataToString",businessData.toString());
-            String data = businessData.toString();
+            Log.d("BusineddDataToString", businessData.toString());
 
-            if (data.contains("\n")) {
-                String[] lines = data.split("\n");
+            if (output.contains("\n")) {
+                String[] lines = output.split("\n");
                 xwpfRun.setText(lines[0], 0); // set first line into XWPFRun
-                for(int i=1;i<lines.length;i++){// add break and insert new text
+                xwpfRun.setFontSize(24); // trying to create a bigger title
+                for (int i = 1; i < lines.length; i++) {
+                    // add break and insert new text
                     xwpfRun.addBreak();
                     xwpfRun.setText(lines[i]);
                     xwpfRun.setFontSize(12); // added to every line below title
                 }
             } else {
-                xwpfRun.setText(data, 0);
+                xwpfRun.setText(output, 0);
             }
             // xwpfRun.setFontSize(12); // old position
             FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
             xwpfDocument.write(fileOutputStream);
 
-            if (fileOutputStream != null){
+            if (fileOutputStream != null) {
                 fileOutputStream.flush();
                 fileOutputStream.close();
             }
 
             xwpfDocument.close();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private void createCoupons(BusinessData businessData) throws IOException {
-        for (int i = 0; i<businessData.getNumberOfEmployees(); i++){
-            createCoupon(businessData.getEmployee(i));
-        }
-    }
-    private void createCoupon(Employee employee) throws IOException {
-        ((MainActivity) requireActivity()).generateDocx(employee.getPersonalNumber());
-        String output = LoadFile("kupong_template.docx");
-        XWPFDocument xwpfDocument = new XWPFDocument();
-        XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
-        XWPFRun xwpfRun = xwpfParagraph.createRun();
-    }
 
-    private String LoadFile(String fileName) throws IOException
-    {
+    private String LoadFile() throws IOException {
         //Create a InputStream to read the file into
         //get the file as a stream
-        InputStream iS = resources.getAssets().open(fileName);
+        InputStream iS = ((MainActivity) requireActivity()).getAssets().open("kupong_template.docx");
         //create a buffer that has the same size as the InputStream
         byte[] buffer = new byte[iS.available()];
         //read the text file as a stream, into the buffer
@@ -214,6 +215,23 @@ public class OrderAlternative extends Fragment {
         iS.close();
 
         //return the output stream as a String
-        return oS.toString();
+        return iS.toString();
     }
+
+
+
+    private String loadFile() {
+        InputStream file;
+        XWPFWordExtractor extractor;
+        String fileData = null;
+        try {
+            file = ((MainActivity) requireActivity()).getAssets().open("kupong_template.docx");
+            XWPFDocument document = new XWPFDocument(file);
+            extractor = new XWPFWordExtractor(document);
+            fileData = extractor.getText();
+            }
+            catch (Exception exep) {}
+        return fileData;
+    }
+
 }
