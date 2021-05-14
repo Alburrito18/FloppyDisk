@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.NoSound.BusinessView.BusinessData;
 import com.example.NoSound.OrderView.OrderView;
 import com.example.NoSound.OrderView.OrderViewListAdapter;
+import com.example.NoSound.PersonellListView.PersonellListView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,6 +38,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements OnDataPass {
 
     FirstFragment firstFragment;// = (FirstFragment) getSupportFragmentManager().findFragmentById(R.id.FirstFragment);
+    private PersonellListView personellListView;
     private BusinessData order;
     private String orderID;
     private File file;
@@ -217,6 +219,9 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
             updateOrderView(id);
         }
     }
+    public void loadEmployeeList() {
+        personellListView.updateOrderView((ArrayList<Employee>) order.getEmployees());
+    }
 
     @Override
     public void onDataPass(BusinessData order, String orderID) {
@@ -261,5 +266,9 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     }
     public File fileGetter(){
         return filePath;
+    }
+
+    public void setPersonellListView(PersonellListView personellListView) {
+        this.personellListView = personellListView;
     }
 }

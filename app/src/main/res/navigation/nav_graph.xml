@@ -32,8 +32,8 @@
         android:label="fragment_earpiece"
         tools:layout="@layout/fragment_earpiece">
         <action
-            android:id="@+id/action_thirdfragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_earPieceForm_to_personellList"
+            app:destination="@id/personellList" />
     </fragment>
     <fragment
         android:id="@+id/businessView"
@@ -65,5 +65,12 @@
         android:id="@+id/personellList"
         android:name="com.example.NoSound.PersonellListView.PersonellListView"
         android:label="fragment_personell_list"
-        tools:layout="@layout/fragment_personell_list" />
+        tools:layout="@layout/fragment_personell_list" >
+        <action
+            android:id="@+id/action_personellList_to_personelInfo"
+            app:destination="@id/personelInfo" />
+        <action
+            android:id="@+id/action_personellList_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
 </navigation>

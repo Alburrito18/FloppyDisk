@@ -21,6 +21,9 @@ public class BusinessData implements Serializable {
         this.hearNordicNr = hearNordicNr;
         this.city = city;
     }
+    public List<Employee> getEmployees(){
+        return employees;
+    }
 
     /**
      * Adds an employee to the list of employees
