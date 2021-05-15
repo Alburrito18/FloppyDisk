@@ -74,4 +74,12 @@ public class BusinessData implements Serializable {
     public String toStringCupong() {
         return "Kuponginfo" + "\n";
     }
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public String getCity() {
+        return city;
+    }
 }

@@ -1,6 +1,5 @@
 package com.example.NoSound;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,18 +14,13 @@ import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
-import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-
 
 
 /**
@@ -35,8 +29,6 @@ import java.io.InputStream;
  * create an instance of this fragment.
  */
 public class OrderAlternative extends Fragment {
-
-    Resources resources;
 
     private BusinessData businessData;
     // TODO: Rename parameter arguments, choose names that match
@@ -104,7 +96,7 @@ public class OrderAlternative extends Fragment {
             public void onClick(View v) {
                 try {
                     createCoupons(businessData);
-                } catch (IOException e) {
+                } catch (IOException | InvalidFormatException e) {
                     Toast toast = Toast.makeText(((MainActivity) requireActivity()), "File: not found!", Toast.LENGTH_LONG);
                     toast.show();
                     e.printStackTrace();
@@ -122,7 +114,6 @@ public class OrderAlternative extends Fragment {
             XWPFRun xwpfRun = xwpfParagraph.createRun();
             Log.d("BusineddDataToString", businessData.toString());
             String data = businessData.toString();
-
             if (data.contains("\n")) {
                 String[] lines = data.split("\n");
                 xwpfRun.setText(lines[0], 0); // set first line into XWPFRun
@@ -152,22 +143,20 @@ public class OrderAlternative extends Fragment {
         }
     }
 
-    private void createCoupons(BusinessData businessData) throws IOException {
+    private void createCoupons(BusinessData businessData) throws IOException, InvalidFormatException {
         for (int i = 0; i < businessData.getNumberOfEmployees(); i++) {
-            createCoupon(businessData.getEmployee(i), businessData);
+            createCoupon(businessData.getEmployee(i),businessData);
         }
     }
 
     private void createCoupon(Employee employee, BusinessData businessData) throws IOException {
         ((MainActivity) requireActivity()).generateDocx(employee.getPersonalNumber());
-        String output = LoadFile();
-        output = output.replace("PH_Datum", businessData.getDate());
-        output = output.replace("PH_snöre", String.valueOf(employee.isStringAttachment()));
+        String output = employee.toCouponString(businessData.getDate(),businessData.getCustomerID(),businessData.getCustomerName(),
+                businessData.getCity());
         try {
             XWPFDocument xwpfDocument = new XWPFDocument();
             XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
             XWPFRun xwpfRun = xwpfParagraph.createRun();
-            Log.d("BusineddDataToString", businessData.toString());
 
             if (output.contains("\n")) {
                 String[] lines = output.split("\n");
@@ -197,7 +186,7 @@ public class OrderAlternative extends Fragment {
             e.printStackTrace();
         }
     }
-
+/*
     private String LoadFile() throws IOException {
         //Create a InputStream to read the file into
         //get the file as a stream
@@ -226,12 +215,39 @@ public class OrderAlternative extends Fragment {
         String fileData = null;
         try {
             file = ((MainActivity) requireActivity()).getAssets().open("kupong_template.docx");
-            XWPFDocument document = new XWPFDocument(file);
+            XWPFDocument document = CTPath.Factory(file)
             extractor = new XWPFWordExtractor(document);
             fileData = extractor.getText();
             }
-            catch (Exception exep) {}
+            catch (Exception exep) {
+
+            }
         return fileData;
     }
 
+    private void create() throws InvalidFormatException, IOException {
+        XWPFDocument doc = new XWPFDocument(OPCPackage.open(((MainActivity) requireActivity()).getAssets().open("kupong_template.docx")));
+        for (XWPFParagraph p : doc.getParagraphs()) {
+            List<XWPFRun> runs = p.getRuns();
+            if (runs != null) {
+                for (XWPFRun r : runs) {
+                    String text = r.getText(0);
+                    if (text != null && text.contains("PH_Date")) {
+                        text = text.replace("PH_Date", businessData.getDate());
+                        r.setText(text, 0);
+                    }
+                }
+            }
+        }
+        FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
+        doc.write(fileOutputStream);
+
+        if (fileOutputStream != null) {
+            fileOutputStream.flush();
+            fileOutputStream.close();
+        }
+    }
+
+
+ */
 }
