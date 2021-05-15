@@ -10,15 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
 
-import org.apache.poi.xwpf.usermodel.BreakType;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,50 +82,172 @@ public class OrderAlternative extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
         businessData = ((MainActivity) requireActivity()).getBusinessData(latestOrderID);
-        ((TextView)view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
-        ((TextView)view.findViewById(R.id.date)).setText(businessData.getDate());
-        ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + latestOrderID);
+        ((TextView) view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
+        ((TextView) view.findViewById(R.id.date)).setText(businessData.getDate());
+        ((TextView) view.findViewById(R.id.orderNum)).setText("Ordernr: " + latestOrderID);
         view.findViewById(R.id.wordButton).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // listener
                 createDocx(businessData);
             }
         });
-        }
+        view.findViewById(R.id.printButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    createCoupons(businessData);
+                } catch (IOException | InvalidFormatException e) {
+                    Toast toast = Toast.makeText(((MainActivity) requireActivity()), "File: not found!", Toast.LENGTH_LONG);
+                    toast.show();
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-    private void createDocx(BusinessData businessData){
+    private void createDocx(BusinessData businessData) {
 
-        ((MainActivity) requireActivity()).generateDocx();
+        ((MainActivity) requireActivity()).generateDocx(businessData.getCustomerName());
         try {
             XWPFDocument xwpfDocument = new XWPFDocument();
             XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
             XWPFRun xwpfRun = xwpfParagraph.createRun();
-            Log.d("BusineddDataToString",businessData.toString());
+            Log.d("BusineddDataToString", businessData.toString());
             String data = businessData.toString();
             if (data.contains("\n")) {
                 String[] lines = data.split("\n");
                 xwpfRun.setText(lines[0], 0); // set first line into XWPFRun
-                for(int i=1;i<lines.length;i++){
+                xwpfRun.setFontSize(24); // trying to create a bigger title
+                for (int i = 1; i < lines.length; i++) {
                     // add break and insert new text
                     xwpfRun.addBreak();
                     xwpfRun.setText(lines[i]);
+                    xwpfRun.setFontSize(12); // added to every line below title
                 }
             } else {
                 xwpfRun.setText(data, 0);
             }
-            xwpfRun.setFontSize(12);
+            // xwpfRun.setFontSize(12); // old position
             FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
             xwpfDocument.write(fileOutputStream);
 
-            if (fileOutputStream != null){
+            if (fileOutputStream != null) {
                 fileOutputStream.flush();
                 fileOutputStream.close();
             }
 
             xwpfDocument.close();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private void createCoupons(BusinessData businessData) throws IOException, InvalidFormatException {
+        for (int i = 0; i < businessData.getNumberOfEmployees(); i++) {
+            createCoupon(businessData.getEmployee(i),businessData);
+        }
+    }
+
+    private void createCoupon(Employee employee, BusinessData businessData) throws IOException {
+        ((MainActivity) requireActivity()).generateDocx(employee.getPersonalNumber());
+        String output = employee.toCouponString(businessData.getDate(),businessData.getCustomerID(),businessData.getCustomerName(),
+                businessData.getCity());
+        try {
+            XWPFDocument xwpfDocument = new XWPFDocument();
+            XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
+            XWPFRun xwpfRun = xwpfParagraph.createRun();
+
+            if (output.contains("\n")) {
+                String[] lines = output.split("\n");
+                xwpfRun.setText(lines[0], 0); // set first line into XWPFRun
+                xwpfRun.setFontSize(24); // trying to create a bigger title
+                for (int i = 1; i < lines.length; i++) {
+                    // add break and insert new text
+                    xwpfRun.addBreak();
+                    xwpfRun.setText(lines[i]);
+                    xwpfRun.setFontSize(12); // added to every line below title
+                }
+            } else {
+                xwpfRun.setText(output, 0);
+            }
+            // xwpfRun.setFontSize(12); // old position
+            FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
+            xwpfDocument.write(fileOutputStream);
+
+            if (fileOutputStream != null) {
+                fileOutputStream.flush();
+                fileOutputStream.close();
+            }
+
+            xwpfDocument.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+/*
+    private String LoadFile() throws IOException {
+        //Create a InputStream to read the file into
+        //get the file as a stream
+        InputStream iS = ((MainActivity) requireActivity()).getAssets().open("kupong_template.docx");
+        //create a buffer that has the same size as the InputStream
+        byte[] buffer = new byte[iS.available()];
+        //read the text file as a stream, into the buffer
+        iS.read(buffer);
+        //create a output stream to write the buffer into
+        ByteArrayOutputStream oS = new ByteArrayOutputStream();
+        //write this buffer to the output stream
+        oS.write(buffer);
+        //Close the Input and Output streams
+        oS.close();
+        iS.close();
+
+        //return the output stream as a String
+        return iS.toString();
+    }
+
+
+
+    private String loadFile() {
+        InputStream file;
+        XWPFWordExtractor extractor;
+        String fileData = null;
+        try {
+            file = ((MainActivity) requireActivity()).getAssets().open("kupong_template.docx");
+            XWPFDocument document = CTPath.Factory(file)
+            extractor = new XWPFWordExtractor(document);
+            fileData = extractor.getText();
+            }
+            catch (Exception exep) {
+
+            }
+        return fileData;
+    }
+
+    private void create() throws InvalidFormatException, IOException {
+        XWPFDocument doc = new XWPFDocument(OPCPackage.open(((MainActivity) requireActivity()).getAssets().open("kupong_template.docx")));
+        for (XWPFParagraph p : doc.getParagraphs()) {
+            List<XWPFRun> runs = p.getRuns();
+            if (runs != null) {
+                for (XWPFRun r : runs) {
+                    String text = r.getText(0);
+                    if (text != null && text.contains("PH_Date")) {
+                        text = text.replace("PH_Date", businessData.getDate());
+                        r.setText(text, 0);
+                    }
+                }
+            }
+        }
+        FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
+        doc.write(fileOutputStream);
+
+        if (fileOutputStream != null) {
+            fileOutputStream.flush();
+            fileOutputStream.close();
+        }
+    }
+
+
+ */
 }

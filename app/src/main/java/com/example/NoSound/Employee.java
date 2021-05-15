@@ -133,4 +133,27 @@ public class Employee implements Serializable {
                 comment +"," +
                 filterCode+".";
     }
+
+    public String toCouponString(String date, String customerID, String customerName,String city){
+        return "PH_LOGGA" + '\n' +
+                "                                           " + "Datum:  " + date + '\n'+
+                "                                           " + "Kupong: " + filterChoice + '\n' +
+                "Med snöre:     " + stringAttachment + '\n' +
+                "Färg vänster:  " + leftSideColor + '\n' +
+                "Färg höger:    " + rightSideColor + '\n' +
+                "Telefonsnäcka vänster: " + leftSideConcha + '\n' +
+                "Telefonsnäcka höger:   " + rightSideConcha + '\n' +
+                "Filter: " + filterChoice + '\n' +
+                "KundNr: " + customerID + '\n' + '\n' +
+                "Företag: " + customerName + '\n' +
+                "Ort: " + city + '\n' +
+                "Namn: " + firstName + " " + surName + '\n' +
+                "FödelseNr: " + personalNumber +'\n' + '\n' +
+                "Härmed godkänner jag att mina ögonavtryck och personuppgifter spara för ny och efterbeställning av formgjutna produkter från HEAR Nordic: " + '\n' +
+                "Godkännande: " + true;
+    }
+
+    public boolean isStringAttachment() {
+        return stringAttachment;
+    }
 }

@@ -244,12 +244,12 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     public BusinessData getBusinessData(String orderID){
         return customerInfo.get(orderID);
     }
-    public void generateDocx(){
+    public void generateDocx(String name){
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 PackageManager.PERMISSION_GRANTED);
 
-        filePath = new File(getExternalFilesDir(null), "KaisTest.docx");
+        filePath = new File(getExternalFilesDir(null), name + ".docx");
 
         try {
             if(!filePath.exists()){
