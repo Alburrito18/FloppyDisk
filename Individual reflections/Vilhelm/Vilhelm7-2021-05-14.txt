@@ -1,0 +1,9 @@
+Individual Reflection 7 - Vilhelm
+
+Coming into the last week I would like to get better at view design and layouts in Android Studio, since it is a rather important part of the usability of any program or application. I will do this by trying to work on user stories that involve these things.
+
+I want to guide people in the group who maybe have a bit less coding experience and give them some guideline on how to properly comment the code so it will be easier to understand, and also try to make the code a bit less complicated by showing more practical ways to do things if possible.
+
+Contribution to scrum is nothing extraordinary compared to previous weeks or other team members. As from the beginning I've been the primary contact point to our PO but overall I feel our workload is pretty balanced and we have solid teamwork.
+
+I programmed together with Jon this week and I feel like we have good teamwork and I am happy with what we got done. The code is up to standard and works well if you overlook a certain bug which we are working on (and involves other code written previously).
