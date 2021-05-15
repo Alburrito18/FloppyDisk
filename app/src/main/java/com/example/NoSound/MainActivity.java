@@ -38,7 +38,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements OnDataPass {
 
     FirstFragment firstFragment;// = (FirstFragment) getSupportFragmentManager().findFragmentById(R.id.FirstFragment);
-    private PersonellListView personellListView = PersonellListView.getInstance();
+    private PersonellListView personellListView;
     private BusinessData order;
     private String orderID;
     private File file;
@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         personellListView.updateOrderView((ArrayList<Employee>) order.getEmployees());
     }
     public void loadEmployeeList(ArrayList<Employee> employees){
-        personellListView.updateOrderView(employees);
+        //personellListView.updateOrderView(employees);
     }
 
     @Override

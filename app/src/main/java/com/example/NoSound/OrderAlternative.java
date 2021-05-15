@@ -59,7 +59,7 @@ public class OrderAlternative extends Fragment {
         view.findViewById(R.id.orderButton).setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            ((MainActivity) requireActivity()).loadEmployeeList((ArrayList<Employee>) businessData.getEmployees());
+            //((MainActivity) requireActivity()).loadEmployeeList((ArrayList<Employee>) businessData.getEmployees());
                 NavHostFragment.findNavController(OrderAlternative.this).navigate(R.id.action_orderAlternative_to_personellList);
         }
     });

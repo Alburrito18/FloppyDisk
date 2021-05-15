@@ -31,19 +31,6 @@ public class PersonellListView extends Fragment {
     private ArrayList<Employee> personellList = new ArrayList<>();
     private ListView mListView;
 
-    private static PersonellListView INSTANCE;
-    private String info = "Initial info class";
-
-    private PersonellListView() {
-    }
-
-    public static PersonellListView getInstance() {
-        if(INSTANCE == null) {
-            INSTANCE = new PersonellListView();
-        }
-
-        return INSTANCE;
-    }
 
 
     @Override
