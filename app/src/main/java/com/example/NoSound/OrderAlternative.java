@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.NoSound.BusinessView.BusinessData;
+import com.example.NoSound.BusinessView.BusinessView;
 
 import org.apache.poi.xwpf.usermodel.BreakType;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -82,12 +84,20 @@ public class OrderAlternative extends Fragment {
         ((TextView)view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
         ((TextView)view.findViewById(R.id.date)).setText(businessData.getDate());
         ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + businessData.getOrderID());
+        view.findViewById(R.id.orderButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(OrderAlternative.this)
+                        .navigate(R.id.action_orderAlternative_to_edit_order_page);
+            }
+        });
         view.findViewById(R.id.wordButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createDocx(businessData);
             }
         });
+
         }
 
     private void createDocx(BusinessData businessData){

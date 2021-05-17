@@ -23,9 +23,17 @@ import java.util.List;
 
 public class BusinessData implements Serializable {
     private String customerName;
+
+
+
     private String customerID;
     private String date;
+
+
+
     private String hearNordicNr;
+
+
     private String city;
     private String orderID;
     private int internalOrderID;
@@ -79,11 +87,19 @@ public class BusinessData implements Serializable {
     public Employee getEmployee(int index){
         return employees.get(index);
     }
+    public String getCustomerID() {
+        return customerID;
+    }
+    public String getCity() {
+        return city;
+    }
 
     public String getOrderID() {
         return orderID;
     }
-
+    public String getHearNordicNr() {
+        return hearNordicNr;
+    }
     public int getInternalOrderID() {
         return internalOrderID;
     }
