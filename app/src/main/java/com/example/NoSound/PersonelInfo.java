@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.IOException;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PersonelInfo#newInstance} factory method to
@@ -22,7 +24,7 @@ public class PersonelInfo extends Fragment {
     private OnDataPass dataPasser;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM1 = "JKPG";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
@@ -86,14 +88,23 @@ public class PersonelInfo extends Fragment {
         view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Employee employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
-                passData(employee);
+                Employee employee = null;
+                try {
+                    employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    passData(employee);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 NavHostFragment.findNavController(PersonelInfo.this)
                         .navigate(R.id.action_personalInfo_to_ThirdFragment);
             }
         });
     }
-    private void passData(Employee employee) {
+    private void passData(Employee employee) throws IOException {
         dataPasser.onEmployeePass(employee);
     }
     @Override
