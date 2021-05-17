@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private String latestOrderID; // disgusting way to update orderalternative fragment
     private Employee employee;
     private File filePath = null;
+    private String cityCode;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
     private HashMap<String, BusinessData> customerInfo = new HashMap<>();
