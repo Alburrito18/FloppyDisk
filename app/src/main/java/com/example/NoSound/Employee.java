@@ -39,7 +39,7 @@ public class Employee implements Serializable {
         this.personalNumber = personalNumber;
     }
 
-    private int generateOrderID() throws IOException {
+    private String generateCouponID(String prefix) throws IOException {
         int orderID;
         orderID = retreiveOrderID() + 1;
         saveID(orderID);
@@ -57,7 +57,7 @@ public class Employee implements Serializable {
         File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
 
         // Storing the data in file with name as geeksData.txt
-        file = new File(folder, "internalOrderID.txt");
+        file = new File(folder, "couponID.txt");
         return file;
     }
     private int retreiveOrderID() throws IOException {
