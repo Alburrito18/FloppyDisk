@@ -7,8 +7,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Environment;
 import android.view.Menu;
@@ -18,22 +16,17 @@ import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
 
-import com.example.NoSound.OrderView.OrderViewListAdapter;
-
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements OnDataPass {
 
@@ -195,9 +188,10 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
      * adds one order to the view of the list of orders.
      *
      * @param orderID the specific order by it's id.
+     * @param internalOrderID
      */
 
-    public void updateOrderView(int internalOrderID) {
+    public void updateOrderView(String internalOrderID) {
         firstFragment.updateOrderView(customerInfo.get(internalOrderID));
     }
 
