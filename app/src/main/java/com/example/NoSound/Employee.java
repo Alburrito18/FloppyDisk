@@ -45,7 +45,7 @@ public class Employee implements Serializable {
 
     private String generateCouponID(String prefix) throws IOException {
         int orderID;
-        orderID = retreiveOrderID() + 1;
+        orderID = retrieveOrderID() + 1;
         saveID(orderID);
         return prefix + orderID;
     }
@@ -64,7 +64,7 @@ public class Employee implements Serializable {
         file = new File(folder, "couponID.txt");
         return file;
     }
-    private int retreiveOrderID() throws IOException {
+    private int retrieveOrderID() throws IOException {
         try {
             DataInputStream dis = new DataInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/internalOrderID.txt"));
             return dis.readInt();
