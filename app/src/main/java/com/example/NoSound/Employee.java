@@ -1,5 +1,11 @@
 package com.example.NoSound;
 
+import android.os.Environment;
+
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -26,6 +32,28 @@ public class Employee implements Serializable {
         this.surName = surName;
         this.department = department;
         this.personalNumber = personalNumber;
+    }
+
+    private int generateOrderID() throws IOException {
+        int orderID;
+        orderID = retreiveOrderID() + 1;
+        saveID(orderID);
+        return orderID;
+    }
+
+    private void saveID(int orderID) throws IOException {
+        DataOutputStream dos = new DataOutputStream(new FileOutputStream(internalOrderFile()));
+        dos.writeInt(orderID);
+        dos.close();
+    }
+    private File internalOrderFile(){
+        // getExternalStoragePublicDirectory() represents root of external storage, we are using DOWNLOADS
+        // We can use following directories: MUSIC, PODCASTS, ALARMS, RINGTONES, NOTIFICATIONS, PICTURES, MOVIES
+        File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+
+        // Storing the data in file with name as geeksData.txt
+        file = new File(folder, "internalOrderID.txt");
+        return file;
     }
 
     public String getFirstName() {
