@@ -1,5 +1,6 @@
 package com.example.NoSound;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class OrderAlternative extends Fragment {
+    private OnDataPass dataPasser;
 
     private BusinessData businessData;
 
@@ -47,6 +49,7 @@ public class OrderAlternative extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
         businessData = ((MainActivity) requireActivity()).getBusinessData(latestOrderID);
+        passData(businessData,latestOrderID);
         ((TextView)view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
         ((TextView)view.findViewById(R.id.date)).setText(businessData.getDate());
         ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + latestOrderID);
@@ -59,8 +62,8 @@ public class OrderAlternative extends Fragment {
         view.findViewById(R.id.orderButton).setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //((MainActivity) requireActivity()).loadEmployeeList((ArrayList<Employee>) businessData.getEmployees());
                 NavHostFragment.findNavController(OrderAlternative.this).navigate(R.id.action_orderAlternative_to_personellList);
+                ((MainActivity) requireActivity()).loadEmployeeList((ArrayList<Employee>) businessData.getEmployees());
         }
     });
 }
@@ -99,5 +102,13 @@ public class OrderAlternative extends Fragment {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        dataPasser = (OnDataPass) context;
+    }
+    private void passData(BusinessData businessData,String latestorderID){
+        dataPasser.onDataPass(businessData,latestorderID);
     }
 }

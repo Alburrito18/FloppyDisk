@@ -63,7 +63,7 @@ public class BusinessData implements Serializable {
     }
     private String employeesToString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Anställda enligt: Förnamn, Efternamn, Avdelning, Personummer, Anmärkning, Filterkod").append("\n");
+        sb.append("Anställda: Förnamn, Efternamn, Avdelning, Personummer, Anmärkning, Filterkod").append("\n");
         for (int i = 0; i<employees.size(); i++ ){
             sb.append(employees.get(i).toString()).append("\n");
         }
