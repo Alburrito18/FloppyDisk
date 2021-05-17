@@ -64,7 +64,6 @@ public class OrderViewListAdapter extends ArrayAdapter<BusinessData> {
             public void onClick(View v) {
 
                 ((MainActivity) firstFragment.requireActivity()).setLatestorderID(internalOrderID);
-                System.out.println(internalOrderID);
                 NavHostFragment.findNavController(firstFragment)
                         .navigate(R.id.action_FirstFragment_to_orderAlternative);
             }

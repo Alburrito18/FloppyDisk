@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         return employee;
     }
     public int getLatestOrderID() {
-        return internalOrderID;
+        return latestOrderID;
     }
 
     public void setLatestorderID(int latestOrderID) {

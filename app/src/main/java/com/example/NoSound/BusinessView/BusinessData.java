@@ -39,7 +39,6 @@ public class BusinessData implements Serializable {
         this.hearNordicNr = hearNordicNr;
         this.city = city;
         this.internalOrderID = generateOrderID();
-        System.out.println(internalOrderID);
         this.orderID = orderID;
     }
 
