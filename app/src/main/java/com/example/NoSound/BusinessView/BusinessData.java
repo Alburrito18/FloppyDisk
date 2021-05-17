@@ -28,11 +28,6 @@ public class BusinessData implements Serializable {
     private String hearNordicNr;
     private String city;
     private String orderID;
-
-    public int getInternalOrderID() {
-        return internalOrderID;
-    }
-
     private int internalOrderID;
     private List<Employee> employees = new ArrayList<>();
     File file;
@@ -44,6 +39,7 @@ public class BusinessData implements Serializable {
         this.hearNordicNr = hearNordicNr;
         this.city = city;
         this.internalOrderID = generateOrderID();
+        System.out.println(internalOrderID);
         this.orderID = orderID;
     }
 
@@ -87,6 +83,10 @@ public class BusinessData implements Serializable {
 
     public String getOrderID() {
         return orderID;
+    }
+
+    public int getInternalOrderID() {
+        return internalOrderID;
     }
 
     public String getCustomerName() {

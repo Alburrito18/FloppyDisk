@@ -5,6 +5,7 @@ public class OrderView {
     private String NameProfile;
     private String DateProfile;
 
+
     public String getCustomerIDProfile() {
         return CustomerIDProfile;
     }

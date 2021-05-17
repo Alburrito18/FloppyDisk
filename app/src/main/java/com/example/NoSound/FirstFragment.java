@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.NoSound.BusinessView.BusinessData;
 import com.example.NoSound.OrderView.OrderView;
 import com.example.NoSound.OrderView.OrderViewListAdapter;
 
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class FirstFragment extends Fragment {
 
-    private ArrayList<OrderView> orderViewList = new ArrayList<>();
+    private ArrayList<BusinessData> businessDataList = new ArrayList<>();
     private ListView mListView;
     private static final String TAG = "FirstFragment";
     @Override
@@ -41,11 +42,11 @@ public class FirstFragment extends Fragment {
         mListView = view.findViewById(R.id.ListViewProfile);
 
 
-        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList, this);
+        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, businessDataList, this);
         mListView.setAdapter(adapter);
 
         ((MainActivity) requireActivity()).setFirstFragment(this);
-        orderViewList.clear();
+        businessDataList.clear();
         ((MainActivity) requireActivity()).loadOrderViews();
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,11 +61,11 @@ public class FirstFragment extends Fragment {
 
     /**
      * This method updates the ListView with the new Order given.
-     * @param orderView the order that needs to added to the listview.
+     * @param businessData the order that needs to added to the listview.
      */
-    public void updateOrderView(OrderView orderView) {
-        orderViewList.add(orderView);
-        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList, this);
+    public void updateOrderView(BusinessData businessData) {
+        businessDataList.add(businessData);
+        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, businessDataList, this);
         mListView.setAdapter(adapter);
     }
 }

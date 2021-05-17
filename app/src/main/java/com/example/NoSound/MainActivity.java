@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private String orderID;
     private int internalOrderID;
     private File file;
-    private String latestOrderID; // disgusting way to update orderalternative fragment
+    private int latestOrderID; // disgusting way to update orderalternative fragment
     private Employee employee;
     private File filePath = null;
 
@@ -188,12 +188,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
      * @param internalOrderID the specific order by it's internal id.
      */
     public void updateOrderView(int internalOrderID) {
-        OrderView newOrder = new OrderView(
-                customerInfo.get(internalOrderID).getOrderID(),
-                customerInfo.get(internalOrderID).getCustomerName(),
-                customerInfo.get(internalOrderID).getDate());
-
-        firstFragment.updateOrderView(newOrder);
+        firstFragment.updateOrderView(customerInfo.get(internalOrderID));
     }
 
     private HashMap<Integer, BusinessData> getOrdersFromFile() throws IOException, ClassNotFoundException {
@@ -230,16 +225,16 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     Employee getEmployee() {
         return employee;
     }
-    public String getLatestOrderID() {
-        return latestOrderID;
+    public int getLatestOrderID() {
+        return internalOrderID;
     }
 
-    public void setLatestorderID(String latestOrderID) {
+    public void setLatestorderID(int latestOrderID) {
         this.latestOrderID = latestOrderID;
     }
 
-    public BusinessData getBusinessData(String orderID){
-        return customerInfo.get(orderID);
+    public BusinessData getBusinessData(int internalOrderID){
+        return customerInfo.get(internalOrderID);
     }
     public void generateDocx(){
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
