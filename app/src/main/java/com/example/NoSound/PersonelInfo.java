@@ -90,17 +90,21 @@ public class PersonelInfo extends Fragment {
             public void onClick(View view) {
                 Employee employee = null;
                 try {
-                    employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString(),ARG_PARAM1);
+                    employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                passData(employee);
+                try {
+                    passData(employee);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 NavHostFragment.findNavController(PersonelInfo.this)
                         .navigate(R.id.action_personalInfo_to_ThirdFragment);
             }
         });
     }
-    private void passData(Employee employee) {
+    private void passData(Employee employee) throws IOException {
         dataPasser.onEmployeePass(employee);
     }
     @Override

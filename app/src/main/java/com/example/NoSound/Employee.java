@@ -32,12 +32,15 @@ public class Employee implements Serializable {
     private File file;
     private String couponNumber;
 
-    public Employee(String firstName, String surName, String department, String personalNumber, String cityCode) throws IOException {
+    public Employee(String firstName, String surName, String department, String personalNumber) throws IOException {
         this.firstName = firstName;
         this.surName = surName;
         this.department = department;
         this.personalNumber = personalNumber;
-        couponNumber = generateCouponID(cityCode);
+    }
+
+    public void setCouponNumber(String prefix) throws IOException {
+        couponNumber = generateCouponID(prefix);
     }
 
     private String generateCouponID(String prefix) throws IOException {
@@ -179,8 +182,8 @@ public class Employee implements Serializable {
 
     public String toCouponString(String date, String customerID, String customerName,String city){
         return "PH_LOGGA" + '\n' +
-                "                                           " + "Datum:  " + date + '\n'+
-                "                                           " + "Kupong: " + couponNumber + '\n' +
+                "                                                 " + "Datum:  " + date + '\n'+
+                "                                                 " + "Kupong: " + couponNumber + '\n' +
                 "Med snöre:     " + stringAttachment + '\n' +
                 "Färg vänster:  " + leftSideColor + '\n' +
                 "Färg höger:    " + rightSideColor + '\n' +

@@ -223,12 +223,30 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     public void onDataPass(BusinessData order, String orderID) {
         this.order = order;
         this.orderID = orderID;
+        order.setCityCode(cityCode);
     }
 
     @Override
-    public void onEmployeePass(Employee employee) {
+    public void onEmployeePass(Employee employee) throws IOException {
+        employee.setCouponNumber(order.getCityCode());
         order.addEmployee(employee);
         this.employee = employee;
+    }
+
+    @Override
+    public void onPrefixPass(String city) {
+        if (city.equals("Hässleholm")){
+            cityCode = "HSLM";
+        }
+        else if (city.equals("Ludvika")){
+            cityCode = "LVKA";
+        }
+        else if (city.equals("Jönköping")) {
+            cityCode = "JKPG";
+        }
+        else if (city.equals("Solna")) {
+            cityCode = "SLNA";
+        }
     }
 
     Employee getEmployee() {
