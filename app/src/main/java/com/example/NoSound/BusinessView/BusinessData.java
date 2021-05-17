@@ -13,6 +13,7 @@ public class BusinessData implements Serializable {
     private String hearNordicNr;
     private String city;
     private List<Employee> employees = new ArrayList<>();
+    private String cityCode;
 
     public BusinessData(String customerName, String customerID, String date, String hearNordicNr, String city) {
         this.customerName = customerName;
@@ -81,5 +82,11 @@ public class BusinessData implements Serializable {
 
     public String getCity() {
         return city;
+    }
+    public void setCityCode(String city){
+        cityCode = city;
+    }
+    public String getCityCode(){
+        return cityCode;
     }
 }
