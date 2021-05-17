@@ -12,6 +12,10 @@ public class BusinessData implements Serializable {
     private String date;
     private String hearNordicNr;
     private String city;
+
+    private String orderID;
+    private int internalOrderID;
+
     private List<Employee> employees = new ArrayList<>();
     private String cityCode;
 
@@ -39,6 +43,16 @@ public class BusinessData implements Serializable {
     public Employee getEmployee(int index){
         return employees.get(index);
     }
+
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public int getInternalOrderID() {
+        return internalOrderID;
+    }
+
 
     public String getCustomerName() {
         return customerName;

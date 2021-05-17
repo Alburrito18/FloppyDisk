@@ -17,8 +17,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
-import com.example.NoSound.OrderView.OrderView;
+
 import com.example.NoSound.OrderView.OrderViewListAdapter;
+
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private BusinessData order;
     private String orderID;
     private File file;
-    private String latestOrderID; // disgusting way to update orderalternative fragment
+    private int latestOrderID; // disgusting way to update orderalternative fragment
     private Employee employee;
     private File filePath = null;
     private String cityCode;
@@ -195,9 +196,9 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
      *
      * @param orderID the specific order by it's id.
      */
-    public void updateOrderView(String orderID) {
-        OrderView newOrder = new OrderView(orderID, customerInfo.get(orderID).getCustomerName(), customerInfo.get(orderID).getDate());
-        firstFragment.updateOrderView(newOrder);
+
+    public void updateOrderView(int internalOrderID) {
+        firstFragment.updateOrderView(customerInfo.get(internalOrderID));
     }
 
     private HashMap<String, BusinessData> getOrdersFromFile() throws IOException, ClassNotFoundException {
@@ -252,16 +253,16 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     Employee getEmployee() {
         return employee;
     }
-    public String getLatestOrderID() {
+    public int getLatestOrderID() {
         return latestOrderID;
     }
 
-    public void setLatestorderID(String latestOrderID) {
+    public void setLatestorderID(int latestOrderID) {
         this.latestOrderID = latestOrderID;
     }
 
-    public BusinessData getBusinessData(String orderID){
-        return customerInfo.get(orderID);
+    public BusinessData getBusinessData(int internalOrderID){
+        return customerInfo.get(internalOrderID);
     }
     public void generateDocx(String name){
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,

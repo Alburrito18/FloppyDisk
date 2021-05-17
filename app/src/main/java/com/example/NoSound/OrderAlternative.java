@@ -80,11 +80,14 @@ public class OrderAlternative extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
+        int latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
         businessData = ((MainActivity) requireActivity()).getBusinessData(latestOrderID);
-        ((TextView) view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
-        ((TextView) view.findViewById(R.id.date)).setText(businessData.getDate());
-        ((TextView) view.findViewById(R.id.orderNum)).setText("Ordernr: " + latestOrderID);
+
+        ((TextView)view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
+        ((TextView)view.findViewById(R.id.date)).setText(businessData.getDate());
+        ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + businessData.getOrderID());
+
+
         view.findViewById(R.id.wordButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { // listener
