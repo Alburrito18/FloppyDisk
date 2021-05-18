@@ -42,7 +42,7 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
         String HögRec = getItem(position).getRightSideColor();
         String VänLink = getItem(position).getLeftSideColor();
         String AnmOpm = getItem(position).getComment();
-        //String KupNr = getItem(position).get...
+        String KupNr = getItem(position).getCouponNumber();
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
@@ -54,7 +54,7 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
         TextView tvHögRec = (TextView) convertView.findViewById(R.id.text6);
         TextView tvVänLink = (TextView) convertView.findViewById(R.id.text7);
         TextView tvAnmOpm = (TextView) convertView.findViewById(R.id.text8);
-        //TextView tvKupNr = (TextView) convertView.findViewById(R.id.NameProfile);
+        TextView tvKupNr = (TextView) convertView.findViewById(R.id.Text9);
 
         tvSurName.setText(PersSurName);
         tvName.setText(PersName);
@@ -63,7 +63,7 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
         tvHögRec.setText(HögRec);
         tvVänLink.setText(VänLink);
         tvAnmOpm.setText(AnmOpm);
-        //tvKupNr.setText(KupNr)
+        tvKupNr.setText(KupNr);
 
         convertView.findViewById(R.id.personell_segment).setOnClickListener(new View.OnClickListener() {
             @Override

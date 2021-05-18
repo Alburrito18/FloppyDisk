@@ -186,4 +186,8 @@ public class Employee implements Serializable {
             return 0;
         }
     }
+
+    public String getCouponNumber() {
+        return couponNumber;
+    }
 }
