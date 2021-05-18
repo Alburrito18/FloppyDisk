@@ -10,15 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
 
 import org.apache.poi.xwpf.usermodel.BreakType;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,44 +87,102 @@ public class OrderAlternative extends Fragment {
         ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + businessData.getOrderID());
         view.findViewById(R.id.wordButton).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // listener
                 createDocx(businessData);
             }
         });
-        }
+        view.findViewById(R.id.printButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    createCoupons(businessData);
+                } catch (IOException | InvalidFormatException e) {
+                    Toast toast = Toast.makeText(((MainActivity) requireActivity()), "File: not found!", Toast.LENGTH_LONG);
+                    toast.show();
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-    private void createDocx(BusinessData businessData){
+    private void createDocx(BusinessData businessData) {
 
-        ((MainActivity) requireActivity()).generateDocx();
+        ((MainActivity) requireActivity()).generateDocx(businessData.getCustomerName());
         try {
             XWPFDocument xwpfDocument = new XWPFDocument();
             XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
             XWPFRun xwpfRun = xwpfParagraph.createRun();
-            Log.d("BusineddDataToString",businessData.toString());
+            Log.d("BusineddDataToString", businessData.toString());
             String data = businessData.toString();
             if (data.contains("\n")) {
                 String[] lines = data.split("\n");
                 xwpfRun.setText(lines[0], 0); // set first line into XWPFRun
-                for(int i=1;i<lines.length;i++){
+                xwpfRun.setFontSize(24); // trying to create a bigger title
+                for (int i = 1; i < lines.length; i++) {
                     // add break and insert new text
                     xwpfRun.addBreak();
                     xwpfRun.setText(lines[i]);
+                    xwpfRun.setFontSize(12); // added to every line below title
                 }
             } else {
                 xwpfRun.setText(data, 0);
             }
-            xwpfRun.setFontSize(12);
+            // xwpfRun.setFontSize(12); // old position
             FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
             xwpfDocument.write(fileOutputStream);
 
-            if (fileOutputStream != null){
+            if (fileOutputStream != null) {
                 fileOutputStream.flush();
                 fileOutputStream.close();
             }
 
             xwpfDocument.close();
 
-        } catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createCoupons(BusinessData businessData) throws IOException, InvalidFormatException {
+        for (int i = 0; i < businessData.getNumberOfEmployees(); i++) {
+            createCoupon(businessData.getEmployee(i),businessData);
+        }
+    }
+
+    private void createCoupon(Employee employee, BusinessData businessData) throws IOException {
+        ((MainActivity) requireActivity()).generateDocx(employee.getPersonalNumber());
+        String output = employee.toCouponString(businessData.getDate(),businessData.getCustomerID(),businessData.getCustomerName(),
+                businessData.getCity());
+        try {
+            XWPFDocument xwpfDocument = new XWPFDocument();
+            XWPFParagraph xwpfParagraph = xwpfDocument.createParagraph();
+            XWPFRun xwpfRun = xwpfParagraph.createRun();
+
+            if (output.contains("\n")) {
+                String[] lines = output.split("\n");
+                xwpfRun.setText(lines[0], 0); // set first line into XWPFRun
+                xwpfRun.setFontSize(24); // trying to create a bigger title
+                for (int i = 1; i < lines.length; i++) {
+                    // add break and insert new text
+                    xwpfRun.addBreak();
+                    xwpfRun.setText(lines[i]);
+                    xwpfRun.setFontSize(12); // added to every line below title
+                }
+            } else {
+                xwpfRun.setText(output, 0);
+            }
+            // xwpfRun.setFontSize(12); // old position
+            FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
+            xwpfDocument.write(fileOutputStream);
+
+            if (fileOutputStream != null) {
+                fileOutputStream.flush();
+                fileOutputStream.close();
+            }
+
+            xwpfDocument.close();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

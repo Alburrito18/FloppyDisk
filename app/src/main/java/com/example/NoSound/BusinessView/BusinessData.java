@@ -1,12 +1,7 @@
 package com.example.NoSound.BusinessView;
 
-import android.Manifest;
 import android.os.Environment;
-
-import androidx.core.app.ActivityCompat;
-
 import com.example.NoSound.Employee;
-import com.example.NoSound.FirstFragment;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,8 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.io.Writer;
-import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +23,7 @@ public class BusinessData implements Serializable {
     private String orderID;
     private int internalOrderID;
     private List<Employee> employees = new ArrayList<>();
+    private String cityCode;
     File file;
 
     public BusinessData(String customerName, String customerID, String date, String hearNordicNr, String city, String orderID) throws IOException {
@@ -92,9 +86,14 @@ public class BusinessData implements Serializable {
         return customerName;
     }
 
+    public int getNumberOfEmployees(){
+        return employees.size();
+    }
+
     public String getDate() {
         return date;
     }
+
     private int retreiveOrderID() throws IOException {
         try {
             DataInputStream dis = new DataInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/internalOrderID.txt"));
@@ -103,13 +102,12 @@ public class BusinessData implements Serializable {
         catch (FileNotFoundException e){
             return 0;
         }
-
     }
 
 
     @Override
     public String toString() {
-        return "Orderinformation:" + "\n" +
+        return "ORDERINFORMATION" + "\n" +
                 "Företag: " + customerName +"," + "\n" +
                 "Kundnummer: " + customerID +"," +"\n" +
                 "Datum: " + date +","  +"\n" +
@@ -124,5 +122,25 @@ public class BusinessData implements Serializable {
             sb.append(employees.get(i).toString()).append("\n");
         }
         return sb.toString();
+    }
+
+    // Ny metod som itererar över EN anställd och skriver ut kupong info.
+    public String toStringCupong() {
+        return "Kuponginfo" + "\n";
+    }
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCityCode(String city){
+        cityCode = city;
+    }
+    public String getCityCode(){
+        return cityCode;
     }
 }

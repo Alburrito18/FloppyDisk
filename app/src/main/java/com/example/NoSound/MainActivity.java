@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Environment;
 import android.view.Menu;
@@ -15,18 +17,21 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
-
+import com.example.NoSound.OrderView.OrderViewListAdapter;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements OnDataPass {
 
@@ -38,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private int latestOrderID; // disgusting way to update orderalternative fragment
     private Employee employee;
     private File filePath = null;
+    private String cityCode;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
     private HashMap<Integer, BusinessData> customerInfo = new HashMap<>();
@@ -217,9 +223,26 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     }
 
     @Override
-    public void onEmployeePass(Employee employee) {
+    public void onEmployeePass(Employee employee) throws IOException {
+        employee.setCouponNumber(order.getCityCode());
         order.addEmployee(employee);
         this.employee = employee;
+    }
+
+    @Override
+    public void onPrefixPass(String city) {
+        if (city.equals("Hässleholm")){
+            cityCode = "HSLM";
+        }
+        else if (city.equals("Ludvika")){
+            cityCode = "LVKA";
+        }
+        else if (city.equals("Jönköping")) {
+            cityCode = "JKPG";
+        }
+        else if (city.equals("Solna")) {
+            cityCode = "SLNA";
+        }
     }
 
     Employee getEmployee() {
@@ -236,12 +259,12 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     public BusinessData getBusinessData(int internalOrderID){
         return customerInfo.get(internalOrderID);
     }
-    public void generateDocx(){
+    public void generateDocx(String name){
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 PackageManager.PERMISSION_GRANTED);
 
-        filePath = new File(getExternalFilesDir(null), "KaisTest.docx");
+        filePath = new File(getExternalFilesDir(null), name + ".docx");
 
         try {
             if(!filePath.exists()){
