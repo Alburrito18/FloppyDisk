@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.IOException;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PersonelInfo#newInstance} factory method to
@@ -86,14 +88,19 @@ public class PersonelInfo extends Fragment {
         view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Employee employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
-                passData(employee);
+                Employee employee = null;
+                employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
+                try {
+                    passData(employee);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 NavHostFragment.findNavController(PersonelInfo.this)
                         .navigate(R.id.action_personalInfo_to_ThirdFragment);
             }
         });
     }
-    private void passData(Employee employee) {
+    private void passData(Employee employee) throws IOException {
         dataPasser.onEmployeePass(employee);
     }
     @Override
