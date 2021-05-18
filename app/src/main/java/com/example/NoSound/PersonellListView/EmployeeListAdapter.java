@@ -38,12 +38,10 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
         String PersSurName = getItem(position).getSurName();
         String PersName = getItem(position).getFirstName();
         String PersNr = getItem(position).getPersonalNumber();
-        String Filterkod = getItem(position).getFilterChoice();
-
-        //Parametrarna neden existerar inte just nu och behöver skapas innan de kan införas.
-        //String HögRec = getItem(position).get...
-        //String VänLink = getItem(position).get...
-        //String AnmOpm = getItem(position).get...
+        String Filterkod = getItem(position).getFilterCode();
+        String HögRec = getItem(position).getRightSideColor();
+        String VänLink = getItem(position).getLeftSideColor();
+        String AnmOpm = getItem(position).getComment();
         //String KupNr = getItem(position).get...
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -52,16 +50,19 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
         TextView tvSurName = (TextView) convertView.findViewById(R.id.text1);
         TextView tvName = (TextView) convertView.findViewById(R.id.text3);
         TextView tvID = (TextView) convertView.findViewById(R.id.text4);
-        TextView tvFilterChoice = (TextView) convertView.findViewById(R.id.text5);
-        //TextView tvHögRec = (TextView) convertView.findViewById(R.id.NameProfile);
-        //TextView tvVänLink = (TextView) convertView.findViewById(R.id.NameProfile);
-        //TextView tvAnmOpm = (TextView) convertView.findViewById(R.id.NameProfile);
+        TextView tvFilterCode = (TextView) convertView.findViewById(R.id.text5);
+        TextView tvHögRec = (TextView) convertView.findViewById(R.id.text6);
+        TextView tvVänLink = (TextView) convertView.findViewById(R.id.text7);
+        TextView tvAnmOpm = (TextView) convertView.findViewById(R.id.text8);
         //TextView tvKupNr = (TextView) convertView.findViewById(R.id.NameProfile);
 
         tvSurName.setText(PersSurName);
         tvName.setText(PersName);
         tvID.setText(PersNr);
-        tvFilterChoice.setText(Filterkod);
+        tvFilterCode.setText(Filterkod);
+        tvHögRec.setText(HögRec);
+        tvVänLink.setText(VänLink);
+        tvAnmOpm.setText(AnmOpm);
 
         convertView.findViewById(R.id.personell_segment).setOnClickListener(new View.OnClickListener() {
             @Override

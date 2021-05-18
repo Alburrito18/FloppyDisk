@@ -44,7 +44,13 @@ public class Employee implements Serializable {
         return personalNumber;
     }
 
-    public String getFilterChoice() { return filterChoice; }
+    public String getFilterCode() { return filterCode; }
+
+    public String getRightSideColor() { return rightSideColor; }
+
+    public String getLeftSideColor() { return leftSideColor; }
+
+    public String getComment() { return comment; }
 
     /**
      * Looks if the user want a string fo their earpiece
