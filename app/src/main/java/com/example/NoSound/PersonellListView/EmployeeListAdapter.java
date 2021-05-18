@@ -63,6 +63,7 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
         tvHögRec.setText(HögRec);
         tvVänLink.setText(VänLink);
         tvAnmOpm.setText(AnmOpm);
+        //tvKupNr.setText(KupNr)
 
         convertView.findViewById(R.id.personell_segment).setOnClickListener(new View.OnClickListener() {
             @Override
