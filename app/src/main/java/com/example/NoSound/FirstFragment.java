@@ -16,15 +16,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.NoSound.OrderView.OrderView;
+import com.example.NoSound.BusinessView.BusinessData;
 import com.example.NoSound.OrderView.OrderViewListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FirstFragment extends Fragment {
+
+    private ArrayList<BusinessData> businessDataList = new ArrayList<>();
     private OnDataPass dataPasser;
-    private ArrayList<OrderView> orderViewList = new ArrayList<>();
+    //private ArrayList<OrderView> orderViewList = new ArrayList<>();
     private ListView mListView;
     private static final String TAG = "FirstFragment";
     private RadioGroup officeCities;
@@ -50,15 +52,17 @@ public class FirstFragment extends Fragment {
         mListView = view.findViewById(R.id.ListViewProfile);
 
 
-        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList, this);
+        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, businessDataList, this);
         mListView.setAdapter(adapter);
 
         ((MainActivity) requireActivity()).setFirstFragment(this);
-        orderViewList.clear();
+        businessDataList.clear();
         ((MainActivity) requireActivity()).loadOrderViews();
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //NavHostFragment.findNavController(FirstFragment.this)
+                //        .navigate(R.id.action_FirstFragment_to_businessView);
                 if (officeCities.getCheckedRadioButtonId() != -1) {
                     String string = "hej";
                     if (slnaButton.isChecked()){
@@ -82,8 +86,6 @@ public class FirstFragment extends Fragment {
                 }
              //   startActivity(new Intent(Intent.EXTRA_PROCESS_TEXT));
             }
-
-
         });
     }
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -97,11 +99,11 @@ public class FirstFragment extends Fragment {
 
     /**
      * This method updates the ListView with the new Order given.
-     * @param orderView the order that needs to added to the listview.
+     * @param businessData the order that needs to added to the listview.
      */
-    public void updateOrderView(OrderView orderView) {
-        orderViewList.add(orderView);
-        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, orderViewList, this);
+    public void updateOrderView(BusinessData businessData) {
+        businessDataList.add(businessData);
+        OrderViewListAdapter adapter = new OrderViewListAdapter(getContext(), R.layout.profile_first, businessDataList, this);
         mListView.setAdapter(adapter);
     }
     @Override
