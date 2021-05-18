@@ -20,56 +20,72 @@
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_weight="1"
-            android:text="Efternamn" />
+            android:text="Efternamn"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/text3"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_weight="1"
-            android:text="Förnamn" />
+            android:text="Förnamn"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/text4"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_weight="1"
-            android:text="Personnummer" />
+            android:text="Personnummer"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/text5"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_weight="1"
-            android:text="Filterkod" />
+            android:text="Filterkod"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/text6"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_weight="1"
-            android:text="Höger Rechts" />
+            android:text="Höger"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/text7"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_weight="1"
-            android:text="Vänster Links" />
+            android:text="Vänster"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/text8"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_weight="1"
-            android:text="Anm. Opm." />
+            android:text="Anm."
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/Text9"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_weight="1"
-            android:text="Kup-nr" />
+            android:text="Kup-nr"
+            android:textColor="#000000"
+            android:textSize="24sp" />
     </LinearLayout>
 
     <Button

@@ -14,6 +14,7 @@ public class BusinessData implements Serializable {
     private String hearNordicNr;
     private String city;
     private List<Employee> employees = new ArrayList<>();
+    private String cityCode;
 
     public BusinessData(String customerName, String customerID, String date, String hearNordicNr, String city) {
         this.customerName = customerName;
@@ -68,5 +69,11 @@ public class BusinessData implements Serializable {
             sb.append(employees.get(i).toString()).append("\n");
         }
         return sb.toString();
+    }
+    public void setCityCode(String city){
+        cityCode = city;
+    }
+    public String getCityCode(){
+        return cityCode;
     }
 }

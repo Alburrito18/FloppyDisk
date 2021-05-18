@@ -63,6 +63,13 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
         tvID.setText(PersNr);
         tvFilterChoice.setText(Filterkod);
 
+        convertView.findViewById(R.id.personell_segment).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return convertView;
     }
 }
