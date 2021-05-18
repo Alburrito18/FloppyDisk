@@ -158,7 +158,8 @@ public class Employee implements Serializable {
 
     private String generateCouponID(String prefix) throws IOException {
         int orderID;
-        orderID = retrieveOrderID() + 1;
+        orderID = retrieveOrderID();
+        orderID++;
         saveID(orderID);
         return prefix + orderID;
     }
@@ -166,6 +167,7 @@ public class Employee implements Serializable {
     private void saveID(int orderID) throws IOException {
         DataOutputStream dos = new DataOutputStream(new FileOutputStream(internalOrderFile()));
         dos.writeInt(orderID);
+        dos.flush();
         dos.close();
     }
     private File internalOrderFile(){
