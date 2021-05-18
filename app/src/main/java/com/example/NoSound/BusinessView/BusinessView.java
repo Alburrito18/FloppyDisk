@@ -71,10 +71,16 @@ public class BusinessView extends Fragment {
             @Override
             public void onClick(View view) {
 
-                BusinessData order = new BusinessData(customerNameText.getText().toString(),
-                        customerIDText.getText().toString(), dateEditText1.getText().toString(),
-                        hearNordicNrText.getText().toString(), cityText.getText().toString());
-                passCustomerData(order, orderIDtext.getText().toString());
+                BusinessData order = null;
+                try {
+                    order = new BusinessData(customerNameText.getText().toString(),
+                            customerIDText.getText().toString(), dateEditText1.getText().toString(),
+                            hearNordicNrText.getText().toString(), cityText.getText().toString(),
+                            orderIDtext.getText().toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                passCustomerData(order);
                 try {
                     saveInfo(view);
                 } catch (IOException e) {
@@ -131,8 +137,8 @@ public class BusinessView extends Fragment {
     }
 
 
-    private void passCustomerData(BusinessData businessData, String orderID) {
-        dataPasser.onDataPass(businessData, orderID);
+    private void passCustomerData(BusinessData businessData) {
+        dataPasser.onDataPass(businessData);
     }
 
     @Override

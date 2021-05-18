@@ -8,11 +8,10 @@
 
     <RelativeLayout
         android:id="@+id/RelativeProfile"
-        android:layout_width="895dp"
-        android:layout_height="1036dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_first"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,52 +24,15 @@
 
     <Button
         android:id="@+id/button_first"
-        android:layout_width="325dp"
-        android:layout_height="83dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="648dp"
+        android:layout_marginBottom="35dp"
         android:text="@string/l_gg_till_ny_best_llning"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/officeCities"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/button_first"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <RadioButton
-            android:id="@+id/hslmButton"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:text="@string/h_ssleholm"
-            android:textSize="22sp" />
-
-        <RadioButton
-            android:id="@+id/ldvkButton"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:text="Ludvika"
-            android:textSize="22sp" />
-
-        <RadioButton
-            android:id="@+id/slnaButton"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:text="Solna"
-            android:textSize="22sp" />
-
-        <RadioButton
-            android:id="@+id/jkpgButton"
-            android:layout_width="160dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Jönköping"
-            android:textSize="22sp" />
-    </RadioGroup>
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

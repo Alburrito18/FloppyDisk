@@ -1,7 +1,0 @@
-Since our programs main function is to store and handle customer data I want to get a better understanding of storing and accesing data in Android Studio, I will achieve this by working on user stories with focus on this.
-
-Same as last week, if there is a question or someone gets stuck and asks for help I will do my best to help if I know how to solve the problem, or try to look up a solution.
-
-As a team I feel like we have a decent grip on Scrum, and everyone seems to be doing about an equal amount to contribute to the effectiveness.
-
-I am satisfied with my code contributions, as I feel they do what they are supposed to do in an effective way.
