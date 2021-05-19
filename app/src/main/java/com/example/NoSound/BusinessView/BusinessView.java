@@ -169,12 +169,4 @@ public class BusinessView extends Fragment {
         }
         return false;
     }
-    // Can be used for checking the agreement and change colour accordingly.
-    private boolean checkAgreement(Boolean switchIsActivated) {
-        // retrieves boolean from toggle?
-        if (switchIsActivated) {
-            return switchIsActivated;
-        }
-        return false;
-    }
 }
