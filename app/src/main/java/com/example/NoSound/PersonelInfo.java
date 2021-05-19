@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -34,6 +35,7 @@ public class PersonelInfo extends Fragment {
     private TextInputEditText lastNameText;
     private TextInputEditText departmentText;
     private TextInputEditText birthNumberText;
+    private Switch termsAgreementSwitch;
 
     public PersonelInfo() {
         // Required empty public constructor
@@ -63,6 +65,7 @@ public class PersonelInfo extends Fragment {
         lastNameText = requireView().findViewById(R.id.lastName);
         departmentText = requireView().findViewById(R.id.department);
         birthNumberText = requireView().findViewById(R.id.birthNumber);
+        termsAgreementSwitch = requireView().findViewById(R.id.agreementToTerms);
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,8 +80,6 @@ public class PersonelInfo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
         return inflater.inflate(R.layout.fragment_personell_info, container, false);
     }
     @Override

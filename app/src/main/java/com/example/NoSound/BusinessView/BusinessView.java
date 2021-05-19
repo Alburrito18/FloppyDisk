@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,7 +71,8 @@ public class BusinessView extends Fragment {
         view.findViewById(R.id.button_personel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(checkDateFormat(dateEditText1.getText().toString()))  {  // qualified 2 Move
+                    Log.d( "Sucsess", "Ready to move, fill out all fields correctly#######################################"); // TODO: remove
                 BusinessData order = new BusinessData(customerNameText.getText().toString(),
                         customerIDText.getText().toString(), dateEditText1.getText().toString(),
                         hearNordicNrText.getText().toString(), cityText.getText().toString());
@@ -84,7 +86,9 @@ public class BusinessView extends Fragment {
                 }
                 NavHostFragment.findNavController(BusinessView.this)
                         .navigate(R.id.action_businessView_to_personalInfo);
-
+                } else {
+                    Log.d( "error", "Not ready to move, fill out all fields correctly"); // TODO: change to a visible message for customer
+                }
             }
         });
     }
@@ -111,7 +115,7 @@ public class BusinessView extends Fragment {
                     if (dateEditText1.getText().toString().length() < 6) {
                         dateEditText1.setText(getDate());
                     }
-                    if (!checkDateFormat(dateEditText1.getText().toString())) {
+                    if (!checkDateFormat(dateEditText1.getText().toString())) { // TODO: the same colour change with agreementterms
                         dateEditText1.setBackgroundColor(0xBECC0000);
                     } else {
                         dateEditText1.setBackgroundColor(0xBECECECE);
@@ -162,6 +166,14 @@ public class BusinessView extends Fragment {
             boolean correctDay = Integer.parseInt(dateArray[2]) <= 31 && Integer.parseInt(dateArray[2]) >= 1;
 
             return correctYear && correctMonth && correctDay;
+        }
+        return false;
+    }
+    // Can be used for checking the agreement and change colour accordingly.
+    private boolean checkAgreement(Boolean switchIsActivated) {
+        // retrieves boolean from toggle?
+        if (switchIsActivated) {
+            return switchIsActivated;
         }
         return false;
     }
