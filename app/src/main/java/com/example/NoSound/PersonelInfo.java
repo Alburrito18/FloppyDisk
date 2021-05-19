@@ -89,19 +89,21 @@ public class PersonelInfo extends Fragment {
         view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Employee employee = null;
-                try {
-                    employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (termsAgreementSwitch.isChecked()) {
+                    Employee employee = null;
+                    try {
+                        employee = new Employee(firstNameText.getText().toString(), lastNameText.getText().toString(), departmentText.getText().toString(), birthNumberText.getText().toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        passData(employee);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    NavHostFragment.findNavController(PersonelInfo.this)
+                            .navigate(R.id.action_personalInfo_to_ThirdFragment);
                 }
-                try {
-                    passData(employee);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                NavHostFragment.findNavController(PersonelInfo.this)
-                        .navigate(R.id.action_personalInfo_to_ThirdFragment);
             }
         });
     }
