@@ -81,13 +81,7 @@ public class BusinessView extends Fragment {
                     e.printStackTrace();
                 }
                 passCustomerData(order);
-                try {
-                    saveInfo(view);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                saveInfo();
                 NavHostFragment.findNavController(BusinessView.this)
                         .navigate(R.id.action_businessView_to_personalInfo);
 
@@ -130,10 +124,9 @@ public class BusinessView extends Fragment {
     /**
      * The method called when information needs to be stored
      *
-     * @param v The view which needs to be saved
      */
-    private void saveInfo(View v) throws IOException, ClassNotFoundException {
-        ((MainActivity) requireActivity()).savePublicly(v);
+    private void saveInfo() {
+        ((MainActivity) requireActivity()).savePublicly();
     }
 
 

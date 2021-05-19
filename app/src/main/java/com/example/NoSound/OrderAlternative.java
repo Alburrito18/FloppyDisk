@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -101,6 +102,13 @@ public class OrderAlternative extends Fragment {
                     toast.show();
                     e.printStackTrace();
                 }
+            }
+        });
+        view.findViewById(R.id.orderButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(OrderAlternative.this)
+                        .navigate(R.id.action_orderAlternative_to_edit_order_page);
             }
         });
     }
