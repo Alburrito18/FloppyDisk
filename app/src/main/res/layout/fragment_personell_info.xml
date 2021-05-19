@@ -35,7 +35,7 @@
             android:id="@+id/birthNumber"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/f_delsenummer"
+            android:hint="Födelsenummer (ÅÅMMDD)"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Switch;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,7 +68,37 @@ public class PersonelInfo extends Fragment {
         departmentText = requireView().findViewById(R.id.department);
         birthNumberText = requireView().findViewById(R.id.birthNumber);
         termsAgreementSwitch = requireView().findViewById(R.id.agreementToTerms);
+
+        birthNumberText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                 if (!hasFocus) {
+                    if (!bDayIsRightFormat(birthNumberText.getText().toString())) {
+                        birthNumberText.setBackgroundColor(0xBECC0000); //Red
+                    } else {
+                        birthNumberText.setBackgroundColor(0xBECECECE); //Nuetral
+                    }
+                }
+            }
+        });
+
+
     }
+    public boolean bDayIsRightFormat(String str) {
+        if (!str.isEmpty() && str.length()== 6 && isDigit(str)) {
+            return true;
+        }else return false;
+    }
+
+    public boolean isDigit(String str) {
+        char[] chars = str.toCharArray();
+        for (char c : chars) {
+            if(!Character.isDigit(c)) {
+                return false;
+            }
+        } return true;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +121,7 @@ public class PersonelInfo extends Fragment {
         view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (termsAgreementSwitch.isChecked()) {
+                if (termsAgreementSwitch.isChecked() && bDayIsRightFormat(birthNumberText.getText().toString())) {
                     Employee employee = null;
                     try {
                         employee = new Employee(firstNameText.getText().toString(), lastNameText.getText().toString(), departmentText.getText().toString(), birthNumberText.getText().toString());
