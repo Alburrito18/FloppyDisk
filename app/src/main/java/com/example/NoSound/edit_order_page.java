@@ -17,6 +17,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -104,6 +105,18 @@ public class edit_order_page extends Fragment {
         editHearNordicNRText = requireView().findViewById(R.id.editHearNordicNRtext);
         editCityText = requireView().findViewById(R.id.editCityText);
         editOrderIdText = requireView().findViewById(R.id.editOrderIdText);
+        dateEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                 if (!hasFocus) {
+                    if (!checkDateFormat(dateEditText.getText().toString())) {
+                        dateEditText.setBackgroundColor(0xBECC0000);
+                    } else {
+                        dateEditText.setBackgroundColor(0xBECECECE);
+                    }
+                }
+            }
+        });
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -119,5 +132,20 @@ public class edit_order_page extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_edit_order_page, container, false);
+    }
+    private boolean checkDateFormat(String date) {
+        String[] dateArray = date.split("-");
+        if (date.length() == 10 && dateArray.length == 3) {
+            for (String sub : dateArray) {
+                if (sub == null) return false;
+            }
+            boolean correctYear =  Integer.parseInt(dateArray[0]) >= 1990;
+            boolean correctMonth = Integer.parseInt(dateArray[1]) <= 12 && Integer.parseInt(dateArray[1]) >= 1;
+            //room for improvement here depending on month
+            boolean correctDay = Integer.parseInt(dateArray[2]) <= 31 && Integer.parseInt(dateArray[2]) >= 1;
+
+            return correctYear && correctMonth && correctDay;
+        }
+        return false;
     }
 }
