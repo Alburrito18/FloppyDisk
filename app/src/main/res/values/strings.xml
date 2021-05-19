@@ -47,4 +47,6 @@
     <string name="kommentar">Kommentar</string>
     <string name="filter_kod">Filterkod:</string>
     <string name="h_ssleholm">Hässleholm</string>
+    <string name="ta_bort_person">Ta bort person</string>
+    <string name="redigera_person">Redigera person</string>
 </resources>

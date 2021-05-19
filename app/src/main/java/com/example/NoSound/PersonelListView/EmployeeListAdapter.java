@@ -2,6 +2,7 @@ package com.example.NoSound.PersonelListView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.NoSound.Employee;
+import com.example.NoSound.MainActivity;
+import com.example.NoSound.PopUp;
 import com.example.NoSound.R;
 
 import java.util.ArrayList;
@@ -21,9 +24,9 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
 
     private Context mContext;
     private int mResource;
-    private Fragment personelListView;
+    private PersonelListView personelListView;
 
-    public EmployeeListAdapter(Context context, int resource, ArrayList<Employee> objects,Fragment personelListView) {
+    public EmployeeListAdapter(Context context, int resource, ArrayList<Employee> objects,PersonelListView personelListView) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -69,7 +72,9 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
         convertView.findViewById(R.id.personell_segment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getContext(),PopUp.class);
+                intent.putExtra("EXTRA_SESSION_ID",personelListView.getEmployee(PersName));
+                ((MainActivity) personelListView.requireActivity()).startActivity(intent);
             }
         });
 

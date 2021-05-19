@@ -64,6 +64,14 @@ public class PersonelListView extends Fragment {
         EmployeeListAdapter adapter = new EmployeeListAdapter(getContext(), R.layout.personell_segment, personellList,this);
         mListView.setAdapter(adapter);
     }
+    public Employee getEmployee(String firstname){
+        for (int i = 0; i<personellList.size(); i++){
+            if (personellList.get(i).getFirstName().equals(firstname)){
+                return personellList.get(i);
+            }
+        }
+        return null;
+    }
 
 }
 
