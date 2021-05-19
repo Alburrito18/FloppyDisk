@@ -202,4 +202,24 @@ public class Employee implements Serializable {
     public boolean isStringAttachment() {
         return stringAttachment;
     }
+
+    public String getFilterCode() {
+        return filterCode;
+    }
+
+    public String getLeftSideColor() {
+        return leftSideColor;
+    }
+
+    public String getRightSideColor() {
+        return rightSideColor;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public String getCouponNumber() {
+        return couponNumber;
+    }
 }

@@ -143,4 +143,7 @@ public class BusinessData implements Serializable {
     public String getCityCode(){
         return cityCode;
     }
+    public List<Employee> getEmployees(){
+        return new ArrayList<>(employees);
+    }
 }

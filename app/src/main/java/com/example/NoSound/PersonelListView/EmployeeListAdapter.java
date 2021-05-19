@@ -34,7 +34,7 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-     /*   //hämta informationen
+        //hämta informationen
         String PersSurName = getItem(position).getSurName();
         String PersName = getItem(position).getFirstName();
         String PersNr = getItem(position).getPersonalNumber();
@@ -72,8 +72,6 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
 
             }
         });
-        
-      */
 
         return convertView;
     }

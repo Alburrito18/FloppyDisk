@@ -218,8 +218,10 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
 
     @Override
     public void onDataPass(BusinessData order) {
+        order.setCityCode(cityCode);
         this.order = order;
         this.internalOrderID = order.getInternalOrderID();
+        this.latestOrderID = internalOrderID;
     }
 
     @Override

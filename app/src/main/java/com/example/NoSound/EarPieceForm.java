@@ -78,7 +78,7 @@ public class EarPieceForm extends Fragment {
                 employee1.setComment(commentText.getText().toString());
                 employee1.setFilterCode(filterCode);
                 saveInfo(view);
-                NavHostFragment.findNavController(EarPieceForm.this).navigate(R.id.action_thirdfragment_to_FirstFragment);
+                NavHostFragment.findNavController(EarPieceForm.this).navigate(R.id.action_earPieceForm_to_personelListView);
             }
         });
         view.findViewById(R.id.stringAttachment).setOnClickListener(new View.OnClickListener() {

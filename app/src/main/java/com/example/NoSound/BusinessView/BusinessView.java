@@ -56,6 +56,7 @@ public class BusinessView extends Fragment {
         return fragment;
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,7 +90,7 @@ public class BusinessView extends Fragment {
                     e.printStackTrace();
                 }
                 NavHostFragment.findNavController(BusinessView.this)
-                        .navigate(R.id.action_businessView_to_personalInfo);
+                        .navigate(R.id.action_businessView_to_personelListView);
 
             }
         });

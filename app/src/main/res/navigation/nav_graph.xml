@@ -25,9 +25,6 @@
         <action
             android:id="@+id/action_personalInfo_to_ThirdFragment"
             app:destination="@id/earPieceForm" />
-        <action
-            android:id="@+id/action_personalInfo_to_businessView"
-            app:destination="@id/businessView" />
     </fragment>
     <fragment
         android:id="@+id/earPieceForm"
@@ -35,8 +32,8 @@
         android:label="fragment_earpiece"
         tools:layout="@layout/fragment_earpiece">
         <action
-            android:id="@+id/action_thirdfragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_earPieceForm_to_personelListView"
+            app:destination="@id/personelListView" />
     </fragment>
     <fragment
         android:id="@+id/businessView"
@@ -44,11 +41,11 @@
         android:label="fragment_business_view"
         tools:layout="@layout/fragment_business_view" >
         <action
-            android:id="@+id/action_businessView_to_personalInfo"
-            app:destination="@id/personelInfo" />
-        <action
             android:id="@+id/action_businessView_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_businessView_to_personelListView"
+            app:destination="@id/personelListView" />
     </fragment>
     <fragment
         android:id="@+id/settings"
@@ -62,6 +59,17 @@
         tools:layout="@layout/fragment_order_alternativ" >
         <action
             android:id="@+id/action_orderAlternative_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personelListView"
+        android:name="com.example.NoSound.PersonelListView.PersonelListView"
+        android:label="PersonelListView" >
+        <action
+            android:id="@+id/action_personelListView_to_personelInfo"
+            app:destination="@id/personelInfo" />
+        <action
+            android:id="@+id/action_personelListView_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>
