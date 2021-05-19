@@ -66,7 +66,7 @@ public class Employee implements Serializable {
     }
     private int retrieveOrderID() throws IOException {
         try {
-            DataInputStream dis = new DataInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/internalOrderID.txt"));
+            DataInputStream dis = new DataInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/couponID.txt"));
             return dis.readInt();
         }
         catch (FileNotFoundException e){
