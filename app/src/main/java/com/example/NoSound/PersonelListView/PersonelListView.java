@@ -1,5 +1,6 @@
 package com.example.NoSound.PersonelListView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,7 @@ public class PersonelListView extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        ((MainActivity) requireActivity()).resetEditEmployee();
         mListView = view.findViewById(R.id.personellList);
         int latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
 
@@ -38,7 +39,6 @@ public class PersonelListView extends Fragment {
         personellList = (ArrayList<Employee>) ((MainActivity) requireActivity()).getBusinessData(latestOrderID).getEmployees();
         updateOrderView();
         view.findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(PersonelListView.this).navigate(R.id.action_personelListView_to_personelInfo);
@@ -72,6 +72,14 @@ public class PersonelListView extends Fragment {
         }
         return null;
     }
-
+    public void onResume() {
+        super.onResume();
+        if (getArguments()!=null) {
+            Employee employee = (Employee) getArguments().getSerializable("Redigera");
+            if (employee != null) {
+                NavHostFragment.findNavController(PersonelListView.this).navigate(R.id.action_personelListView_to_personelInfo);
+            }
+        }
+    }
 }
 

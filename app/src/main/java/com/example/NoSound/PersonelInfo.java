@@ -84,6 +84,13 @@ public class PersonelInfo extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Employee editEmployee = ((MainActivity) requireActivity()).getEditEmployee();
+        if (editEmployee!= null){
+            ((TextInputEditText)requireView().findViewById(R.id.birthNumber)).setText(editEmployee.getPersonalNumber());
+            ((TextInputEditText)requireView().findViewById(R.id.department)).setText(editEmployee.getDepartment());
+            ((TextInputEditText)requireView().findViewById(R.id.firstName)).setText(editEmployee.getFirstName());
+            ((TextInputEditText)requireView().findViewById(R.id.lastName)).setText(editEmployee.getSurName());
+        }
 
         view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,6 +1,7 @@
 package com.example.NoSound;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Environment;
 import android.view.Menu;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private Employee employee;
     private File filePath = null;
     private String cityCode;
+    private Employee editEmployee = null;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
     private HashMap<Integer, BusinessData> customerInfo = new HashMap<>();
@@ -275,6 +278,20 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 10 && resultCode == RESULT_OK){
+            editEmployee = (Employee) data.getSerializableExtra("Redigera");
+            NavHostFragment.findNavController(firstFragment).navigate(R.id.action_personelListView_to_personelInfo);
+        }
+    }
+
+    public Employee getEditEmployee(){
+        return editEmployee;
+    }
+    public void resetEditEmployee(){
+        editEmployee = null;
     }
     public File fileGetter(){
         return filePath;

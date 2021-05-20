@@ -74,7 +74,7 @@ public class EmployeeListAdapter extends ArrayAdapter<Employee> {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(),PopUp.class);
                 intent.putExtra("EXTRA_SESSION_ID",personelListView.getEmployee(PersName));
-                ((MainActivity) personelListView.requireActivity()).startActivity(intent);
+                ((MainActivity) personelListView.requireActivity()).startActivityForResult(intent,10);
             }
         });
 

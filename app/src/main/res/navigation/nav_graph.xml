@@ -72,4 +72,8 @@
             android:id="@+id/action_personelListView_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <activity
+        android:id="@+id/popUp"
+        android:name="com.example.NoSound.PopUp"
+        android:label="PopUp" />
 </navigation>
