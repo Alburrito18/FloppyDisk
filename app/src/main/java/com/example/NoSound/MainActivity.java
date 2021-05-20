@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
      */
     private void writeTextData(int internalOrderID, BusinessData order) {
         customerInfo.put(internalOrderID, order);
-        saveMap(internalOrderID);
+        saveMap();
     }
 
     /**
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         // Storing the data in file with name as geeksData.txt
         writeEmployeeData(file, employee);
     }
-    public void saveMap(int internalOrderID){
+    public void saveMap(){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream;
         try {
@@ -140,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(customerInfo);
         objectOutputStream.close();
-        updateOrderView(internalOrderID);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -277,5 +276,10 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     }
     public File fileGetter(){
         return filePath;
+    }
+
+    public void deleteOrder(BusinessData businessData) {
+        customerInfo.remove(businessData.getInternalOrderID());
+        saveMap();
     }
 }

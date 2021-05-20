@@ -83,7 +83,7 @@ public class edit_order_page extends Fragment {
                 businessData.setOrderID(editOrderIdText.getText().toString());
                 businessData.setHearNordicNr(editHearNordicNRText.getText().toString());
                 try {
-                    saveMap(businessData.getInternalOrderID());
+                    saveMap();
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
@@ -92,8 +92,8 @@ public class edit_order_page extends Fragment {
             }
         });
     }
-    private void saveMap(int internalOrderID) throws IOException, ClassNotFoundException {
-        ((MainActivity) requireActivity()).saveMap(internalOrderID);
+    private void saveMap() throws IOException, ClassNotFoundException {
+        ((MainActivity) requireActivity()).saveMap();
     }
 
     @Override
