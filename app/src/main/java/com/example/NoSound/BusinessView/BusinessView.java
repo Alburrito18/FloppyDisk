@@ -87,6 +87,13 @@ public class BusinessView extends Fragment {
 
             }
         });
+        view.findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(BusinessView.this)
+                        .navigate(R.id.action_businessView_to_FirstFragment);
+            }
+        });
     }
 
     @Override
