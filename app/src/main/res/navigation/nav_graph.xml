@@ -71,5 +71,9 @@
         android:id="@+id/edit_order_page"
         android:name="com.example.NoSound.edit_order_page"
         android:label="fragment_edit_order_page"
-        tools:layout="@layout/fragment_edit_order_page" />
+        tools:layout="@layout/fragment_edit_order_page" >
+        <action
+            android:id="@+id/action_edit_order_page_to_orderAlternative"
+            app:destination="@id/orderAlternative" />
+    </fragment>
 </navigation>

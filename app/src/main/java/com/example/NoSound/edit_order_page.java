@@ -91,6 +91,13 @@ public class edit_order_page extends Fragment {
                 }
             }
         });
+        view.findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(edit_order_page.this)
+                        .navigate(R.id.action_edit_order_page_to_orderAlternative);
+            }
+        });
     }
     private void saveMap() throws IOException, ClassNotFoundException {
         ((MainActivity) requireActivity()).saveMap();
