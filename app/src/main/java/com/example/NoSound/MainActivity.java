@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     private BusinessData order;
     private String orderID;
     private int internalOrderID;
-    private File file;
+    private File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+    private File file  = new File(folder, "Customerinfo.txt");;
     private int latestOrderID; // disgusting way to update orderalternative fragment
     private Employee employee;
     private File filePath = null;
@@ -93,9 +94,8 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
      * This method creates a file and requests permission to store files in the external storage, which in this case is Documents.
      * It then calls upon the method that will store the file in the storage.
      *
-     * @param v
      */
-    public void savePublicly(View v) {
+    public void savePublicly() {
         // Requesting Permission to access External Storage
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                 EXTERNAL_STORAGE_PERMISSION_CODE);
@@ -106,29 +106,43 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
 
         // Storing the data in file with name as geeksData.txt
-        file = new File(folder, "Customerinfo.txt");
-        writeTextData(file, internalOrderID, order);
+
+        writeTextData(internalOrderID, order);
     }
 
     /**
      * The method puts ID coupled with Name into a map then makes sure that it is saved on the file
      * that it takes as an argument.
      *
-     * @param file    a File that the map will be stored in.
      * @param internalOrderID a String representing the ID of the order.
      * @param order   a BusinessData variable conating information about the order.
      */
-    private void writeTextData(File file, int internalOrderID, BusinessData order) {
+    private void writeTextData(int internalOrderID, BusinessData order) {
         customerInfo.put(internalOrderID, order);
+        saveMap();
+    }
+
+    /**
+     * This method creates a file and requests permission to store files in the external storage, which in this case is Documents.
+     * It then calls upon the method that will store the file in the storage. This method stores Employee info however.
+     *
+     */
+    public void saveEmployeePublicly() {
+        // Requesting Permission to access External Storage
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                EXTERNAL_STORAGE_PERMISSION_CODE);
+
+        // Storing the data in file with name as geeksData.txt
+        writeEmployeeData(file, employee);
+    }
+    public void saveMap(){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream;
         try {
-            fileOutputStream = new FileOutputStream(file);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(customerInfo);
-            objectOutputStream.close();
-            updateOrderView(internalOrderID);
-            Toast.makeText(this, "Done" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+        fileOutputStream = new FileOutputStream(file);
+        objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(customerInfo);
+        objectOutputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -140,21 +154,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
                 }
             }
         }
-    }
 
-    /**
-     * This method creates a file and requests permission to store files in the external storage, which in this case is Documents.
-     * It then calls upon the method that will store the file in the storage. This method stores Employee info however.
-     *
-     * @param v
-     */
-    public void saveEmployeePublicly(View v) {
-        // Requesting Permission to access External Storage
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                EXTERNAL_STORAGE_PERMISSION_CODE);
-
-        // Storing the data in file with name as geeksData.txt
-        writeEmployeeData(file, employee);
     }
 
     /**
@@ -305,5 +305,10 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     }
     public File fileGetter(){
         return filePath;
+    }
+
+    public void deleteOrder(BusinessData businessData) {
+        customerInfo.remove(businessData.getInternalOrderID());
+        saveMap();
     }
 }

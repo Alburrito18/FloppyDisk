@@ -96,6 +96,29 @@ public class BusinessData implements Serializable {
     public String getDate() {
         return date;
     }
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setHearNordicNr(String hearNordicNr) {
+        this.hearNordicNr = hearNordicNr;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
 
     private int retreiveOrderID() throws IOException {
         try {
@@ -165,5 +188,9 @@ public class BusinessData implements Serializable {
             }
         }
         return null;
+    }
+
+    public String getHearNordicNr() {
+        return hearNordicNr;
     }
 }

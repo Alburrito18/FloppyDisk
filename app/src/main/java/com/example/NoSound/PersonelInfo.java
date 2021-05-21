@@ -92,7 +92,7 @@ public class PersonelInfo extends Fragment {
             ((TextInputEditText)requireView().findViewById(R.id.lastName)).setText(editEmployee.getSurName());
         }
 
-        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Employee employee = ((MainActivity) requireActivity()).getEditEmployee();
