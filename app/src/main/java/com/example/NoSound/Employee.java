@@ -254,4 +254,8 @@ public class Employee implements Serializable {
     public boolean isTripleset() {
         return tripleset;
     }
+
+    public String getFilterChoice() {
+        return filterChoice;
+    }
 }

@@ -67,11 +67,13 @@ public class EarPieceForm extends Fragment {
         Employee employee = ((MainActivity) requireActivity()).getEditEmployee();
         if (employee!=null){
             ((Switch)requireView().findViewById(R.id.stringAttachment)).setChecked(employee.isStringAttachment());
-            setSpinnerColor(employee.getLeftSideColor(),(Spinner)requireView().findViewById(R.id.ColorLeft));
-            setSpinnerColor(employee.getRightSideColor(),(Spinner)requireView().findViewById(R.id.ColorRight));
-            setSpinnerConcha(conchaString(employee.isLeftSideConcha(),employee.isRightSideConcha()),(Spinner)requireView().findViewById(R.id.Concha));
+            setSpinner(employee.getLeftSideColor(),requireView().findViewById(R.id.ColorLeft),R.array.ColourChoices);
+            setSpinner(employee.getRightSideColor(),requireView().findViewById(R.id.ColorRight),R.array.ColourChoices);
+            setSpinner(conchaString(employee.isLeftSideConcha(),employee.isRightSideConcha()),requireView().findViewById(R.id.Concha),R.array.ConchaChoices);
             ((Switch)requireView().findViewById(R.id.detect)).setChecked(employee.isDetect());
             ((Switch)requireView().findViewById(R.id.tripleset)).setChecked(employee.isTripleset());
+            setSpinner(employee.getFilterChoice(),requireView().findViewById(R.id.filterChoice),R.array.filterChoices);
+            ((EditText)requireView().findViewById(R.id.commentText)).setText(employee.getComment());
         }
         view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -293,17 +295,8 @@ public class EarPieceForm extends Fragment {
                 colorLeft.getSelectedItem().toString(),tripleset.isChecked());
         filterCodeTextView.setText(filterCode);
     }
-    private void setSpinnerColor(String compareValue,Spinner mSpinner){
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.ColourChoices, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinner.setAdapter(adapter);
-        if (compareValue != null) {
-            int spinnerPosition = adapter.getPosition(compareValue);
-            mSpinner.setSelection(spinnerPosition);
-        }
-    }
-    private void setSpinnerConcha(String compareValue,Spinner mSpinner){
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.ConchaChoices, android.R.layout.simple_spinner_item);
+    private void setSpinner(String compareValue,Spinner mSpinner, int id){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), id, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(adapter);
         if (compareValue != null) {
