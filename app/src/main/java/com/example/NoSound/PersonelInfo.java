@@ -95,11 +95,19 @@ public class PersonelInfo extends Fragment {
         view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Employee employee = null;
-                try {
-                    employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
+                Employee employee = ((MainActivity) requireActivity()).getEditEmployee();
+                if (employee == null) {
+                    try {
+                        employee = new Employee(firstNameText.getText().toString(), lastNameText.getText().toString(), departmentText.getText().toString(), birthNumberText.getText().toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    employee.setFirstName(firstNameText.getText().toString());
+                    employee.setSurName(lastNameText.getText().toString());
+                    employee.setDepartment(departmentText.getText().toString());
+                    employee.setPersonalNumber(birthNumberText.getText().toString());
                 }
                 try {
                     passData(employee);

@@ -30,7 +30,7 @@ public class Employee implements Serializable {
     private String comment;
     private String filterCode;
     private File file;
-    private String couponNumber;
+    private String couponNumber = null;
 
     public Employee(String firstName, String surName, String department, String personalNumber) throws IOException {
         this.firstName = firstName;
@@ -41,6 +41,22 @@ public class Employee implements Serializable {
 
     public void setCouponNumber(String prefix) throws IOException {
         couponNumber = generateCouponID(prefix);
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setSurName(String surName) {
+        this.surName = surName;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setPersonalNumber(String personalNumber) {
+        this.personalNumber = personalNumber;
     }
 
     private String generateCouponID(String prefix) throws IOException {
@@ -222,4 +238,7 @@ public class Employee implements Serializable {
     public String getCouponNumber() {
         return couponNumber;
     }
+
+
+
 }

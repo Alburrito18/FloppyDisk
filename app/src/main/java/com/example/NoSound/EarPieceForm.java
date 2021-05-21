@@ -63,6 +63,10 @@ public class EarPieceForm extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
+        Employee employee = ((MainActivity) requireActivity()).getEditEmployee();
+        if (employee!=null){
+            ((Switch)requireView().findViewById(R.id.stringAttachment)).setChecked(employee.isStringAttachment());
+        }
         view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

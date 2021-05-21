@@ -229,7 +229,9 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
 
     @Override
     public void onEmployeePass(Employee employee) throws IOException {
-        employee.setCouponNumber(order.getCityCode());
+        if (employee.getCouponNumber()==null) {
+            employee.setCouponNumber(order.getCityCode());
+        }
         order.addEmployee(employee);
         this.employee = employee;
     }
@@ -292,8 +294,10 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
             }
         }
     }
-
     public Employee getEditEmployee(){
+        if (editEmployee != null) {
+            employee = order.getEmployee(editEmployee.getCouponNumber());
+        }
         return editEmployee;
     }
     public void resetEditEmployee(){

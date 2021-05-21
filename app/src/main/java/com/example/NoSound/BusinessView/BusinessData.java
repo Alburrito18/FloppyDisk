@@ -62,7 +62,10 @@ public class BusinessData implements Serializable {
      * @param employee the employee to be added to the list
      */
     public void addEmployee(Employee employee){
-        employees.add(employee);
+        if (!employees.contains(employee)) {
+            deleteEmployee(employee);
+            employees.add(employee);
+        }
     }
 
     /**
@@ -154,5 +157,13 @@ public class BusinessData implements Serializable {
                 break;
             }
         }
+    }
+    public Employee getEmployee(String couponNumber){
+        for (int i = 0; i<employees.size(); i++){
+            if (employees.get(i).getCouponNumber().equals(couponNumber)) {
+                return employees.get(i);
+            }
+        }
+        return null;
     }
 }
