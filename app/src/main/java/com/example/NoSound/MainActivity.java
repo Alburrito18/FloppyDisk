@@ -283,7 +283,13 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 10 && resultCode == RESULT_OK){
             editEmployee = (Employee) data.getSerializableExtra("Redigera");
-            NavHostFragment.findNavController(firstFragment).navigate(R.id.action_personelListView_to_personelInfo);
+            if (editEmployee != null) {
+                NavHostFragment.findNavController(firstFragment).navigate(R.id.action_personelListView_to_personelInfo);
+            }
+            else {
+                Employee employee = (Employee) data.getSerializableExtra("Radera");
+                order.deleteEmployee(employee);
+            }
         }
     }
 

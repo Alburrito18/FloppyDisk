@@ -31,13 +31,6 @@ public class PersonelListView extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((MainActivity) requireActivity()).resetEditEmployee();
-        mListView = view.findViewById(R.id.personellList);
-        int latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
-
-        personellList.clear();
-        personellList = (ArrayList<Employee>) ((MainActivity) requireActivity()).getBusinessData(latestOrderID).getEmployees();
-        updateOrderView();
         view.findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,12 +67,13 @@ public class PersonelListView extends Fragment {
     }
     public void onResume() {
         super.onResume();
-        if (getArguments()!=null) {
-            Employee employee = (Employee) getArguments().getSerializable("Redigera");
-            if (employee != null) {
-                NavHostFragment.findNavController(PersonelListView.this).navigate(R.id.action_personelListView_to_personelInfo);
-            }
-        }
+        ((MainActivity) requireActivity()).resetEditEmployee();
+        mListView = requireView().findViewById(R.id.personellList);
+        int latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
+
+        personellList.clear();
+        personellList = (ArrayList<Employee>) ((MainActivity) requireActivity()).getBusinessData(latestOrderID).getEmployees();
+        updateOrderView();
     }
 }
 

@@ -146,4 +146,13 @@ public class BusinessData implements Serializable {
     public List<Employee> getEmployees(){
         return new ArrayList<>(employees);
     }
+
+    public void deleteEmployee (Employee employee){
+        for (int i = 0; i<employees.size(); i++){
+            if (employee.getCouponNumber().equals(employees.get(i).getCouponNumber())) {
+                employees.remove(i);
+                break;
+            }
+        }
+    }
 }
