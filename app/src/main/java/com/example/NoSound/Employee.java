@@ -250,4 +250,8 @@ public class Employee implements Serializable {
     public boolean isDetect() {
         return detect;
     }
+
+    public boolean isTripleset() {
+        return tripleset;
+    }
 }

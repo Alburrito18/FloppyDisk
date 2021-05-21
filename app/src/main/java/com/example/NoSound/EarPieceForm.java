@@ -71,6 +71,7 @@ public class EarPieceForm extends Fragment {
             setSpinnerColor(employee.getRightSideColor(),(Spinner)requireView().findViewById(R.id.ColorRight));
             setSpinnerConcha(conchaString(employee.isLeftSideConcha(),employee.isRightSideConcha()),(Spinner)requireView().findViewById(R.id.Concha));
             ((Switch)requireView().findViewById(R.id.detect)).setChecked(employee.isDetect());
+            ((Switch)requireView().findViewById(R.id.tripleset)).setChecked(employee.isTripleset());
         }
         view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
             @Override
