@@ -77,7 +77,7 @@ public class EarPieceForm extends Fragment {
                 employee1.setRightSideConcha(rightSideConchaChoice());
                 employee1.setComment(commentText.getText().toString());
                 employee1.setFilterCode(filterCode);
-                saveInfo(view);
+                saveInfo();
                 NavHostFragment.findNavController(EarPieceForm.this).navigate(R.id.action_thirdfragment_to_FirstFragment);
             }
         });
@@ -159,8 +159,8 @@ public class EarPieceForm extends Fragment {
     private boolean rightSideConchaChoice() {
         return concha.getSelectedItem().toString().equals("Höger") || concha.getSelectedItem().toString().equals("Båda");
     }
-    private void saveInfo(View v) {
-        ((MainActivity) requireActivity()).saveEmployeePublicly(v);
+    private void saveInfo() {
+        ((MainActivity) requireActivity()).saveEmployeePublicly();
     }
     private String generateFilterCode(String filter, boolean cord, boolean rightConch,
                                       boolean leftConch, boolean detect, String rightColour,

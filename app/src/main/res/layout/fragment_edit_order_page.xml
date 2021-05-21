@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#BEFFFFFF"
-    tools:context=".BusinessView.BusinessView">
+    tools:context=".edit_order_page">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout6"
@@ -17,9 +17,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/cityText"
+            android:id="@+id/editCityText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:hint="@string/ort" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -33,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/hearNordicNrtext"
+            android:id="@+id/editHearNordicNRtext"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -50,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/orderIDtext"
+            android:id="@+id/editOrderIdText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -67,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/customerIDText"
+            android:id="@+id/customerEditIDText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -84,9 +85,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout1">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/customerNameText"
+            android:id="@+id/customerEditNameText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:hint="@string/kund" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,9 +102,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/dateEditText1"
+            android:id="@+id/dateEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:hint="@string/datum" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -121,7 +124,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_personel"
+        android:id="@+id/button_edit_personel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
@@ -130,11 +133,13 @@
         android:background="@android:color/holo_green_dark"
         android:backgroundTint="#4CAF50"
         android:shadowColor="#4CAF50"
-        android:text="@string/g_till_personal"
+        android:text="Granska Personal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
+        app:layout_constraintVertical_bias="0.497"
         app:rippleColor="#4CAF50"
         app:strokeColor="#4CAF50" />
 
