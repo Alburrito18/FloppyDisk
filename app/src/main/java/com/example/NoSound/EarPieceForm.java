@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -66,6 +67,10 @@ public class EarPieceForm extends Fragment {
         Employee employee = ((MainActivity) requireActivity()).getEditEmployee();
         if (employee!=null){
             ((Switch)requireView().findViewById(R.id.stringAttachment)).setChecked(employee.isStringAttachment());
+            setSpinnerColor(employee.getLeftSideColor(),(Spinner)requireView().findViewById(R.id.ColorLeft));
+            setSpinnerColor(employee.getRightSideColor(),(Spinner)requireView().findViewById(R.id.ColorRight));
+            setSpinnerConcha(conchaString(employee.isLeftSideConcha(),employee.isRightSideConcha()),(Spinner)requireView().findViewById(R.id.Concha));
+            ((Switch)requireView().findViewById(R.id.detect)).setChecked(employee.isDetect());
         }
         view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,6 +167,18 @@ public class EarPieceForm extends Fragment {
     }
     private boolean rightSideConchaChoice() {
         return concha.getSelectedItem().toString().equals("Höger") || concha.getSelectedItem().toString().equals("Båda");
+    }
+    private String conchaString(boolean leftSide, boolean rightside){
+        if (leftSide && rightside){
+            return "Båda";
+        }
+        else if (leftSide){
+            return "Vänster";
+        }
+        else if (rightside){
+            return "Höger";
+        }
+        return "Ingen";
     }
     private void saveInfo(View v) {
         ((MainActivity) requireActivity()).saveEmployeePublicly(v);
@@ -274,5 +291,23 @@ public class EarPieceForm extends Fragment {
                 rightSideConchaChoice(),leftSideConchaChoice(),detect.isChecked(),colorRight.getSelectedItem().toString(),
                 colorLeft.getSelectedItem().toString(),tripleset.isChecked());
         filterCodeTextView.setText(filterCode);
+    }
+    private void setSpinnerColor(String compareValue,Spinner mSpinner){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.ColourChoices, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(adapter);
+        if (compareValue != null) {
+            int spinnerPosition = adapter.getPosition(compareValue);
+            mSpinner.setSelection(spinnerPosition);
+        }
+    }
+    private void setSpinnerConcha(String compareValue,Spinner mSpinner){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.ConchaChoices, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(adapter);
+        if (compareValue != null) {
+            int spinnerPosition = adapter.getPosition(compareValue);
+            mSpinner.setSelection(spinnerPosition);
+        }
     }
 }

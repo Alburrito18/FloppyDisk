@@ -239,6 +239,15 @@ public class Employee implements Serializable {
         return couponNumber;
     }
 
+    public boolean isLeftSideConcha() {
+        return leftSideConcha;
+    }
 
+    public boolean isRightSideConcha() {
+        return rightSideConcha;
+    }
 
+    public boolean isDetect() {
+        return detect;
+    }
 }
