@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessData implements Serializable {
-
-
     private String customerName;
     private String customerID;
     private String date;
@@ -64,7 +62,10 @@ public class BusinessData implements Serializable {
      * @param employee the employee to be added to the list
      */
     public void addEmployee(Employee employee){
-        employees.add(employee);
+        if (!employees.contains(employee)) {
+            deleteEmployee(employee);
+            employees.add(employee);
+        }
     }
 
     /**
@@ -167,6 +168,26 @@ public class BusinessData implements Serializable {
     }
     public String getCityCode(){
         return cityCode;
+    }
+    public List<Employee> getEmployees(){
+        return new ArrayList<>(employees);
+    }
+
+    public void deleteEmployee (Employee employee){
+        for (int i = 0; i<employees.size(); i++){
+            if (employee.getCouponNumber().equals(employees.get(i).getCouponNumber())) {
+                employees.remove(i);
+                break;
+            }
+        }
+    }
+    public Employee getEmployee(String couponNumber){
+        for (int i = 0; i<employees.size(); i++){
+            if (employees.get(i).getCouponNumber().equals(couponNumber)) {
+                return employees.get(i);
+            }
+        }
+        return null;
     }
 
     public String getHearNordicNr() {
