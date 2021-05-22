@@ -66,19 +66,21 @@ public class EarPieceForm extends Fragment {
         view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Employee employee1 = ((MainActivity) requireActivity()).getEmployee();
-                employee1.setStringAttachment(stringAttachment.isChecked());
-                employee1.setRightSideColor(colorRight.getSelectedItem().toString());
-                employee1.setLeftSideColor(colorLeft.getSelectedItem().toString());
-                employee1.setDetect(detect.isChecked());
-                employee1.setTripleset(tripleset.isChecked());
-                employee1.setFilterChoice(filterChoice.getSelectedItem().toString());
-                employee1.setLeftSideConcha(leftSideConchaChoice());
-                employee1.setRightSideConcha(rightSideConchaChoice());
-                employee1.setComment(commentText.getText().toString());
-                employee1.setFilterCode(filterCode);
-                saveInfo();
-                NavHostFragment.findNavController(EarPieceForm.this).navigate(R.id.action_thirdfragment_to_FirstFragment);
+                if (!((filterCode.equals("Illegal filter choice"))||(filterCode.equals("Illegal combination of conch/triple"))||filterCode.equals("Illegal colour choice"))) {
+                    Employee employee1 = ((MainActivity) requireActivity()).getEmployee();
+                    employee1.setStringAttachment(stringAttachment.isChecked());
+                    employee1.setRightSideColor(colorRight.getSelectedItem().toString());
+                    employee1.setLeftSideColor(colorLeft.getSelectedItem().toString());
+                    employee1.setDetect(detect.isChecked());
+                    employee1.setTripleset(tripleset.isChecked());
+                    employee1.setFilterChoice(filterChoice.getSelectedItem().toString());
+                    employee1.setLeftSideConcha(leftSideConchaChoice());
+                    employee1.setRightSideConcha(rightSideConchaChoice());
+                    employee1.setComment(commentText.getText().toString());
+                    employee1.setFilterCode(filterCode);
+                    saveInfo(view);
+                    NavHostFragment.findNavController(EarPieceForm.this).navigate(R.id.action_thirdfragment_to_FirstFragment);
+                }
             }
         });
         view.findViewById(R.id.stringAttachment).setOnClickListener(new View.OnClickListener() {
