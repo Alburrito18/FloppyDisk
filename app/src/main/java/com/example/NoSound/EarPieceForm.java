@@ -78,7 +78,7 @@ public class EarPieceForm extends Fragment {
                     employee1.setRightSideConcha(rightSideConchaChoice());
                     employee1.setComment(commentText.getText().toString());
                     employee1.setFilterCode(filterCode);
-                    saveInfo(view);
+                    saveInfo();
                     NavHostFragment.findNavController(EarPieceForm.this).navigate(R.id.action_thirdfragment_to_FirstFragment);
                 }
             }

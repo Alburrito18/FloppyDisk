@@ -72,10 +72,6 @@ public class BusinessView extends Fragment {
             public void onClick(View view) {
                 BusinessData order = null; // behövs denna? svar: tydligen.
                 if(checkDateFormat(dateEditText1.getText().toString()))  {  // qualified 2 Move
-                /*BusinessData order = new BusinessData(customerNameText.getText().toString(),
-                        customerIDText.getText().toString(), dateEditText1.getText().toString(),
-                        hearNordicNrText.getText().toString(), cityText.getText().toString());
-                passCustomerData(order, orderIDtext.getText().toString());*/
                 try {
                     order = new BusinessData(customerNameText.getText().toString(),
                             customerIDText.getText().toString(), dateEditText1.getText().toString(),
@@ -91,7 +87,7 @@ public class BusinessView extends Fragment {
                 }
             }
         });
-        view.findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(BusinessView.this)
