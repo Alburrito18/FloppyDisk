@@ -70,8 +70,12 @@ public class BusinessView extends Fragment {
         view.findViewById(R.id.button_personel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                BusinessData order = null;
+                //BusinessData order = null; // behövs denna?
+                if(checkDateFormat(dateEditText1.getText().toString()))  {  // qualified 2 Move
+                BusinessData order = new BusinessData(customerNameText.getText().toString(),
+                        customerIDText.getText().toString(), dateEditText1.getText().toString(),
+                        hearNordicNrText.getText().toString(), cityText.getText().toString());
+                passCustomerData(order, orderIDtext.getText().toString());
                 try {
                     order = new BusinessData(customerNameText.getText().toString(),
                             customerIDText.getText().toString(), dateEditText1.getText().toString(),
@@ -84,7 +88,7 @@ public class BusinessView extends Fragment {
                 saveInfo();
                 NavHostFragment.findNavController(BusinessView.this)
                         .navigate(R.id.action_businessView_to_personalInfo);
-
+                }
             }
         });
         view.findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
