@@ -116,16 +116,30 @@ public class PersonelInfo extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Employee editEmployee = ((MainActivity) requireActivity()).getEditEmployee();
+        if (editEmployee!= null){
+            ((TextInputEditText)requireView().findViewById(R.id.birthNumber)).setText(editEmployee.getPersonalNumber());
+            ((TextInputEditText)requireView().findViewById(R.id.department)).setText(editEmployee.getDepartment());
+            ((TextInputEditText)requireView().findViewById(R.id.firstName)).setText(editEmployee.getFirstName());
+            ((TextInputEditText)requireView().findViewById(R.id.lastName)).setText(editEmployee.getSurName());
+        }
 
-        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() { //button_next was cancel
             @Override
             public void onClick(View view) {
                 if (termsAgreementSwitch.isChecked() && bDayIsRightFormat(birthNumberText.getText().toString())) {
-                    Employee employee = null;
-                    try {
-                        employee = new Employee(firstNameText.getText().toString(), lastNameText.getText().toString(), departmentText.getText().toString(), birthNumberText.getText().toString());
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    Employee employee = ((MainActivity) requireActivity()).getEditEmployee();
+                    if (employee == null) {
+                        try {
+                            employee = new Employee(firstNameText.getText().toString(), lastNameText.getText().toString(), departmentText.getText().toString(), birthNumberText.getText().toString());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        employee.setFirstName(firstNameText.getText().toString());
+                        employee.setSurName(lastNameText.getText().toString());
+                        employee.setDepartment(departmentText.getText().toString());
+                        employee.setPersonalNumber(birthNumberText.getText().toString());
                     }
                     try {
                         passData(employee);

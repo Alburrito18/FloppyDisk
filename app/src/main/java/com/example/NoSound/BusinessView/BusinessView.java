@@ -83,11 +83,11 @@ public class BusinessView extends Fragment {
                 passCustomerData(order);
                 saveInfo();
                 NavHostFragment.findNavController(BusinessView.this)
-                        .navigate(R.id.action_businessView_to_personalInfo);
-                }
+                        .navigate(R.id.action_businessView_to_personelListView);
+
             }
         });
-        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() { //button_next is actually cancel
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(BusinessView.this)

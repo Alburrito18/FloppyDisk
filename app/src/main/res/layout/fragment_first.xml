@@ -31,6 +31,7 @@
         android:text="@string/l_gg_till_ny_best_llning"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
@@ -47,7 +48,7 @@
             android:id="@+id/hslmButton"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:text="@string/h_ssleholm"
+            android:text="Hässleholm"
             android:textSize="22sp" />
 
         <RadioButton
