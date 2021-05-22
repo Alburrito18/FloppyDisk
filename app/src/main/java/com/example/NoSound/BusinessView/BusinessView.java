@@ -71,20 +71,20 @@ public class BusinessView extends Fragment {
             @Override
             public void onClick(View view) {
                 BusinessData order = null; // behövs denna? svar: tydligen.
-                if(checkDateFormat(dateEditText1.getText().toString()))  {  // qualified 2 Move
-                try {
-                    order = new BusinessData(customerNameText.getText().toString(),
-                            customerIDText.getText().toString(), dateEditText1.getText().toString(),
-                            hearNordicNrText.getText().toString(), cityText.getText().toString(),
-                            orderIDtext.getText().toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if(checkDateFormat(dateEditText1.getText().toString())) {  // qualified 2 Move
+                    try {
+                        order = new BusinessData(customerNameText.getText().toString(),
+                                customerIDText.getText().toString(), dateEditText1.getText().toString(),
+                                hearNordicNrText.getText().toString(), cityText.getText().toString(),
+                                orderIDtext.getText().toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    passCustomerData(order);
+                    saveInfo();
+                    NavHostFragment.findNavController(BusinessView.this)
+                            .navigate(R.id.action_businessView_to_personelListView);
                 }
-                passCustomerData(order);
-                saveInfo();
-                NavHostFragment.findNavController(BusinessView.this)
-                        .navigate(R.id.action_businessView_to_personelListView);
-
             }
         });
         view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() { //button_next is actually cancel
