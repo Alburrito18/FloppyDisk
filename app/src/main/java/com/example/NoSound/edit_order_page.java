@@ -66,6 +66,7 @@ public class edit_order_page extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         int latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
         businessData = ((MainActivity) requireActivity()).getBusinessData(latestOrderID);
+        ((MainActivity) requireActivity()).setOrder(businessData);
         ((TextView)view.findViewById(R.id.dateEditText)).setText(businessData.getDate());
         ((TextView)view.findViewById(R.id.customerEditNameText)).setText(businessData.getCustomerName());
         ((TextView)view.findViewById(R.id.customerEditIDText)).setText(businessData.getCustomerID());
@@ -89,6 +90,7 @@ public class edit_order_page extends Fragment {
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
+                NavHostFragment.findNavController(edit_order_page.this).navigate(R.id.action_edit_order_page_to_personelListView);
             }
         });
         view.findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {

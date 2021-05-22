@@ -72,6 +72,9 @@
         <action
             android:id="@+id/action_edit_order_page_to_orderAlternative"
             app:destination="@id/orderAlternative" />
+        <action
+            android:id="@+id/action_edit_order_page_to_personelListView"
+            app:destination="@id/personelListView" />
     </fragment>
     <fragment
         android:id="@+id/personelListView"

@@ -311,4 +311,8 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         customerInfo.remove(businessData.getInternalOrderID());
         saveMap();
     }
+
+    public void setOrder(BusinessData order) {
+        this.order = order;
+    }
 }
