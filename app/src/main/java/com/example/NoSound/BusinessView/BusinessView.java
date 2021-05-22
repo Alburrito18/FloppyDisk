@@ -56,7 +56,6 @@ public class BusinessView extends Fragment {
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,24 +70,24 @@ public class BusinessView extends Fragment {
         view.findViewById(R.id.button_personel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                BusinessData order = null;
-                try {
-                    order = new BusinessData(customerNameText.getText().toString(),
-                            customerIDText.getText().toString(), dateEditText1.getText().toString(),
-                            hearNordicNrText.getText().toString(), cityText.getText().toString(),
-                            orderIDtext.getText().toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
+                BusinessData order = null; // behövs denna? svar: tydligen.
+                if(checkDateFormat(dateEditText1.getText().toString())) {  // qualified 2 Move
+                    try {
+                        order = new BusinessData(customerNameText.getText().toString(),
+                                customerIDText.getText().toString(), dateEditText1.getText().toString(),
+                                hearNordicNrText.getText().toString(), cityText.getText().toString(),
+                                orderIDtext.getText().toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    passCustomerData(order);
+                    saveInfo();
+                    NavHostFragment.findNavController(BusinessView.this)
+                            .navigate(R.id.action_businessView_to_personelListView);
                 }
-                passCustomerData(order);
-                saveInfo();
-                NavHostFragment.findNavController(BusinessView.this)
-                        .navigate(R.id.action_businessView_to_personelListView);
-
             }
         });
-        view.findViewById(R.id.button_cancel).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() { //button_next is actually cancel
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(BusinessView.this)
