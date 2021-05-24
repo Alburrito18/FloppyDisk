@@ -1,4 +1,4 @@
-package com.example.NoSound;
+package com.example.NoSound.OrderView;
 
 import android.os.Bundle;
 
@@ -12,12 +12,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.NoSound.BusinessView.BusinessData;
-import com.example.NoSound.BusinessView.BusinessView;
+import com.example.NoSound.MainActivity;
+import com.example.NoSound.R;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.

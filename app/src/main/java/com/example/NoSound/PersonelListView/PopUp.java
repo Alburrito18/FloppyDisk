@@ -1,4 +1,4 @@
-package com.example.NoSound;
+package com.example.NoSound.PersonelListView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +13,10 @@ import android.widget.TextView;
 
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.NoSound.Employee;
+import com.example.NoSound.MainActivity;
 import com.example.NoSound.PersonelListView.PersonelListView;
+import com.example.NoSound.R;
 
 public class PopUp extends Activity {
 
@@ -45,7 +48,7 @@ public class PopUp extends Activity {
         findViewById(R.id.editPerson).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(),MainActivity.class);
+                Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 intent.putExtra("Redigera",employee);
                 setResult(Activity.RESULT_OK,intent);
                 finish();
