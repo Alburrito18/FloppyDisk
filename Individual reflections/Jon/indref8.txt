@@ -1,0 +1,41 @@
+What do I want to learn or understand better?
+
+I felt like during the entirety of the course we could have done better
+with the usage of fragments, it feels like there was a lot to learn regarding
+them and activities that might have relieved some technical debt. But these are 
+things that feel like they should be implemented from the beginning, and as none
+of us knew how to use android studio to start with it would be hard to learn on the
+go. So in the future when jumping into an android studio project I might have learned
+a bit more about it's functionality and maybe I would make sure that we use it the
+way it's "supposed" to be used rather than just making sure it works.
+
+How can I help someone else, or the entire team, to learn something new?
+
+Well similarly to last week I hope I can be helpful providing information what I
+have done this week. As we'll be mostly focusing on the project's final report.
+I hope I can bring clarity about the work I have done. In a future project I can
+hopefully be more of an asset when it comes to how to store things and how to handle
+that, although I might still lack some essential knowledge in that department It
+won't be completely new.
+
+What is my contribution towards the team’s use of Scrum?
+
+I continue being a part of the meetings and hopefully provide the feedback
+necessary to help the project. Overall I think I have had a helping hand 
+especially in the beginning when it came to writing stories, and have
+contributed my part in continuing doing that as that feels like it has been in
+the center of our project. I could have possibly read more on some spare time
+regarding scrum, but I am happy with how the project ended up and how we handled
+the challenges we were provided so maybe it was not that bad.
+
+What is my contribution towards the team’s deliveries?
+
+As the project has developed I feel like I have had a key part in bringing certain
+features to life, especially almost everything regarding storing and loading. 
+It was something I had never really worked with before so learning it felt really 
+nice. I wish though that I had spent a bit more time working with the visual tools 
+provided in android studio so that it would be easier to pick up again in the future 
+as the things I learned weren't unique to android studio. But overall I still feel 
+like I did some important work when it came to some of the more essential parts
+of the project, although I wish that I'd spend a little more time working so that 
+we'd have an even more complete product in the end.
