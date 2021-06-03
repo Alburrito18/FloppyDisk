@@ -12,3 +12,6 @@ Jon Emilsson = JonEmilsson,
 Kailash Hornig = K-deJesusHornig,
 Vilhem Hedquist = Hedquist,
 Felix Ågren = felixagren97,
+
+
+Tidsrapporteringen är "klipp-o-klistrad" från google spreadsheets under namnet "tidsrapportering" längst ut i mappen. Därav är har endast värdena hängt med, även om funktionern har använts för att summera och beräkna i spreadheets. 
