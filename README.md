@@ -17,4 +17,6 @@ Felix Ågren = felixagren97,
 Tidsrapporteringen är "klipp-o-klistrad" från google spreadsheets under namnet "tidsrapportering" längst ut i mappen. Därav är har endast värdena hängt med, även om funktionern har använts för att summera och beräkna i spreadheets. 
 
 Scrum board: https://trello.com/b/tyj4VvDm/dat257-floppygang 
-Programmet kan just nu endast köras via Android Studio och är där anpassat efter Pixel C emulatorn
+Programmet körs bäst via Android Studio och är där anpassat efter Pixel C emulator. För att köra programmet måste man 
+därmed skapa en ny Virtual Device via AVD manager och sedan gå in på "Tablet" och välja "Pixel C". Sen ska programmet vara färdigt
+att köra efter någon stund. Det finns också en APK fil men osäkert på om den fungerar bra eller ej. Programmet fungerar också för andra androidplattformar men gränssnittet är ej anpassat efter dessa.
