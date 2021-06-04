@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".OrderAlternative" >
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/delete_button"
+        android:layout_width="170dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="25dp"
+        android:background="#F44336"
+        android:text="Ta bort order"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/companyName"
         android:layout_width="333dp"

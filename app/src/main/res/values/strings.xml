@@ -47,4 +47,8 @@
     <string name="kommentar">Kommentar</string>
     <string name="filter_kod">Filterkod:</string>
     <string name="h_ssleholm">Hässleholm</string>
+    <string name="ta_bort_person">Ta bort person</string>
+    <string name="redigera_person">Redigera person</string>
+    <string name="nedan_r_diverse_produktval_kopplade_till_dina_ronavgjutningar">Nedan är diverse produktval kopplade till dina öronavgjutningar:</string>
+    <string name="val_ovan_markerade_med_inneb_r_extrakostader">Val ovan markerade med (*) innebär extrakostader</string>
 </resources>

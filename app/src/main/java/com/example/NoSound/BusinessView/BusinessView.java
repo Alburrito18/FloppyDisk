@@ -70,21 +70,28 @@ public class BusinessView extends Fragment {
         view.findViewById(R.id.button_personel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                BusinessData order = new BusinessData(customerNameText.getText().toString(),
-                        customerIDText.getText().toString(), dateEditText1.getText().toString(),
-                        hearNordicNrText.getText().toString(), cityText.getText().toString());
-                passCustomerData(order, orderIDtext.getText().toString());
-                try {
-                    saveInfo(view);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
+                BusinessData order = null; // behövs denna? svar: tydligen.
+                if(checkDateFormat(dateEditText1.getText().toString())) {  // qualified 2 Move
+                    try {
+                        order = new BusinessData(customerNameText.getText().toString(),
+                                customerIDText.getText().toString(), dateEditText1.getText().toString(),
+                                hearNordicNrText.getText().toString(), cityText.getText().toString(),
+                                orderIDtext.getText().toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    passCustomerData(order);
+                    saveInfo();
+                    NavHostFragment.findNavController(BusinessView.this)
+                            .navigate(R.id.action_businessView_to_personelListView);
                 }
+            }
+        });
+        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() { //button_next is actually cancel
+            @Override
+            public void onClick(View view) {
                 NavHostFragment.findNavController(BusinessView.this)
-                        .navigate(R.id.action_businessView_to_personalInfo);
-
+                        .navigate(R.id.action_businessView_to_FirstFragment);
             }
         });
     }
@@ -124,15 +131,14 @@ public class BusinessView extends Fragment {
     /**
      * The method called when information needs to be stored
      *
-     * @param v The view which needs to be saved
      */
-    private void saveInfo(View v) throws IOException, ClassNotFoundException {
-        ((MainActivity) requireActivity()).savePublicly(v);
+    private void saveInfo() {
+        ((MainActivity) requireActivity()).savePublicly();
     }
 
 
-    private void passCustomerData(BusinessData businessData, String orderID) {
-        dataPasser.onDataPass(businessData, orderID);
+    private void passCustomerData(BusinessData businessData) {
+        dataPasser.onDataPass(businessData);
     }
 
     @Override
