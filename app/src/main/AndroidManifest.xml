@@ -23,9 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PersonelListView.PopUp"
-            android:theme="@style/Theme.InteHora.CustomTheme">
-        </activity>
     </application>
 
 </manifest>

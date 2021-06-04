@@ -8,100 +8,106 @@
 
     <Button
         android:id="@+id/button_next"
-        android:layout_width="230dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="250dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="302dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="34dp"
         android:text="@string/n_sta"
-        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/agreementToTerms" />
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="317dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout7">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/birthNumber"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Födelsenummer (ÅÅMMDD)"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content"
+            android:hint="@string/f_delsenummer" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout7"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="317dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/department"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/avdelning"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content"
+            android:hint="@string/avdelning" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="317dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="535dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/lastName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/efternamn"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content"
+            android:hint="@string/efternamn" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="317dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="535dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.49">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/firstName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/f_rnamn"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content"
+            android:hint="@string/f_rnamn" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Switch
-        android:id="@+id/agreementToTerms"
-        android:layout_width="663dp"
-        android:layout_height="155dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="160dp"
-        android:text="Härmed godkänner jag att mina öronavtryck och personuppgifter sparas för ny och efterbeställning av formgjutna produkter från hear nordic. (Obligatorisk för att fortsätta*)"
-        android:textSize="24sp"
+        android:id="@+id/switch1"
+        android:layout_width="409dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="127dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="146dp"
+        android:text="@string/h_rmed_godk_nner_jag_att_mina_ronavtryck_och_personuppgifter_sparas_f_r_ny_och_efterbest_llning_av_formgjutna_produkter_fr_n_hear_nordic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />

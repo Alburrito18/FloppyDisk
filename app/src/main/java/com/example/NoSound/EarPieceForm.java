@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -64,35 +63,22 @@ public class EarPieceForm extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        Employee employee = ((MainActivity) requireActivity()).getEditEmployee();
-        if (employee!=null){
-            ((Switch)requireView().findViewById(R.id.stringAttachment)).setChecked(employee.isStringAttachment());
-            setSpinner(employee.getLeftSideColor(),requireView().findViewById(R.id.ColorLeft),R.array.ColourChoices);
-            setSpinner(employee.getRightSideColor(),requireView().findViewById(R.id.ColorRight),R.array.ColourChoices);
-            setSpinner(conchaString(employee.isLeftSideConcha(),employee.isRightSideConcha()),requireView().findViewById(R.id.Concha),R.array.ConchaChoices);
-            ((Switch)requireView().findViewById(R.id.detect)).setChecked(employee.isDetect());
-            ((Switch)requireView().findViewById(R.id.tripleset)).setChecked(employee.isTripleset());
-            setSpinner(employee.getFilterChoice(),requireView().findViewById(R.id.filterChoice),R.array.filterChoices);
-            ((EditText)requireView().findViewById(R.id.commentText)).setText(employee.getComment());
-        }
         view.findViewById(R.id.saveButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!((filterCode.equals("Illegal filter choice"))||(filterCode.equals("Illegal combination of conch/triple"))||filterCode.equals("Illegal colour choice"))) {
-                    Employee employee1 = ((MainActivity) requireActivity()).getEmployee();
-                    employee1.setStringAttachment(stringAttachment.isChecked());
-                    employee1.setRightSideColor(colorRight.getSelectedItem().toString());
-                    employee1.setLeftSideColor(colorLeft.getSelectedItem().toString());
-                    employee1.setDetect(detect.isChecked());
-                    employee1.setTripleset(tripleset.isChecked());
-                    employee1.setFilterChoice(filterChoice.getSelectedItem().toString());
-                    employee1.setLeftSideConcha(leftSideConchaChoice());
-                    employee1.setRightSideConcha(rightSideConchaChoice());
-                    employee1.setComment(commentText.getText().toString());
-                    employee1.setFilterCode(filterCode);
-                    saveInfo();
-                    NavHostFragment.findNavController(EarPieceForm.this).navigate(R.id.action_earPieceForm_to_personelListView);
-                }
+                Employee employee1 = ((MainActivity) requireActivity()).getEmployee();
+                employee1.setStringAttachment(stringAttachment.isChecked());
+                employee1.setRightSideColor(colorRight.getSelectedItem().toString());
+                employee1.setLeftSideColor(colorLeft.getSelectedItem().toString());
+                employee1.setDetect(detect.isChecked());
+                employee1.setTripleset(tripleset.isChecked());
+                employee1.setFilterChoice(filterChoice.getSelectedItem().toString());
+                employee1.setLeftSideConcha(leftSideConchaChoice());
+                employee1.setRightSideConcha(rightSideConchaChoice());
+                employee1.setComment(commentText.getText().toString());
+                employee1.setFilterCode(filterCode);
+                saveInfo(view);
+                NavHostFragment.findNavController(EarPieceForm.this).navigate(R.id.action_thirdfragment_to_FirstFragment);
             }
         });
         view.findViewById(R.id.stringAttachment).setOnClickListener(new View.OnClickListener() {
@@ -173,20 +159,8 @@ public class EarPieceForm extends Fragment {
     private boolean rightSideConchaChoice() {
         return concha.getSelectedItem().toString().equals("Höger") || concha.getSelectedItem().toString().equals("Båda");
     }
-    private String conchaString(boolean leftSide, boolean rightside){
-        if (leftSide && rightside){
-            return "Båda";
-        }
-        else if (leftSide){
-            return "Vänster";
-        }
-        else if (rightside){
-            return "Höger";
-        }
-        return "Ingen";
-    }
-    private void saveInfo() {
-        ((MainActivity) requireActivity()).saveEmployeePublicly();
+    private void saveInfo(View v) {
+        ((MainActivity) requireActivity()).saveEmployeePublicly(v);
     }
     private String generateFilterCode(String filter, boolean cord, boolean rightConch,
                                       boolean leftConch, boolean detect, String rightColour,
@@ -296,14 +270,5 @@ public class EarPieceForm extends Fragment {
                 rightSideConchaChoice(),leftSideConchaChoice(),detect.isChecked(),colorRight.getSelectedItem().toString(),
                 colorLeft.getSelectedItem().toString(),tripleset.isChecked());
         filterCodeTextView.setText(filterCode);
-    }
-    private void setSpinner(String compareValue,Spinner mSpinner, int id){
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), id, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinner.setAdapter(adapter);
-        if (compareValue != null) {
-            int spinnerPosition = adapter.getPosition(compareValue);
-            mSpinner.setSelection(spinnerPosition);
-        }
     }
 }

@@ -1,7 +1,0 @@
-I've learned a bit about how both local storage and layout design works in Android Studio, and if I had another week to work on the project I would like to get to know how to generate external files such as word documents. It seems like that is the most important part of our program that I still barely know anything about.
-
-This week I helped one of my groupmates with merging some code using git which was a very informative experience for both parts. It has seemed as though I was one of the most experienced merge conflicts handlers among the group and I've done my best in order to help others with it when it has come up and also tried to teach them how to do it themselves.
-
-My contribution towards scrum has not been particularly remarkable, I feel like we all work approximately the same amount with it with our scrum-roles playing a pretty small impact.
-
-This week I was satisfied with my deliveries towards the goal, and I feel like everyone else has done a great job as well. Given more weeks I would try to keep going on this trajectory.

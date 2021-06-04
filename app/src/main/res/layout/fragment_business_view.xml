@@ -9,8 +9,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout6"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,14 +20,13 @@
             android:id="@+id/cityText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/ort"
-            android:textSize="20sp"/>
+            android:hint="@string/ort" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout5"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,14 +37,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="@string/hear_nordic_nr"
-            android:textSize="20sp"/>
+            android:hint="@string/hear_nordic_nr" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout4"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,14 +54,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="@string/ordernummer"
-            android:textSize="20sp"/>
+            android:hint="@string/ordernummer" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,14 +71,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="@string/kund_id"
-            android:textSize="20sp"/>
+            android:hint="@string/kund_id" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,14 +87,13 @@
             android:id="@+id/customerNameText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/kund"
-            android:textSize="20sp"/>
+            android:hint="@string/kund" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout1"
-        android:layout_width="400dp"
-        android:layout_height="100dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,36 +103,37 @@
             android:id="@+id/dateEditText1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/datum"
-            android:textSize="20sp" />
+            android:hint="@string/datum" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_next"
-        android:layout_width="230dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="277dp"
         android:background="#F44336"
         android:text="@string/avbryt"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/button_personel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_personel"
-        android:layout_width="230dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="277dp"
         android:background="@android:color/holo_green_dark"
         android:backgroundTint="#4CAF50"
         android:shadowColor="#4CAF50"
         android:text="@string/g_till_personal"
-        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
         app:rippleColor="#4CAF50"
         app:strokeColor="#4CAF50" />
@@ -148,7 +144,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="@string/kund_orderinformation"
-        android:textSize="40sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
