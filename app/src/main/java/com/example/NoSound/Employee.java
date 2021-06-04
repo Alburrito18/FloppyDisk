@@ -30,7 +30,7 @@ public class Employee implements Serializable {
     private String comment;
     private String filterCode;
     private File file;
-    private String couponNumber;
+    private String couponNumber = null;
 
     public Employee(String firstName, String surName, String department, String personalNumber) throws IOException {
         this.firstName = firstName;
@@ -41,6 +41,22 @@ public class Employee implements Serializable {
 
     public void setCouponNumber(String prefix) throws IOException {
         couponNumber = generateCouponID(prefix);
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setSurName(String surName) {
+        this.surName = surName;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setPersonalNumber(String personalNumber) {
+        this.personalNumber = personalNumber;
     }
 
     private String generateCouponID(String prefix) throws IOException {
@@ -66,7 +82,7 @@ public class Employee implements Serializable {
     }
     private int retrieveOrderID() throws IOException {
         try {
-            DataInputStream dis = new DataInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/internalOrderID.txt"));
+            DataInputStream dis = new DataInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/couponID.txt"));
             return dis.readInt();
         }
         catch (FileNotFoundException e){
@@ -201,5 +217,45 @@ public class Employee implements Serializable {
 
     public boolean isStringAttachment() {
         return stringAttachment;
+    }
+
+    public String getFilterCode() {
+        return filterCode;
+    }
+
+    public String getLeftSideColor() {
+        return leftSideColor;
+    }
+
+    public String getRightSideColor() {
+        return rightSideColor;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public String getCouponNumber() {
+        return couponNumber;
+    }
+
+    public boolean isLeftSideConcha() {
+        return leftSideConcha;
+    }
+
+    public boolean isRightSideConcha() {
+        return rightSideConcha;
+    }
+
+    public boolean isDetect() {
+        return detect;
+    }
+
+    public boolean isTripleset() {
+        return tripleset;
+    }
+
+    public String getFilterChoice() {
+        return filterChoice;
     }
 }

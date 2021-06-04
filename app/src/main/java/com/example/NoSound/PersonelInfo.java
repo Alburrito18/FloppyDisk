@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -34,6 +35,7 @@ public class PersonelInfo extends Fragment {
     private TextInputEditText lastNameText;
     private TextInputEditText departmentText;
     private TextInputEditText birthNumberText;
+    private Switch termsAgreementSwitch;
 
     public PersonelInfo() {
         // Required empty public constructor
@@ -63,7 +65,37 @@ public class PersonelInfo extends Fragment {
         lastNameText = requireView().findViewById(R.id.lastName);
         departmentText = requireView().findViewById(R.id.department);
         birthNumberText = requireView().findViewById(R.id.birthNumber);
+        termsAgreementSwitch = requireView().findViewById(R.id.agreementToTerms);
+
+        birthNumberText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if (!bDayIsRightFormat(birthNumberText.getText().toString())) {
+                        birthNumberText.setBackgroundColor(0xBECC0000); //Red
+                    } else {
+                        birthNumberText.setBackgroundColor(0xBECECECE); //Nuetral
+                    }
+                }
+            }
+        });
     }
+
+    public boolean bDayIsRightFormat(String str) {
+        if (!str.isEmpty() && str.length()== 6 && isDigit(str)) {
+            return true;
+        }else return false;
+    }
+
+    public boolean isDigit(String str) {
+        char[] chars = str.toCharArray();
+        for (char c : chars) {
+            if(!Character.isDigit(c)) {
+                return false;
+            }
+        } return true;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,23 +116,39 @@ public class PersonelInfo extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Employee editEmployee = ((MainActivity) requireActivity()).getEditEmployee();
+        if (editEmployee!= null){
+            ((TextInputEditText)requireView().findViewById(R.id.birthNumber)).setText(editEmployee.getPersonalNumber());
+            ((TextInputEditText)requireView().findViewById(R.id.department)).setText(editEmployee.getDepartment());
+            ((TextInputEditText)requireView().findViewById(R.id.firstName)).setText(editEmployee.getFirstName());
+            ((TextInputEditText)requireView().findViewById(R.id.lastName)).setText(editEmployee.getSurName());
+        }
 
-        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.button_next).setOnClickListener(new View.OnClickListener() { //button_next was cancel
             @Override
             public void onClick(View view) {
-                Employee employee = null;
-                try {
-                    employee = new Employee(firstNameText.getText().toString(),lastNameText.getText().toString(),departmentText.getText().toString(), birthNumberText.getText().toString());
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (termsAgreementSwitch.isChecked() && bDayIsRightFormat(birthNumberText.getText().toString())) {
+                    Employee employee = ((MainActivity) requireActivity()).getEditEmployee();
+                    if (employee == null) {
+                        try {
+                            employee = new Employee(firstNameText.getText().toString(), lastNameText.getText().toString(), departmentText.getText().toString(), birthNumberText.getText().toString());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        employee.setFirstName(firstNameText.getText().toString());
+                        employee.setSurName(lastNameText.getText().toString());
+                        employee.setDepartment(departmentText.getText().toString());
+                        employee.setPersonalNumber(birthNumberText.getText().toString());
+                    }
+                    try {
+                        passData(employee);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    NavHostFragment.findNavController(PersonelInfo.this)
+                            .navigate(R.id.action_personalInfo_to_ThirdFragment);
                 }
-                try {
-                    passData(employee);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                NavHostFragment.findNavController(PersonelInfo.this)
-                        .navigate(R.id.action_personalInfo_to_ThirdFragment);
             }
         });
     }

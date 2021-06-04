@@ -1,0 +1,83 @@
+MacBook-Pro:InteHora albertlund$ gitinspector -r
+Statistical information for the repository 'InteHora' was gathered on
+2021/06/02.
+The following historical commit information, by author, was found in the
+repository:
+
+Author                     Commits    Insertions      Deletions    % of changes
+Alburrito18                     51          2001            617           56.07
+Hedquist                        12           181             35            4.63
+JonEmilsson                     18           734            267           21.44
+K-deJesusHornig                 12           196             41            5.08
+apelsinjosen                     9           289            192           10.30
+felixagren97                     3           113              3            2.48
+
+Below are the number of rows from each author that have survived and are still
+intact in the current revision:
+
+Author                     Rows      Stability          Age       % in comments
+Alburrito18                1341           67.0          0.5               10.66
+Hedquist                    157           86.7          0.7                8.92
+JonEmilsson                 544           74.1          0.4               11.58
+K-deJesusHornig              93           47.4          0.3                4.30
+apelsinjosen                129           44.6          0.9                6.98
+felixagren97                 90           79.6          0.8               20.00
+
+The following responsibilities, by author, were found in the current revision of
+the repository (comments are excluded from the line count, if possible):
+
+Alburrito18 is mostly responsible for:
+   172 app/src/main/java/com/example/NoSound/EarPieceForm.java
+   165 app/src/main/java/com/example/NoSound/Employee.java
+   163 app/src/main/java/com/example/NoSound/MainActivity.java
+    88 app/src/main/java/com/example/NoSound/BusinessView/BusinessData.java
+    81 ...ain/java/com/example/NoSound/PersonelListView/EmployeeListAdapter.java
+    81 app/src/main/java/com/example/NoSound/OrderAlternative.java
+    77 ...c/main/java/com/example/NoSound/PersonelListView/PersonelListView.java
+    76 app/src/main/java/com/example/NoSound/PersonelInfo.java
+    73 app/src/main/java/com/example/NoSound/FirstFragment.java
+    71 app/src/main/java/com/example/NoSound/PersonelListView/PopUp.java
+
+Hedquist is mostly responsible for:
+    91 app/src/main/java/com/example/NoSound/EarPieceForm.java
+    49 app/src/main/java/com/example/NoSound/BusinessView/BusinessView.java
+     2 app/src/main/java/com/example/NoSound/PersonelInfo.java
+     1 app/src/main/java/com/example/NoSound/BusinessView/BusinessData.java
+
+JonEmilsson is mostly responsible for:
+   134 app/src/main/java/com/example/NoSound/OrderView/edit_order_page.java
+   104 app/src/main/java/com/example/NoSound/MainActivity.java
+    81 app/src/main/java/com/example/NoSound/BusinessView/BusinessData.java
+    42 app/src/main/java/com/example/NoSound/OrderAlternative.java
+    36 app/src/main/java/com/example/NoSound/Employee.java
+    25 app/src/main/java/com/example/NoSound/BusinessView/BusinessView.java
+    24 app/src/main/java/com/example/NoSound/PersonelInfo.java
+    18 app/src/main/java/com/example/NoSound/FirstFragment.java
+    14 app/src/main/java/com/example/NoSound/OrderView/OrderViewListAdapter.java
+     2 app/src/main/java/com/example/NoSound/EarPieceForm.java
+
+K-deJesusHornig is mostly responsible for:
+    34 app/src/main/java/com/example/NoSound/PersonelInfo.java
+    28 app/src/main/java/com/example/NoSound/OrderAlternative.java
+    12 app/src/main/java/com/example/NoSound/BusinessView/BusinessData.java
+     7 app/src/main/java/com/example/NoSound/BusinessView/BusinessView.java
+     6 app/src/main/java/com/example/NoSound/Employee.java
+     2 app/src/main/java/com/example/NoSound/EarPieceForm.java
+
+apelsinjosen is mostly responsible for:
+    44 app/src/main/java/com/example/NoSound/OrderView/OrderViewListAdapter.java
+    24 app/src/main/java/com/example/NoSound/EarPieceForm.java
+    12 app/src/main/java/com/example/NoSound/FirstFragment.java
+     8 app/src/main/java/com/example/NoSound/PersonelInfo.java
+     8 app/src/main/java/com/example/NoSound/Employee.java
+     5 app/src/main/java/com/example/NoSound/Settings.java
+     4 app/src/main/java/com/example/NoSound/PersonelListView/PopUp.java
+     4 app/src/main/java/com/example/NoSound/OrderAlternative.java
+     3 app/src/main/java/com/example/NoSound/OrderView/edit_order_page.java
+     2 app/src/main/java/com/example/NoSound/OnDataPass.java
+
+felixagren97 is mostly responsible for:
+    51 app/src/main/java/com/example/NoSound/OrderAlternative.java
+    12 app/src/main/java/com/example/NoSound/OrderView/OrderViewListAdapter.java
+     7 app/src/main/java/com/example/NoSound/MainActivity.java
+     2 app/src/main/java/com/example/NoSound/FirstFragment.java
