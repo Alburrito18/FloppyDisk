@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,13 +20,13 @@ import com.example.NoSound.BusinessView.BusinessData;
 import com.example.NoSound.OrderView.OrderViewListAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FirstFragment extends Fragment {
 
-
     private ArrayList<BusinessData> businessDataList = new ArrayList<>();
     private OnDataPass dataPasser;
-
+    //private ArrayList<OrderView> orderViewList = new ArrayList<>();
     private ListView mListView;
     private static final String TAG = "FirstFragment";
     private RadioGroup officeCities;
@@ -60,6 +61,8 @@ public class FirstFragment extends Fragment {
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //NavHostFragment.findNavController(FirstFragment.this)
+                //        .navigate(R.id.action_FirstFragment_to_businessView);
                 if (officeCities.getCheckedRadioButtonId() != -1) {
                     String string = "hej";
                     if (slnaButton.isChecked()){
@@ -83,8 +86,6 @@ public class FirstFragment extends Fragment {
                 }
              //   startActivity(new Intent(Intent.EXTRA_PROCESS_TEXT));
             }
-
-
         });
     }
     public void onActivityCreated(Bundle savedInstanceState) {

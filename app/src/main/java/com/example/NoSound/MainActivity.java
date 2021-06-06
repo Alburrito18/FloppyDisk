@@ -1,6 +1,7 @@
 package com.example.NoSound;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Environment;
 import android.view.Menu;
@@ -17,9 +19,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
-
 import com.example.NoSound.OrderView.OrderViewListAdapter;
-
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,14 +40,17 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     FirstFragment firstFragment;// = (FirstFragment) getSupportFragmentManager().findFragmentById(R.id.FirstFragment);
     private BusinessData order;
     private String orderID;
-    private File file;
+    private int internalOrderID;
+    private File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+    private File file  = new File(folder, "Customerinfo.txt");;
     private int latestOrderID; // disgusting way to update orderalternative fragment
     private Employee employee;
     private File filePath = null;
     private String cityCode;
+    private Employee editEmployee = null;
 
     private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 23;
-    private HashMap<String, BusinessData> customerInfo = new HashMap<>();
+    private HashMap<Integer, BusinessData> customerInfo = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +94,8 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
      * This method creates a file and requests permission to store files in the external storage, which in this case is Documents.
      * It then calls upon the method that will store the file in the storage.
      *
-     * @param v
      */
-    public void savePublicly(View v) {
+    public void savePublicly() {
         // Requesting Permission to access External Storage
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                 EXTERNAL_STORAGE_PERMISSION_CODE);
@@ -104,31 +106,43 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
         File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
 
         // Storing the data in file with name as geeksData.txt
-        file = new File(folder, "Customerinfo.txt");
-        writeTextData(file, orderID, order);
+
+        writeTextData(internalOrderID, order);
     }
 
     /**
      * The method puts ID coupled with Name into a map then makes sure that it is saved on the file
      * that it takes as an argument.
      *
-     * @param file    a File that the map will be stored in.
-     * @param orderID a String representing the ID of the order.
+     * @param internalOrderID a String representing the ID of the order.
      * @param order   a BusinessData variable conating information about the order.
      */
-    private void writeTextData(File file, String orderID, BusinessData order) {
-        if (!(orderID == null || order == null)) {
-            customerInfo.put(orderID, order);
-        }
+    private void writeTextData(int internalOrderID, BusinessData order) {
+        customerInfo.put(internalOrderID, order);
+        saveMap();
+    }
+
+    /**
+     * This method creates a file and requests permission to store files in the external storage, which in this case is Documents.
+     * It then calls upon the method that will store the file in the storage. This method stores Employee info however.
+     *
+     */
+    public void saveEmployeePublicly() {
+        // Requesting Permission to access External Storage
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                EXTERNAL_STORAGE_PERMISSION_CODE);
+
+        // Storing the data in file with name as geeksData.txt
+        writeEmployeeData(file, employee);
+    }
+    public void saveMap(){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream;
         try {
-            fileOutputStream = new FileOutputStream(file);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(customerInfo);
-            objectOutputStream.close();
-            updateOrderView(orderID);
-            Toast.makeText(this, "Done" + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+        fileOutputStream = new FileOutputStream(file);
+        objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(customerInfo);
+        objectOutputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -140,21 +154,7 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
                 }
             }
         }
-    }
 
-    /**
-     * This method creates a file and requests permission to store files in the external storage, which in this case is Documents.
-     * It then calls upon the method that will store the file in the storage. This method stores Employee info however.
-     *
-     * @param v
-     */
-    public void saveEmployeePublicly(View v) {
-        // Requesting Permission to access External Storage
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                EXTERNAL_STORAGE_PERMISSION_CODE);
-
-        // Storing the data in file with name as geeksData.txt
-        writeEmployeeData(file, employee);
     }
 
     /**
@@ -194,16 +194,15 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
     /**
      * adds one order to the view of the list of orders.
      *
-     * @param orderID the specific order by it's id.
+     * @param internalOrderID the specific order by it's internal id.
      */
-
     public void updateOrderView(int internalOrderID) {
         firstFragment.updateOrderView(customerInfo.get(internalOrderID));
     }
 
-    private HashMap<String, BusinessData> getOrdersFromFile() throws IOException, ClassNotFoundException {
+    private HashMap<Integer, BusinessData> getOrdersFromFile() throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/Customerinfo.txt"));
-        HashMap<String, BusinessData> customerInfo = (HashMap<String, BusinessData>) ois.readObject();
+        HashMap<Integer, BusinessData> customerInfo = (HashMap<Integer, BusinessData>) ois.readObject();
         ois.close();
         return customerInfo;
     }
@@ -212,24 +211,27 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
      * loads orders to the view, but first sorts the elements so that they come in reverse size order.
      */
     public void loadOrderViews() {
-        List<String> orderByKey = new ArrayList<>(customerInfo.keySet());
+        List<Integer> orderByKey = new ArrayList<>(customerInfo.keySet());
         Collections.sort(orderByKey);
         Collections.reverse(orderByKey);
-        for (String id : orderByKey) {
+        for (int id : orderByKey) {
             updateOrderView(id);
         }
     }
 
     @Override
-    public void onDataPass(BusinessData order, String orderID) {
-        this.order = order;
-        this.orderID = orderID;
+    public void onDataPass(BusinessData order) {
         order.setCityCode(cityCode);
+        this.order = order;
+        this.internalOrderID = order.getInternalOrderID();
+        this.latestOrderID = internalOrderID;
     }
 
     @Override
     public void onEmployeePass(Employee employee) throws IOException {
-        employee.setCouponNumber(order.getCityCode());
+        if (employee.getCouponNumber()==null) {
+            employee.setCouponNumber(order.getCityCode());
+        }
         order.addEmployee(employee);
         this.employee = employee;
     }
@@ -279,7 +281,38 @@ public class MainActivity extends AppCompatActivity implements OnDataPass {
             e.printStackTrace();
         }
     }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 10 && resultCode == RESULT_OK){
+            editEmployee = (Employee) data.getSerializableExtra("Redigera");
+            if (editEmployee != null) {
+                NavHostFragment.findNavController(firstFragment).navigate(R.id.action_personelListView_to_personelInfo);
+            }
+            else {
+                Employee employee = (Employee) data.getSerializableExtra("Radera");
+                order.deleteEmployee(employee);
+            }
+        }
+    }
+    public Employee getEditEmployee(){
+        if (editEmployee != null) {
+            employee = order.getEmployee(editEmployee.getCouponNumber());
+        }
+        return editEmployee;
+    }
+    public void resetEditEmployee(){
+        editEmployee = null;
+    }
     public File fileGetter(){
         return filePath;
+    }
+
+    public void deleteOrder(BusinessData businessData) {
+        customerInfo.remove(businessData.getInternalOrderID());
+        saveMap();
+    }
+
+    public void setOrder(BusinessData order) {
+        this.order = order;
     }
 }
