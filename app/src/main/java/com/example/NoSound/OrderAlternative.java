@@ -1,12 +1,9 @@
 package com.example.NoSound;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,8 +14,6 @@ import android.widget.Toast;
 
 import com.example.NoSound.BusinessView.BusinessData;
 
-import org.apache.commons.math3.geometry.partitioning.BSPTreeVisitor;
-import org.apache.poi.xwpf.usermodel.BreakType;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -26,6 +21,7 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,9 +82,12 @@ public class OrderAlternative extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         int latestOrderID = ((MainActivity) requireActivity()).getLatestOrderID();
         businessData = ((MainActivity) requireActivity()).getBusinessData(latestOrderID);
+
         ((TextView)view.findViewById(R.id.companyName)).setText(businessData.getCustomerName());
         ((TextView)view.findViewById(R.id.date)).setText(businessData.getDate());
         ((TextView)view.findViewById(R.id.orderNum)).setText("Ordernr: " + businessData.getOrderID());
+
+
         view.findViewById(R.id.wordButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { // listener
@@ -107,44 +106,6 @@ public class OrderAlternative extends Fragment {
                 }
             }
         });
-        view.findViewById(R.id.orderButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(OrderAlternative.this)
-                        .navigate(R.id.action_orderAlternative_to_edit_order_page);
-            }
-        });
-        view.findViewById(R.id.delete_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case DialogInterface.BUTTON_POSITIVE:
-                                //Yes button clicked
-                                deleteOrder(businessData);
-                                NavHostFragment.findNavController(OrderAlternative.this)
-                                        .navigate(R.id.action_orderAlternative_to_FirstFragment);
-                                break;
-
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
-                                break;
-                        }
-                    }
-                };
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                builder.setMessage("Är du säker på att du vill ta bort ordern?").setPositiveButton("Ja", dialogClickListener)
-                        .setNegativeButton("Nej", dialogClickListener).show();
-
-            }
-        });
-    }
-
-    private void deleteOrder(BusinessData businessData) {
-        ((MainActivity) requireActivity()).deleteOrder(businessData);
     }
 
     private void createDocx(BusinessData businessData) {
@@ -228,4 +189,68 @@ public class OrderAlternative extends Fragment {
             e.printStackTrace();
         }
     }
+/*
+    private String LoadFile() throws IOException {
+        //Create a InputStream to read the file into
+        //get the file as a stream
+        InputStream iS = ((MainActivity) requireActivity()).getAssets().open("kupong_template.docx");
+        //create a buffer that has the same size as the InputStream
+        byte[] buffer = new byte[iS.available()];
+        //read the text file as a stream, into the buffer
+        iS.read(buffer);
+        //create a output stream to write the buffer into
+        ByteArrayOutputStream oS = new ByteArrayOutputStream();
+        //write this buffer to the output stream
+        oS.write(buffer);
+        //Close the Input and Output streams
+        oS.close();
+        iS.close();
+
+        //return the output stream as a String
+        return iS.toString();
+    }
+
+
+
+    private String loadFile() {
+        InputStream file;
+        XWPFWordExtractor extractor;
+        String fileData = null;
+        try {
+            file = ((MainActivity) requireActivity()).getAssets().open("kupong_template.docx");
+            XWPFDocument document = CTPath.Factory(file)
+            extractor = new XWPFWordExtractor(document);
+            fileData = extractor.getText();
+            }
+            catch (Exception exep) {
+
+            }
+        return fileData;
+    }
+
+    private void create() throws InvalidFormatException, IOException {
+        XWPFDocument doc = new XWPFDocument(OPCPackage.open(((MainActivity) requireActivity()).getAssets().open("kupong_template.docx")));
+        for (XWPFParagraph p : doc.getParagraphs()) {
+            List<XWPFRun> runs = p.getRuns();
+            if (runs != null) {
+                for (XWPFRun r : runs) {
+                    String text = r.getText(0);
+                    if (text != null && text.contains("PH_Date")) {
+                        text = text.replace("PH_Date", businessData.getDate());
+                        r.setText(text, 0);
+                    }
+                }
+            }
+        }
+        FileOutputStream fileOutputStream = new FileOutputStream(((MainActivity) requireActivity()).fileGetter());
+        doc.write(fileOutputStream);
+
+        if (fileOutputStream != null) {
+            fileOutputStream.flush();
+            fileOutputStream.close();
+        }
+    }
+
+
+ */
 }
